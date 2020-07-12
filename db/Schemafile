@@ -1,0 +1,66 @@
+# frozen_string_literal: true
+
+create_table :students, force: :cascade do |t|
+  t.string :genron_sf_id
+  t.string :name, null: false
+
+  t.timestamps
+
+  t.index :genron_sf_id, unique: true
+end
+
+create_table :subjects, force: :cascade do |t|
+  t.integer :year, null: false, limit: 2
+  t.integer :number, null: false, limit: 2
+  t.string :title, null: false
+  t.date :kougai_deadline
+  t.date :jissaku_deadline
+
+  t.timestamps
+
+  t.index %i[year number], unique: true
+end
+
+create_table :kougais, force: :cascade do |t|
+  t.bigint :subject_id, null: false
+  t.bigint :student_id, null: false
+
+  t.integer :genron_sf_id
+  t.string :title, null: false
+  t.string :url, null: false
+
+  t.timestamps
+
+  t.index :subject_id
+  t.index :student_id
+  t.index :genron_sf_id, unique: true
+end
+add_foreign_key :kougais, :subjects
+add_foreign_key :kougais, :students
+
+create_table :jissakus, force: :cascade do |t|
+  t.bigint :subject_id, null: false
+  t.bigint :student_id, null: false
+
+  t.integer :genron_sf_id
+  t.string :title, null: false
+  t.string :url, null: false
+
+  t.timestamps
+
+  t.index :subject_id
+  t.index :student_id
+  t.index :genron_sf_id, unique: true
+end
+add_foreign_key :jissakus, :subjects
+add_foreign_key :jissakus, :students
+
+create_table :scores, force: :cascade do |t|
+  t.bigint :jissaku_id, null: false
+  t.integer :value, null: false, limit: 2
+
+  t.timestamps
+
+  t.index :jissaku_id
+end
+add_foreign_key :scores, :jissakus
