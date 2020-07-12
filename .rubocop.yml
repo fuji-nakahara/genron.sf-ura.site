@@ -10,5 +10,8 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
 Rails/HasAndBelongsToMany:
   Enabled: false
