@@ -1,0 +1,11 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rubycw
+
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
