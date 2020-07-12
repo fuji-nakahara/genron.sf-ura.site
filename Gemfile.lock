@@ -2,6 +2,7 @@ PATH
   remote: genron_sf
   specs:
     genron_sf (0.1.0)
+      nokogiri (~> 1.10)
 
 GEM
   remote: https://rubygems.org/

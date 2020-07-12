@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require 'genron_sf/version'
-
-module GenronSF
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative 'genron_sf/error'
+require_relative 'genron_sf/lecturer'
+require_relative 'genron_sf/lecturer_list'
+require_relative 'genron_sf/resource'
+require_relative 'genron_sf/subject'
+require_relative 'genron_sf/subject_list'
+require_relative 'genron_sf/version'
