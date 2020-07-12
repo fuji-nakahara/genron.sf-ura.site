@@ -14,7 +14,13 @@ module GenronSF
     end
 
     def doc
-      @doc ||= Nokogiri::HTML(URI.open(url))
+      @doc ||= Nokogiri::HTML.parse(URI.open(url))
+    end
+
+    private
+
+    def main
+      doc.at_css('#main')
     end
   end
 end

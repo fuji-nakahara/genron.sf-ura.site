@@ -4,11 +4,17 @@ module GenronSF
   class StudentList < Resource
     include Enumerable
 
+    class << self
+      def build_url(year:)
+        "#{Resource::BASE_URL}#{year}/students/"
+      end
+    end
+
     attr_reader :year
 
     def initialize(year:)
       @year = year
-      super("#{BASE_URL}#{year}/students/")
+      super(self.class.build_url(year: year))
     end
 
     def each(&block)
@@ -22,11 +28,8 @@ module GenronSF
     private
 
     def students
-      @students ||= doc.css('#main .student-list-item a').map do |element|
-        id = element['href'].split('/').last
-        Student.new(year: year, id: id).tap do |student|
-          student.instance_variable_set(:@name, element.at_css('.name').content.strip)
-        end
+      @students ||= main.css('.student-list-item a').map do |element|
+        Student.new(url: element['href'], name: element.at_css('.name').content.strip)
       end
     end
   end

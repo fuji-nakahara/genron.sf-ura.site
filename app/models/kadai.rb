@@ -6,11 +6,17 @@ class Kadai < ApplicationRecord
 
   class << self
     def create_or_update_by!(subject)
-      find_or_initialize_by(year: subject.year, number: subject.number).update!(
-        title: subject.theme,
-        kougai_deadline: subject.summary_deadline,
-        jissaku_deadline: subject.work_deadline,
-      )
+      find_or_initialize_by(year: subject.year, number: subject.number).tap do |kadai|
+        kadai.update!(
+          title: kadai.theme,
+          kougai_deadline: kadai.summary_deadline,
+          jissaku_deadline: kadai.work_deadline,
+        )
+      end
     end
+  end
+
+  def fetch_genron_sf_subject
+    GenronSF::Subject.get(year: year, number: number)
   end
 end

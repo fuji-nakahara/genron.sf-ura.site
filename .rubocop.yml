@@ -7,11 +7,21 @@ require:
 AllCops:
   NewCops: enable
 
+Metrics/AbcSize:
+  Max: 30
+
 Style/Documentation:
+  Enabled: false
+
+Style/Next:
   Enabled: false
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
+
+Rails:
+  Exclude:
+    - 'genron_sf/**/*'
 
 Rails/HasAndBelongsToMany:
   Enabled: false

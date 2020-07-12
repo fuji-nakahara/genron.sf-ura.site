@@ -3,6 +3,10 @@
 module GenronSF
   class Subject < Resource
     class << self
+      def build_url(year:, number:)
+        "#{Resource::BASE_URL}#{year}/subjects/#{number}/"
+      end
+
       def list(year:)
         SubjectList.new(year: year).tap(&:doc)
       end
@@ -14,10 +18,11 @@ module GenronSF
 
     attr_reader :year, :number
 
-    def initialize(year:, number:)
+    def initialize(year:, number: nil, header_element: nil)
       @year = year
-      @number = number
-      super("#{BASE_URL}#{year}/subjects/#{number}/")
+      @number = number || (header_element.nil? ? nil : header_element.at_css('.number').content[/\d+/].to_i)
+      @header_element = header_element
+      super(self.class.build_url(year: year, number: @number))
     end
 
     def theme
@@ -48,10 +53,38 @@ module GenronSF
       parse_date(date_str.strip) if date_str
     end
 
+    def without_summary?
+      summary_deadline.nil?
+    end
+
+    def summaries(force: false)
+      return [] if without_summary? && !force
+
+      @summaries ||= main.css('.written a').map do |element|
+        url = element['href']
+        Work.new(url, subject: self) if !url.nil? && !url.empty?
+      end.compact
+    end
+
+    def works
+      @works ||= main.css(without_summary? ? '.written a' : '.has-work a').map do |element|
+        url = element['href']
+        Work.new(url, subject: self) if !url.nil? && !url.empty?
+      end.compact
+    end
+
+    def scores
+      @scores ||= main.css('.has-score').map do |element|
+        url = element.at_css('a')['href']
+        score = element.at_css('.score')&.content&.to_i
+        Score.new(work: Work.new(url, subject: self), value: score) if !url.nil? && !url.empty?
+      end.compact
+    end
+
     private
 
     def header_element
-      @header_element ||= doc.at_css('#main .theme-header')
+      @header_element ||= main.at_css('.theme-header')
     end
 
     def parse_date(date_str)

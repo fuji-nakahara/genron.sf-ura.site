@@ -4,11 +4,17 @@ module GenronSF
   class SubjectList < Resource
     include Enumerable
 
+    class << self
+      def build_url(year:)
+        "#{Resource::BASE_URL}#{year}/"
+      end
+    end
+
     attr_reader :year
 
     def initialize(year:)
       @year = year
-      super("#{BASE_URL}#{year}/")
+      super(self.class.build_url(year: year))
     end
 
     def each(&block)
@@ -22,10 +28,8 @@ module GenronSF
     private
 
     def subjects
-      @subjects ||= doc.css('#main .theme-header').map do |header_element|
-        Subject.new(year: year, number: header_element.at_css('.number').content[/\d+/].to_i).tap do |subject|
-          subject.instance_variable_set(:@header_element, header_element)
-        end
+      @subjects ||= main.css('.theme-header').map do |header_element|
+        Subject.new(year: year, header_element: header_element)
       end
     end
   end
