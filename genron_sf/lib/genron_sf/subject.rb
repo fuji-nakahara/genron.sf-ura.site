@@ -21,7 +21,7 @@ module GenronSF
       super("#{BASE_URL}#{year}/subjects/#{number}/")
     end
 
-    def title
+    def theme
       header_element.at_css('h1').content.strip[/\A「(.*)」\z/, 1]
     end
 
@@ -29,22 +29,22 @@ module GenronSF
       LecturerList.new(header_element.at_css('.lecturer-name-list'))
     end
 
-    def kougai_deadline
+    def summary_deadline
       date_str = header_element.at_css('.date-deadline .date')&.content
       parse_date(date_str.strip) if date_str
     end
 
-    def kougai_comment_date
+    def summary_comment_date
       date_str = header_element.at_css('.date-comment .date')&.content
       parse_date(date_str.strip) if date_str
     end
 
-    def jissaku_deadline
+    def work_deadline
       date_str = header_element.at_css('.date-deadline-work .date')&.content
       parse_date(date_str.strip) if date_str
     end
 
-    def jissaku_comment_date
+    def work_comment_date
       date_str = header_element.at_css('.date-comment-work .date')&.content
       parse_date(date_str.strip) if date_str
     end

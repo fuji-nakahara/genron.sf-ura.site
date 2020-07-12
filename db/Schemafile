@@ -9,7 +9,7 @@ create_table :students, force: :cascade do |t|
   t.index :genron_sf_id, unique: true
 end
 
-create_table :subjects, force: :cascade do |t|
+create_table :kadais, force: :cascade do |t|
   t.integer :year, null: false, limit: 2
   t.integer :number, null: false, limit: 2
   t.string :title, null: false
@@ -22,7 +22,7 @@ create_table :subjects, force: :cascade do |t|
 end
 
 create_table :kougais, force: :cascade do |t|
-  t.bigint :subject_id, null: false
+  t.bigint :kadai_id, null: false
   t.bigint :student_id, null: false
 
   t.integer :genron_sf_id
@@ -31,15 +31,15 @@ create_table :kougais, force: :cascade do |t|
 
   t.timestamps
 
-  t.index :subject_id
+  t.index :kadai_id
   t.index :student_id
   t.index :genron_sf_id, unique: true
 end
-add_foreign_key :kougais, :subjects
+add_foreign_key :kougais, :kadais
 add_foreign_key :kougais, :students
 
 create_table :jissakus, force: :cascade do |t|
-  t.bigint :subject_id, null: false
+  t.bigint :kadai_id, null: false
   t.bigint :student_id, null: false
 
   t.integer :genron_sf_id
@@ -48,11 +48,11 @@ create_table :jissakus, force: :cascade do |t|
 
   t.timestamps
 
-  t.index :subject_id
+  t.index :kadai_id
   t.index :student_id
   t.index :genron_sf_id, unique: true
 end
-add_foreign_key :jissakus, :subjects
+add_foreign_key :jissakus, :kadais
 add_foreign_key :jissakus, :students
 
 create_table :scores, force: :cascade do |t|
