@@ -13,7 +13,6 @@ module GenronSF
     end
 
     attr_reader :year, :number
-    attr_writer :header_element
 
     def initialize(year:, number:)
       @year = year
@@ -52,7 +51,7 @@ module GenronSF
     private
 
     def header_element
-      @header_element ||= doc.at_css('#main header.theme-header')
+      @header_element ||= doc.at_css('#main .theme-header')
     end
 
     def parse_date(date_str)

@@ -22,9 +22,9 @@ module GenronSF
     private
 
     def subjects
-      @subjects ||= doc.css('#main header.theme-header').map do |header_element|
+      @subjects ||= doc.css('#main .theme-header').map do |header_element|
         Subject.new(year: year, number: header_element.at_css('.number').content[/\d+/].to_i).tap do |subject|
-          subject.header_element = header_element
+          subject.instance_variable_set(:@header_element, header_element)
         end
       end
     end
