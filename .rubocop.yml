@@ -10,6 +10,14 @@ AllCops:
 Metrics/AbcSize:
   Max: 30
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'genron_sf/spec/**/*'
+
+Metrics/CyclomaticComplexity:
+  Max: 14
+
 Metrics/MethodLength:
   Max: 20
 
