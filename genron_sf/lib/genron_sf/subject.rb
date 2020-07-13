@@ -87,7 +87,7 @@ module GenronSF
       @scores ||= main.css('.has-score').map do |element|
         url = element.at_css('a')['href']
         score = element.at_css('.score')&.content&.to_i
-        Score.new(work: Work.new(url, subject: self), value: score) if !url.nil? && !url.empty?
+        Score.new(work: Work.new(url, subject: self), value: score) if !url.nil? && !url.empty? && !score.nil?
       end.compact
     end
 

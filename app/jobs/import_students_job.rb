@@ -5,7 +5,8 @@ class ImportStudentsJob < ApplicationJob
     Kadai::YEARS.each do |year|
       students = GenronSF::Student.list(year: year)
       students.each do |student|
-        Student.create_or_update_by!(student)
+        logger.info "Importing #{year} #{student.id}"
+        Student.import(student)
       end
     end
   end

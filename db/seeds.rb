@@ -9,4 +9,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ImportKadaisJob.perform_now
-ImportKougaisAndJissakusJob.perform_now
+ImportStudentsJob.perform_now
+ImportWorksJob.perform_now

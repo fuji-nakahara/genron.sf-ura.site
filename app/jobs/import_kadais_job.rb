@@ -5,7 +5,8 @@ class ImportKadaisJob < ApplicationJob
     Kadai::YEARS.each do |year|
       subjects = GenronSF::Subject.list(year: year)
       subjects.each do |subject|
-        Kadai.create_or_update_by!(subject)
+        logger.info "Importing #{subject.year} 第#{subject.number}回"
+        Kadai.import(subject)
       end
     end
   end

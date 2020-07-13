@@ -24,7 +24,7 @@ module GenronSF
     private
 
     def subjects
-      @subjects ||= main.css('.theme-header').map do |header_element|
+      @subjects ||= main.css('.theme-header').reverse.map do |header_element|
         Subject.new(year: year, header_element: header_element)
       end
     end
