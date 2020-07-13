@@ -1,0 +1,62 @@
+<% provide :title, "#{@kadai.year_and_number}" %>
+
+<header class="card mb-3">
+  <div class="card-body">
+    <div class="card-subtitle lead text-muted mb-1"><%= "#{@kadai.year_and_number} #{@kadai.author}" %></div>
+    <h1 class="card-title mb-3"><%= @kadai.title %></h1>
+    <ul class="card-text list-unstyled lead">
+      <% if @kadai.kougai_deadline %>
+        <li>梗概締切: <%= localize @kadai.kougai_deadline, format: :long %></li>
+      <% end %>
+      <% if @kadai.jissaku_deadline %>
+        <li>実作締切: <%= localize @kadai.jissaku_deadline, format: :long %></li>
+      <% end %>
+    </ul>
+    <%= link_to '超・SF作家育成サイトで詳細を確認', @kadai.genron_sf_url, class: 'btn btn-outline-primary stretched-link', target: '_blank' %>
+  </div>
+</header>
+
+<nav class="mb-3">
+  <ul class="pagination justify-content-center">
+    <% if (previous_kadai = @kadai.previous) %>
+      <li class="page-item">
+        <%= link_to previous_kadai, class: 'page-link' do %>
+          <% if previous_kadai.year == @kadai.year %>
+            <%= "« #{previous_kadai.number_str}" %>
+          <% else %>
+            <%= "« #{previous_kadai.year_and_number}" %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if (next_kadai = @kadai.next) %>
+      <li class="page-item">
+        <%= link_to next_kadai, class: 'page-link' do %>
+          <% if next_kadai.year == @kadai.year %>
+            <%= "#{next_kadai.number_str} »" %>
+          <% else %>
+            <%= "#{next_kadai.year_and_number} »" %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+
+<% unless @kadai.jissaku_deadline.nil? %>
+  <section class="mb-3">
+    <h2 class="border-bottom pb-2 mb-3">実作</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <%= render @kadai.jissakus.includes(:student, :score) %>
+    </div>
+  </section>
+<% end %>
+
+<% unless @kadai.kougai_deadline.nil? %>
+  <section class="mb-3">
+    <h2 class="border-bottom pb-2 mb-3">梗概</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <%= render @kadai.kougais.includes(:student) %>
+    </div>
+  </section>
+<% end %>

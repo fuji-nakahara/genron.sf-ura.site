@@ -1,0 +1,20 @@
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title h5">
+        <%= link_to kougai.title, kougai.url, class: 'link-dark text-decoration-none', target: '_blank' %>
+      </h3>
+      <ul class="card-text list-unstyled text-muted">
+        <li>
+          <% if kougai.student.genron_sf_id %>
+            <%= link_to kougai.student.name, kougai.student.genron_sf_url(year: kougai.kadai.year), class: 'link-secondary', target: '_blank' %>
+          <% else %>
+            <%= kougai.student.name %>
+          <% end %>
+        </li>
+        <li><%= link_to kougai.url_domain, kougai.url, class: 'link-secondary text-decoration-none', target: '_blank' %></li>
+      </ul>
+      <%= link_to '作品を読む', kougai.url, class: 'btn btn-sm btn-outline-primary', target: '_blank' %>
+    </div>
+  </div>
+</div>

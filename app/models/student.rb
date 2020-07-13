@@ -8,4 +8,8 @@ class Student < ApplicationRecord
       end
     end
   end
+
+  def genron_sf_url(year:)
+    GenronSF::Student.build_url(year: year, id: genron_sf_id)
+  end
 end

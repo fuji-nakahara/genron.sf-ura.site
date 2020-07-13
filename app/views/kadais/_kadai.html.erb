@@ -1,0 +1,19 @@
+<div class="col">
+  <section class="card mb-3">
+    <div class="card-body">
+      <div class="card-subtitle text-muted mb-1"><%= "#{kadai.year_and_number} #{kadai.author}" %></div>
+      <h1 class="card-title h5"><%= kadai.title %></h1>
+      <ul class="card-text list-unstyled text-muted">
+        <% if kadai.kougai_deadline %>
+          <li>梗概締切: <%= localize kadai.kougai_deadline %></li>
+        <% end %>
+        <% if kadai.jissaku_deadline %>
+          <li>実作締切: <%= localize kadai.jissaku_deadline %></li>
+        <% end %>
+      </ul>
+      <%= link_to kadai, class: 'btn btn-sm btn-outline-primary stretched-link' do %>
+        作品一覧へ <span class="badge rounded-pill bg-light text-dark"><%= kadai.works_count %></span>
+      <% end %>
+    </div>
+  </section>
+</div>

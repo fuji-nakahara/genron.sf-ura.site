@@ -29,5 +29,8 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+ja:
+  date:
+    formats:
+      default: "%Y/%-m/%-d"
+      long: "%Y年%-m月%-d日(%a)"

@@ -1,0 +1,23 @@
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title h5">
+        <%= link_to jissaku.title, jissaku.url, class: 'link-dark text-decoration-none', target: '_blank' %>
+        <% if jissaku.score %>
+          <span class="badge rounded-pill bg-success"><%= jissaku.score.value %></span>
+        <% end %>
+      </h3>
+      <ul class="card-text list-unstyled text-muted">
+        <li>
+          <% if jissaku.student.genron_sf_id %>
+            <%= link_to jissaku.student.name, jissaku.student.genron_sf_url(year: jissaku.kadai.year), class: 'link-secondary', target: '_blank' %>
+          <% else %>
+            <%= jissaku.student.name %>
+          <% end %>
+        </li>
+        <li><%= link_to jissaku.url_domain, jissaku.url, class: 'link-secondary text-decoration-none', target: '_blank' %></li>
+      </ul>
+      <%= link_to '作品を読む', jissaku.url, class: 'btn btn-sm btn-outline-primary', target: '_blank' %>
+    </div>
+  </div>
+</div>

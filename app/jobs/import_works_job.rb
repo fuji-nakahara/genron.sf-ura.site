@@ -12,7 +12,7 @@ class ImportWorksJob < ApplicationJob
         Jissaku.import(kadai, student, work) if work.title
       end
 
-      logger.info "Importing #{kadai.year} 第#{kadai.number}回 scores"
+      logger.info "Importing #{kadai.year_and_number} scores"
       subject.scores.each do |score|
         jissaku = Jissaku.find_by(genron_sf_id: score.work.id)
         jissaku.create_score!(value: score.value) if jissaku && jissaku.score.nil? && score.value.positive?
