@@ -11,11 +11,7 @@ module GenronSF
     end
 
     def each(&block)
-      to_a.each(&block)
-    end
-
-    def to_a
-      lecturers
+      lecturers.each(&block)
     end
 
     private

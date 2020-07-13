@@ -19,8 +19,14 @@ module GenronSF
     attr_reader :year, :number
 
     def initialize(year:, number: nil, header_element: nil)
-      @year = year
-      @number = number || (header_element.nil? ? nil : header_element.at_css('.number').content[/\d+/].to_i)
+      raise ArgumentError, 'Specify number or header_element' if number.nil? && header_element.nil?
+
+      @year = year.to_i
+      @number = if number.nil?
+                  header_element.at_css('.number').content[/\d+/].to_i
+                else
+                  number.to_i
+                end
       @header_element = header_element
       super(self.class.build_url(year: year, number: @number))
     end
@@ -29,8 +35,8 @@ module GenronSF
       header_element.at_css('h1').content.strip[/\A「(.*)」\z/, 1]
     end
 
-    def lecturers
-      LecturerList.new(header_element.at_css('.lecturer-name-list'))
+    def detail
+      main.at_css('.entry-content').content.strip
     end
 
     def summary_deadline
@@ -53,8 +59,12 @@ module GenronSF
       parse_date(date_str.strip) if date_str
     end
 
+    def lecturers
+      LecturerList.new(header_element.at_css('.lecturer-name-list'))
+    end
+
     def without_summary?
-      summary_deadline.nil?
+      summary_deadline.nil? || number == 11
     end
 
     def summaries(force: false)

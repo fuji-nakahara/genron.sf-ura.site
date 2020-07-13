@@ -22,7 +22,7 @@ module GenronSF
     end
 
     def year
-      url.split('/')[-3]
+      url.split('/')[-3].to_i
     end
 
     def id

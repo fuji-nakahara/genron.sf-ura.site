@@ -13,16 +13,12 @@ module GenronSF
     attr_reader :year
 
     def initialize(year:)
-      @year = year
-      super(self.class.build_url(year: year))
+      @year = year.to_i
+      super(self.class.build_url(year: @year))
     end
 
     def each(&block)
-      to_a.each(&block)
-    end
-
-    def to_a
-      students
+      students.each(&block)
     end
 
     private
