@@ -34,3 +34,6 @@ yarn-debug.log*
 
 # RSpec
 /spec/examples.txt
+
+# dotenv
+.env

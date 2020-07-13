@@ -30,6 +30,9 @@ Style/Next:
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
 
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
 Rails:
   Exclude:
     - 'genron_sf/**/*'

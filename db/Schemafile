@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+# region Core
+
 create_table :students, force: :cascade do |t|
   t.string :genron_sf_id
   t.string :name, null: false
+  t.string :url, null: false
   t.integer :works_count, null: false, default: 0, limit: 2
 
   t.timestamps
@@ -51,3 +54,34 @@ create_table :scores, force: :cascade do |t|
   t.index :jissaku_id, unique: true
 end
 add_foreign_key :scores, :works, column: :jissaku_id
+
+# endregion
+
+# region User
+
+create_table :users, force: :cascade do |t|
+  t.bigint :student_id, null: false
+  t.bigint :twitter_id, null: false
+  t.string :image_url, null: false
+  t.string :twitter_screen_name, null: false
+  t.datetime :last_logged_in_at, null: false
+
+  t.timestamps
+
+  t.index :student_id, unique: true
+  t.index :twitter_id, unique: true
+end
+add_foreign_key :users, :students
+
+create_table :twitter_credentials, force: :cascade do |t|
+  t.bigint :user_id, null: false
+  t.string :token, null: false
+  t.string :secret, null: false
+
+  t.timestamps
+
+  t.index :user_id, unique: true
+end
+add_foreign_key :twitter_credentials, :users
+
+# endregion

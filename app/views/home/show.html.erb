@@ -3,5 +3,10 @@
   <p class="lead">
     ゲンロン 大森望 SF創作講座のファンサイトです。
   </p>
-  <%= link_to '課題一覧へ »', kadais_path, class: 'btn btn-lg btn-primary' %>
+  <ul class="list-inline">
+    <% unless current_user %>
+      <li class="list-inline-item"><%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-lg btn-info' %></li>
+    <% end %>
+    <li class="list-inline-item"><%= link_to '課題一覧へ', kadais_path, class: 'btn btn-lg btn-primary' %></li>
+  </ul>
 </div>

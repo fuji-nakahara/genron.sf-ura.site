@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+class SessionsController < ApplicationController
+  def create
+    auth_hash = request.env['omniauth.auth']
+    user = User.find_or_initialize_by(twitter_id: auth_hash.uid)
+    user.save_auth_hash!(auth_hash)
+    log_in user
+    redirect_to root_path, notice: 'ログインしました'
+  end
+
+  def destroy
+    log_out
+    redirect_to root_path, notice: 'ログアウトしました'
+  end
+end

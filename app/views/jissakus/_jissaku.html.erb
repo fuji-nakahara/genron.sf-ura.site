@@ -8,13 +8,7 @@
         <% end %>
       </h3>
       <ul class="card-text list-unstyled text-muted">
-        <li>
-          <% if jissaku.student.genron_sf_id %>
-            <%= link_to jissaku.student.name, jissaku.student.genron_sf_url(year: jissaku.kadai.year), class: 'link-secondary', target: '_blank' %>
-          <% else %>
-            <%= jissaku.student.name %>
-          <% end %>
-        </li>
+        <li><%= link_to jissaku.student.name, jissaku.student.url, class: 'link-secondary', target: '_blank' %></li>
         <li><%= link_to jissaku.url_domain, jissaku.url, class: 'link-secondary text-decoration-none', target: '_blank' %></li>
       </ul>
       <%= link_to '作品を読む', jissaku.url, class: 'btn btn-sm btn-outline-primary', target: '_blank' %>
