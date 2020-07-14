@@ -46,4 +46,5 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 
   gem 'dotenv-rails'
+  gem 'rails_real_favicon'
 end
