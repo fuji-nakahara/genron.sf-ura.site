@@ -5,14 +5,24 @@
       <h1 class="card-title h5"><%= kadai.title %></h1>
       <ul class="card-text list-unstyled text-muted">
         <% if kadai.kougai_deadline %>
-          <li>梗概締切: <%= localize kadai.kougai_deadline %></li>
+          <li>
+            梗概締切:
+            <%= localize kadai.kougai_deadline %>
+            <%= deadline_badge(kadai.kougai_deadline) %>
+          </li>
         <% end %>
         <% if kadai.jissaku_deadline %>
-          <li>実作締切: <%= localize kadai.jissaku_deadline %></li>
+          <li>
+            実作締切:
+            <%= localize kadai.jissaku_deadline %>
+            <% if kadai.kougai_deadline.nil? || kadai.kougai_deadline_time.past? %>
+              <%= deadline_badge(kadai.jissaku_deadline) %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
       <%= link_to kadai, class: 'btn btn-sm btn-outline-primary stretched-link' do %>
-        作品一覧へ <span class="badge rounded-pill bg-light text-dark"><%= kadai.works_count %></span>
+        <%= icon('fas', 'list') %> 作品一覧へ <span class="badge rounded-pill bg-light text-dark"><%= kadai.works_count %></span>
       <% end %>
     </div>
   </section>

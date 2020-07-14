@@ -7,5 +7,9 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
   post '/logout', to: 'sessions#destroy'
 
-  resources :kadais
+  resources :kadais, only: :show
+
+  direct :genron_sf do
+    'https://school.genron.co.jp/sf/'
+  end
 end

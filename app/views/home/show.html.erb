@@ -1,12 +1,34 @@
-<div class="bg-light p-5 rounded">
+<header class="bg-light p-5 rounded-lg mb-3">
   <h1><span class="text-light bg-dark bg-gradient">裏</span>SF創作講座</h1>
   <p class="lead">
-    ゲンロン 大森望 SF創作講座のファンサイトです。
+    <%= link_to 'ゲンロン 大森望 SF創作講座', genron_sf_url, target: '_blank' %>
+    の裏サイト（ファンサイト）です。
+    <br>
+    3期受講生・5期聴講生
+    <%= link_to 'フジ・ナカハラ', 'https://twitter.com/fuji_nakahara', target: '_blank' %>
+    が運営しています。
   </p>
   <ul class="list-inline">
     <% unless current_user %>
-      <li class="list-inline-item"><%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-lg btn-info' %></li>
+      <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-lg btn-info' %>
     <% end %>
-    <li class="list-inline-item"><%= link_to '課題一覧へ', kadais_path, class: 'btn btn-lg btn-primary' %></li>
   </ul>
-</div>
+</header>
+
+<section>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+    <%= render @kadais %>
+  </div>
+</section>
+
+<section>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col">
+      <a class="twitter-timeline" data-lang="ja" data-theme="light" href="https://twitter.com/genron_sf_fun?ref_src=twsrc%5Etfw">Tweets by genron_sf_fun</a>
+    </div>
+    <div class="col">
+      <a class="twitter-timeline" data-lang="ja" data-theme="light" href="https://twitter.com/genronschool?ref_src=twsrc%5Etfw">Tweets by genronschool</a>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</section>

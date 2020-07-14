@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Kadai < ApplicationRecord
-  YEARS = [2016, 2017, 2018, 2019].freeze
+  YEARS = [2018, 2019].freeze
   LATEST_YEAR = YEARS.last
 
   has_many :kougais, dependent: :restrict_with_exception
@@ -23,6 +23,14 @@ class Kadai < ApplicationRecord
         )
       end
     end
+  end
+
+  def kougai_deadline_time
+    kougai_deadline&.in_time_zone&.end_of_day
+  end
+
+  def jissaku_deadline_time
+    kougai_deadline&.in_time_zone&.end_of_day
   end
 
   def year_and_number

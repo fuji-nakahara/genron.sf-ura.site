@@ -8,9 +8,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar-content">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to '課題一覧', kadais_path, class: "nav-link#{current_page?(kadais_path) ? ' active' : ''}" %>
-        </li>
       </ul>
       <% if current_user %>
         <div class="navbar-nav">

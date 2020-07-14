@@ -12,7 +12,7 @@
         <li>実作締切: <%= localize @kadai.jissaku_deadline, format: :long %></li>
       <% end %>
     </ul>
-    <%= link_to '超・SF作家育成サイトで詳細を確認', @kadai.genron_sf_url, class: 'btn btn-outline-primary stretched-link', target: '_blank' %>
+    <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), @kadai.genron_sf_url, class: 'btn btn-outline-primary stretched-link', target: '_blank' %>
   </div>
 </header>
 
