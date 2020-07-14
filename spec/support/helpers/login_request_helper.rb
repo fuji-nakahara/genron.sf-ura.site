@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module LoginRequestHelpers
+module LoginRequestHelper
   def log_in(user)
     OmniAuth.config.add_mock(
       :twitter,
