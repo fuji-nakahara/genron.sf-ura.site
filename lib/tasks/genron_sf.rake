@@ -5,4 +5,9 @@ namespace :genron_sf do
   task import_latest_and_tweet: :environment do
     ImportLatestJob.perform_now(tweet: true)
   end
+
+  desc 'Import twitter_screen_names from student profiles.'
+  task import_twitter_screen_names: :environment do
+    ImportTwitterScreenNamesJob.perform_now
+  end
 end
