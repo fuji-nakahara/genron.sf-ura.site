@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  RSpec:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+
+    services:
+      postgres:
+        image: postgres:12.3
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Bundler cache
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Yarn cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libpq-dev
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+          yarn install
+
+      - name: Setup database
+        run: |
+          cp config/database_ci.yml config/database.yml
+          bin/rake db:create
+          bin/rake ridgepole:apply
+
+      - name: Run tests
+        run: bin/rake spec
