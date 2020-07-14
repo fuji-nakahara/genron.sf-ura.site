@@ -9,6 +9,11 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: 'ログインしました'
   end
 
+  def failure
+    flash.alert = "ログインに失敗しました: #{params[:message]}" if params[:message].present?
+    redirect_to root_path
+  end
+
   def destroy
     log_out
     redirect_to root_path, notice: 'ログアウトしました'
