@@ -1,16 +1,27 @@
 <div class="col">
   <div class="card mb-3">
     <div class="card-body">
+      <div class="card-subtitle text-muted mb-1">
+        <% if local_assigns[:header] == :kadai %>
+          <%= link_to jissaku.kadai.year_and_number, jissaku.kadai, class: 'link-secondary' %>
+        <% else %>
+          <%= link_to jissaku.student.url, class: 'link-secondary', target: '_blank' do %>
+            <%= jissaku.student.name %>
+            <% if jissaku.student.user %>
+              <%= image_tag jissaku.student.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
       <h3 class="card-title h5">
         <%= link_to jissaku.title, jissaku.url, class: 'link-dark text-decoration-none', target: '_blank' %>
         <% if jissaku.score %>
           <span class="badge rounded-pill bg-success"><%= jissaku.score.value %></span>
         <% end %>
       </h3>
-      <ul class="card-text list-unstyled text-muted">
-        <li><%= link_to jissaku.student.name, jissaku.student.url, class: 'link-secondary', target: '_blank' %></li>
-        <li><%= link_to jissaku.url_domain, jissaku.url, class: 'link-secondary text-decoration-none', target: '_blank' %></li>
-      </ul>
+      <p class="card-text text-muted">
+        <%= link_to jissaku.url_domain, jissaku.url, class: 'link-secondary text-decoration-none', target: '_blank' %>
+      </p>
       <%= link_to icon('fas', 'book-open', '作品を読む'), jissaku.url, class: 'btn btn-sm btn-outline-primary', target: '_blank' %>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3" id="navbar">
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-3" id="navbar">
   <div class="container">
     <%= link_to root_path, class: 'navbar-brand' do %>
       <span class="text-dark bg-light bg-gradient">裏</span>SF創作講座
@@ -16,6 +16,8 @@
               <%= image_tag current_user.image_url, size: '30x30', class: 'd-inline-block align-top ml-1 rounded-circle', loading: 'lazy' %>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-menu">
+              <li><%= link_to '作品一覧', current_user.student, class: 'dropdown-item' %></li>
+              <li><hr class="dropdown-divider"></li>
               <li><%= link_to 'ログアウト', logout_path, method: :post, class: 'dropdown-item' %></li>
             </ul>
           </li>
