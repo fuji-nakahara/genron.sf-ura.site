@@ -42,6 +42,10 @@ module GenronSF
       end
     end
 
+    def twitter_screen_name
+      profile[%r{https?://twitter\.com/(\w{1,15})}, 1] || profile[/\W@(\w{1,15})/, 1] if profile
+    end
+
     def works
       @works ||= main.css('.theme-header').map do |header_element|
         work_url = header_element.at_css('.right > a')['href']

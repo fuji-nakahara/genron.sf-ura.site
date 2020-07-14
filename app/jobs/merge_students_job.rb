@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class MergeStudentsJob < ApplicationJob
-  def perform(source_id:, target_id:)
-    source = Student.joins(:user).where(genron_sf_id: nil).find(source_id)
-    target = Student.left_joins(:user).where(users: { id: nil }).where.not(genron_sf_id: nil).find(target_id)
+  def perform(twitter_screen_name:, genron_sf_id:)
+    source = Student
+               .joins(:user).merge(User.where(twitter_screen_name: twitter_screen_name))
+               .where(genron_sf_id: nil).take!
+    target = Student
+               .left_joins(:user).where(users: { id: nil })
+               .where(genron_sf_id: genron_sf_id).take!
     user = source.user
 
     Student.transaction do
