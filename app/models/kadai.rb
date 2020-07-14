@@ -11,6 +11,7 @@ class Kadai < ApplicationRecord
            dependent: :restrict_with_exception
 
   scope :newest_order, -> { order(year: :desc, number: :desc) }
+  scope :newest3, -> { newest_order.limit(3) }
 
   class << self
     def import(subject)

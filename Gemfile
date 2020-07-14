@@ -25,6 +25,7 @@ gem 'omniauth-twitter'
 gem 'rails-i18n'
 gem 'ridgepole', require: false
 gem 'sentry-raven'
+gem 'twitter'
 
 gem 'genron_sf', path: './genron_sf'
 

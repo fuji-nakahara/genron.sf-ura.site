@@ -30,6 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ja:
+  activerecord:
+    models:
+      jissaku: 実作
+      kadai: 課題
+      kougai: 梗概
+      student: 受講生
+      user: ユーザー
+      work: 作品
   date:
     formats:
       default: "%Y/%-m/%-d"
