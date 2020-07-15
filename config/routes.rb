@@ -19,12 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
-  direct :genron_sf do
-    'https://school.genron.co.jp/sf/'
-  end
-
-  direct :twitter_profile do |screen_name|
-    "https://twitter.com/#{screen_name}"
+  resources :works, only: [] do
+    resources :votes, only: %i[create destroy], shallow: true
   end
 
   namespace :admin do
@@ -35,5 +31,13 @@ Rails.application.routes.draw do
         post :merge
       end
     end
+  end
+
+  direct :genron_sf do
+    'https://school.genron.co.jp/sf/'
+  end
+
+  direct :twitter_profile do |screen_name|
+    "https://twitter.com/#{screen_name}"
   end
 end

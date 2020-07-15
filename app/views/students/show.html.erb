@@ -1,7 +1,7 @@
 <% provide :title, "#{@student.name}" %>
 
 <header class="mb-3">
-  <h1><%= link_to @student.name, @student.url, target: '_blank', class: 'link-dark' %></h1>
+  <h1><%= link_to @student.name, @student.url, class: 'link-dark', target: '_blank' %></h1>
 </header>
 
 <section class="mb-3">

@@ -47,7 +47,7 @@
   <section class="mb-3">
     <h2 class="border-bottom pb-2 mb-3">実作</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @kadai.jissakus.includes(:score, student: :user), header: :student %>
+      <%= render @kadai.jissakus.includes(:score, :voters, student: :user), header: :student %>
     </div>
   </section>
 <% end %>
@@ -56,7 +56,7 @@
   <section class="mb-3">
     <h2 class="border-bottom pb-2 mb-3">梗概</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @kadai.kougais.includes(student: :user), header: :student %>
+      <%= render @kadai.kougais.includes(:voters, student: :user), header: :student %>
     </div>
   </section>
 <% end %>

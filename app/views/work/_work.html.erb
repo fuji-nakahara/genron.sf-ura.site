@@ -1,0 +1,50 @@
+<div class="col">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="card-subtitle text-muted mb-1">
+        <% if local_assigns[:header] == :kadai %>
+          <%= link_to work.kadai.year_and_number, work.kadai, class: 'link-secondary' %>
+        <% else %>
+          <%= link_to work.student.url, class: 'link-secondary', target: '_blank' do %>
+            <%= work.student.name %>
+            <% if work.student.user %>
+              <%= image_tag work.student.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <h3 class="card-title h5">
+        <%= link_to work.title, work.url, class: 'link-dark text-decoration-none', target: '_blank' %>
+        <% if work.is_a?(Jissaku) && work.score %>
+          <span class="badge rounded-pill bg-success"><%= work.score.value %></span>
+        <% end %>
+      </h3>
+
+      <p class="card-text text-muted">
+        <%= link_to work.url_domain, work.url, class: 'link-secondary text-decoration-none', target: '_blank' %>
+      </p>
+
+      <ul class="card-text list-inline">
+        <% work.voters.each do |user| %>
+          <li class="list-inline-item">
+            <%= link_to twitter_profile_url(user.twitter_screen_name), target: '_blank' do %>
+              <%= image_tag user.image_url, size: '24x24', class: 'border rounded-circle' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+      <%= link_to icon('fas', 'book-open', '作品を読む'), work.url, class: 'card-link btn btn-sm btn-outline-primary', target: '_blank' %>
+      <% if work.voters.include?(current_user) %>
+        <%= link_to current_user.votes.find_by(work_id: work.id), method: :delete, class: 'card-link btn btn-sm btn-success' do %>
+          <%= icon('fas', 'thumbs-up') %> 取り消す <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
+        <% end %>
+      <% else %>
+        <%= link_to work_votes_path(work), method: :post, class: 'card-link btn btn-sm btn-outline-success' do %>
+          <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
