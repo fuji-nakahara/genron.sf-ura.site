@@ -36,14 +36,20 @@
       </ul>
 
       <%= link_to icon('fas', 'book-open', '作品を読む'), work.url, class: 'card-link btn btn-sm btn-outline-primary', target: '_blank' %>
-      <% if work.voters.include?(current_user) %>
-        <%= link_to current_user.votes.find_by(work_id: work.id), method: :delete, class: 'card-link btn btn-sm btn-success' do %>
-          <%= icon('fas', 'thumbs-up') %> 取り消す <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
+      <% if current_user %>
+        <% if work.voters.include?(current_user) %>
+          <%= link_to current_user.votes.find_by(work_id: work.id), method: :delete, class: 'card-link btn btn-sm btn-success' do %>
+            <%= icon('fas', 'thumbs-up') %> 取り消す <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
+          <% end %>
+        <% else %>
+          <%= link_to work_votes_path(work), method: :post, class: 'card-link btn btn-sm btn-outline-success' do %>
+            <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
+          <% end %>
         <% end %>
       <% else %>
-        <%= link_to work_votes_path(work), method: :post, class: 'card-link btn btn-sm btn-outline-success' do %>
+        <button class="card-link btn btn-sm btn-outline-success" data-toggle="modal" data-target="#modal-require-login">
           <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
-        <% end %>
+        </button>
       <% end %>
     </div>
   </div>

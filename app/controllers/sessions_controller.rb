@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_or_initialize_by(twitter_id: auth_hash.uid)
     user.save_auth_hash!(auth_hash)
     log_in user
-    redirect_to root_path, notice: 'ログインしました'
+    redirect_to request.env['omniauth.origin'] || root_path, notice: 'ログインしました'
   end
 
   def failure
