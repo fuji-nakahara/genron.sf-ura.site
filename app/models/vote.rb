@@ -5,6 +5,7 @@ class Vote < ApplicationRecord
   belongs_to :work, counter_cache: true
 
   validate :up_to_three_votes_per_kadai
+  validate :unable_to_vote_for_own_work
 
   private
 
@@ -17,5 +18,9 @@ class Vote < ApplicationRecord
                    .count
 
     errors.add(:base, '1つの課題につき3作品までしか投票できません') if vote_count >= 3
+  end
+
+  def unable_to_vote_for_own_work
+    errors.add(:base, '自分の作品には投票できません') if user.student_id == work.student_id
   end
 end
