@@ -26,4 +26,14 @@ Rails.application.routes.draw do
   direct :twitter_profile do |screen_name|
     "https://twitter.com/#{screen_name}"
   end
+
+  namespace :admin do
+    root 'home#show'
+
+    resources :students, only: [] do
+      collection do
+        post :merge
+      end
+    end
+  end
 end
