@@ -1,13 +1,21 @@
 {
   "name": "genron_sf_fun",
   "private": true,
+  "scripts": {
+    "eslint": "eslint *.config.js .*.js app/javascript"
+  },
   "dependencies": {
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.1.1",
-    "bootstrap": "^5.0.0-alpha1"
+    "bootstrap": "^5.0.0-alpha1",
+    "stimulus": "^1.1.1"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.0.5",
     "webpack-dev-server": "^3.11.0"
   }
 }
