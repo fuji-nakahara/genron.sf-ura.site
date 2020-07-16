@@ -15,7 +15,10 @@ class ImportWorksJob < ApplicationJob
       logger.info "Importing #{kadai.year_and_number} scores"
       subject.scores.each do |score|
         jissaku = Jissaku.find_by(genron_sf_id: score.work.id)
-        jissaku.create_score!(value: score.value) if jissaku && jissaku.score.nil? && score.value.positive?
+        next if jissaku.nil?
+
+        jissaku.build_score if jissaku.score.nil?
+        jissaku.score.update!(value: score.value) if score.value.positive?
       end
     end
   end

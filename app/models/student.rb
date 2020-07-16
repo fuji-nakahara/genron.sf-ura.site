@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Student < ApplicationRecord
-  has_many :kougais, dependent: :destroy
-  has_many :jissakus, dependent: :destroy
+  has_many :kougais, dependent: :restrict_with_exception
+  has_many :jissakus, dependent: :restrict_with_exception
   has_one :student_twitter_candidate,
           dependent: :destroy, primary_key: :genron_sf_id, foreign_key: :genron_sf_id, inverse_of: :student
   has_one :user, dependent: :restrict_with_exception

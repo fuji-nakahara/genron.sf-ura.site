@@ -11,6 +11,7 @@ class MergeStudentsJob < ApplicationJob
     user = source.user
 
     Student.transaction do
+      Vote.joins(:work).merge(Work.where(student_id: target.id)).where(user_id: user.id).delete_all
       Work.where(student_id: source.id).update_all(student_id: target.id) # rubocop:disable Rails/SkipsModelValidations
       user.update!(student: target)
       source.reload.destroy!
