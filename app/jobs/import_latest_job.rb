@@ -43,7 +43,7 @@ class ImportLatestJob < ApplicationJob
   def work_tweet_text(work)
     lines = []
     lines << if work.student.user
-               "【#{work.class.model_name.human}】#{work.student.name} #{work.student.user.twitter_screen_name} 『#{work.title}』"
+               "【#{work.class.model_name.human}】#{work.student.name} #{work.student.user.twitter_screen_name} 『#{work.title}』" # rubocop:disable Layout/LineLength
              else
                "【#{work.class.model_name.human}】#{work.student.name}『#{work.title}』"
              end
