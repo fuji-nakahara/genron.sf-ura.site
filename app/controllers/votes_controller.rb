@@ -7,14 +7,16 @@ class VotesController < ApplicationController
     work = Work.find(params[:work_id])
     vote = work.votes.build(user: current_user)
 
-    result = vote.save
-    flash.alert = vote.errors.full_messages.join(' / ') unless result
-    redirect_to work.kadai
+    if vote.save
+      head :created
+    else
+      render status: :bad_request, json: { errors: vote.errors.full_messages }
+    end
   end
 
   def destroy
-    vote = Vote.find(params[:id])
+    vote = Vote.find_by!(work_id: params[:work_id], user_id: current_user.id)
     vote.destroy!
-    redirect_to vote.work.kadai
+    head :ok
   end
 end

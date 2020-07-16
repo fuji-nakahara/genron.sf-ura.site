@@ -13,6 +13,6 @@ module AdminRequired
   private
 
   def require_admin
-    head :not_found if current_user.twitter_screen_name != ADMIN_TWITTER_SCREEN_NAME
+    head :unauthorized if current_user.twitter_screen_name != ADMIN_TWITTER_SCREEN_NAME
   end
 end

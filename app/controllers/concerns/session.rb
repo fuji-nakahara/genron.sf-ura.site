@@ -14,7 +14,13 @@ module Session
   end
 
   def require_current_user
-    redirect_to root_path, alert: 'ログインしてください' if current_user.nil?
+    return if current_user
+
+    if request.xhr?
+      render status: :unauthorized, json: { errors: %w[ログインしてください] }
+    else
+      redirect_to root_path, alert: 'ログインしてください'
+    end
   end
 
   def log_in(user)

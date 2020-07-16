@@ -4,6 +4,7 @@ class Vote < ApplicationRecord
   belongs_to :user
   belongs_to :work, counter_cache: true
 
+  validates :user_id, uniqueness: { scope: :work_id, message: '1つの作品に2票入れることはできません' }
   validate :up_to_three_votes_per_kadai
   validate :unable_to_vote_for_own_work
 
