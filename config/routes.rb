@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :works, only: [] do
-    resource :vote, only: %i[create destroy], shallow: true
+    resource :vote, only: %i[create destroy]
   end
 
   namespace :admin do
