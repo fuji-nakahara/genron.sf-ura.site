@@ -19,7 +19,7 @@ class ImportWorksJob < ApplicationJob
         Jissaku.import(work, kadai: kadai) unless Jissaku.exists?(genron_sf_id: work.id)
       end
 
-      logger.info "Importing scores: #{kadai.url}"
+      logger.info "Importing scores: #{subject.url}"
       subject.scores.each do |score|
         jissaku = Jissaku.find_by(genron_sf_id: score.work.id)
         next if jissaku.nil?
