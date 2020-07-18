@@ -5,14 +5,17 @@ class ImportWorksJob < ApplicationJob
     kadais.each do |kadai|
       subject = kadai.fetch_genron_sf_subject
 
-      subject.summaries(force: true).each do |work|
-        logger.info "Importing #{kadai.year} #{work.student.id} #{work.id}"
-        student = Student.import(work.student)
-        Kougai.import(kadai, student, work) if work.summary_title
-        Jissaku.import(kadai, student, work) if work.title
+      subject.summaries.each do |work|
+        logger.info "Importing summary: #{kadai.year} #{work.student.id} #{work.id}"
+        Kougai.import(work, kadai: kadai) unless Kougai.exists?(genron_sf_id: work.id)
       end
 
-      logger.info "Importing #{kadai.year_and_number} scores"
+      subject.works.each do |work|
+        logger.info "Importing work: #{kadai.year} #{work.student.id} #{work.id}"
+        Jissaku.import(work, kadai: kadai) unless Jissaku.exists?(genron_sf_id: work.id)
+      end
+
+      logger.info "Importing scores: #{kadai.year_and_number}"
       subject.scores.each do |score|
         jissaku = Jissaku.find_by(genron_sf_id: score.work.id)
         next if jissaku.nil?

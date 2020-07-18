@@ -67,27 +67,35 @@ module GenronSF
       summary_deadline.nil? || number == 11
     end
 
-    def summaries(force: false)
-      return [] if without_summary? && !force
-
-      @summaries ||= main.css('.written a').map do |element|
-        url = element['href']
-        Work.new(url, subject: self) if !url.nil? && !url.empty?
-      end.compact
+    def summaries
+      if without_summary?
+        []
+      else
+        entries
+      end
     end
 
     def works
-      @works ||= main.css(without_summary? ? '.written a' : '.has-work a').map do |element|
+      if without_summary?
+        entries
+      else
+        main.css('.has-work a').map { |element| entries.find { |entry| entry.url == element['href'] } }.compact
+      end
+    end
+
+    def entries
+      @entries ||= main.css('.written a').map do |element|
         url = element['href']
-        Work.new(url, subject: self) if !url.nil? && !url.empty?
+        student = Student.new(url: url.delete_suffix("#{url.split('/').last}/"), name: element.at_css('.name').content)
+        Work.new(url, subject: self, student: student) if !url.nil? && !url.empty?
       end.compact
     end
 
     def scores
       @scores ||= main.css('.has-score').map do |element|
-        url = element.at_css('a')['href']
+        work = entries.find { |entry| entry.url == element.at_css('a')['href'] }
         score = element.at_css('.score')&.content&.to_i
-        Score.new(work: Work.new(url, subject: self), value: score) if !url.nil? && !url.empty? && !score.nil?
+        Score.new(work: work, value: score) if !work.nil? && !score.nil?
       end.compact
     end
 
