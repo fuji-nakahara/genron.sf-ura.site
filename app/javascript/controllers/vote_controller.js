@@ -50,6 +50,7 @@ export default class extends Controller {
   }
 
   _request (method) {
+    this.buttonTarget.disabled = true
     return fetch(this.data.get('endpoint'), {
       method: method,
       credentials: 'same-origin',
@@ -65,6 +66,8 @@ export default class extends Controller {
           return Promise.reject(new Error(body.errors.join('<br>')))
         })
       }
+    }).finally(() => {
+      this.buttonTarget.disabled = false
     })
   }
 
