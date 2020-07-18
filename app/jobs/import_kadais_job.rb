@@ -5,7 +5,7 @@ class ImportKadaisJob < ApplicationJob
     Array(year).each do |y|
       subjects = GenronSF::Subject.list(year: y)
       subjects.each do |subject|
-        logger.info "Importing #{subject.year} 第#{subject.number}回"
+        logger.info "Importing #{subject.url}"
         Kadai.import(subject)
       end
     end

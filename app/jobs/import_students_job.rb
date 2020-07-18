@@ -5,7 +5,7 @@ class ImportStudentsJob < ApplicationJob
     Array(year).each do |y|
       students = GenronSF::Student.list(year: y)
       students.each do |student|
-        logger.info "Importing #{y} #{student.id}"
+        logger.info "Importing #{student.url}"
         Student.import(student)
       end
     end
