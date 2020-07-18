@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'genron_sf/ebook'
+
+options = {
+  type: 'subject',
+  year: 2020,
+}
+
+OptionParser.new do |opts|
+  opts.on('-t', '--type TYPE', %w[subject], 'subject or student') do |type|
+    options[:type] = type
+  end
+
+  opts.on('-y', '--year YEAR', /\A20(?:1[6-9]|[2-9][0-9])\z/, '2016-') do |year|
+    options[:year] = year
+  end
+
+  opts.on('-n', '--id ID', 'subject number or student id') do |year|
+    options[:id] = year
+  end
+
+  opts.on('-o', '--output PATH', './path/to/output.epub') do |output|
+    options[:path] = output
+  end
+end.parse!
+
+case options[:type]
+when 'subject'
+  number = options[:id] || GenronSF::Subject.list(year: options[:year]).reverse_each.first.number
+  puts "Generating ebook #{options[:year]}-#{number} ..."
+  GenronSF::EBook::Subject.new(year: options[:year], number: number).generate(options[:path])
+end

@@ -42,11 +42,11 @@ module GenronSF
     end
 
     def summary
-      main.at_css('.summary-content').children[0...-2].to_html.strip
+      main.at_css('.summary-content')&.children&.slice(0...-2)
     end
 
     def summary_character_count
-      main.at_css('.summary-content .count-character').content[/文字数：(\d+)/, 1].to_i
+      main.at_css('.summary-content .count-character')&.content&.slice(/文字数：(\d+)/, 1)&.to_i
     end
 
     def title
@@ -54,7 +54,7 @@ module GenronSF
     end
 
     def body
-      main.at_css('.work-content')&.children&.slice(0...-2)&.to_html&.strip
+      main.at_css('.work-content')&.children&.slice(0...-2)
     end
 
     def character_count
@@ -62,7 +62,7 @@ module GenronSF
     end
 
     def appeal
-      main.at_css('.appeal-content')&.children&.slice(0...-2)&.to_html&.strip
+      main.at_css('.appeal-content')&.children&.slice(0...-2)
     end
 
     def appeal_character_count
