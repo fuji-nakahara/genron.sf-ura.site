@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ['button', 'buttonText', 'count', 'iconList', 'icon', 'iconTemplate']
 
   initialize () {
-    this._updateButton()
+    this.updateButton()
     this.iconListTarget.querySelectorAll('[data-toggle="tooltip"]').forEach(tooltipElement => {
       new Tooltip(tooltipElement)
     })
@@ -15,15 +15,15 @@ export default class extends Controller {
   async toggle () {
     try {
       if (this.isVoted) {
-        await this._request('DELETE')
+        await this.request('DELETE')
         this.isVoted = false
         this.voteCount--
-        this._removeIcon()
+        this.removeIcon()
       } else {
-        await this._request('POST')
+        await this.request('POST')
         this.isVoted = true
         this.voteCount++
-        this._addIcon()
+        this.addIcon()
       }
     } catch (error) {
       const errorModal = document.getElementById('modal-error')
@@ -38,7 +38,7 @@ export default class extends Controller {
 
   set isVoted (voted) {
     this.data.set('voted', voted)
-    this._updateButton()
+    this.updateButton()
   }
 
   get voteCount () {
@@ -49,7 +49,7 @@ export default class extends Controller {
     this.countTarget.textContent = value
   }
 
-  _request (method) {
+  request (method) {
     this.buttonTarget.disabled = true
     return fetch(this.data.get('endpoint'), {
       method: method,
@@ -71,7 +71,7 @@ export default class extends Controller {
     })
   }
 
-  _updateButton () {
+  updateButton () {
     if (this.isVoted) {
       this.buttonTarget.classList.toggle('active', true)
       this.buttonTextTarget.textContent = '取り消す'
@@ -81,14 +81,14 @@ export default class extends Controller {
     }
   }
 
-  _addIcon () {
+  addIcon () {
     const icon = document.importNode(this.iconTemplateTarget.content, true)
     icon.firstElementChild.dataset.target = 'vote.icon'
     new Tooltip(icon.querySelector('[data-toggle="tooltip"]'))
     this.iconListTarget.appendChild(icon)
   }
 
-  _removeIcon () {
+  removeIcon () {
     this.iconTarget.remove()
   }
 }
