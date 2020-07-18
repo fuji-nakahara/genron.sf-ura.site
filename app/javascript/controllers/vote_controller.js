@@ -1,12 +1,15 @@
 import { Controller } from 'stimulus'
 import Rails from '@rails/ujs'
-import { Modal } from 'bootstrap'
+import { Modal, Tooltip } from 'bootstrap'
 
 export default class extends Controller {
   static targets = ['button', 'buttonText', 'count', 'iconList', 'icon', 'iconTemplate']
 
   initialize () {
     this._updateButton()
+    this.iconListTarget.querySelectorAll('[data-toggle="tooltip"]').forEach(tooltipElement => {
+      new Tooltip(tooltipElement)
+    })
   }
 
   async toggle () {
@@ -59,7 +62,7 @@ export default class extends Controller {
         return Promise.resolve()
       } else {
         return response.json().then(body => {
-          return Promise.reject(new Error(body.errors.join("<br>")))
+          return Promise.reject(new Error(body.errors.join('<br>')))
         })
       }
     })
@@ -78,6 +81,7 @@ export default class extends Controller {
   _addIcon () {
     const icon = document.importNode(this.iconTemplateTarget.content, true)
     icon.firstElementChild.dataset.target = 'vote.icon'
+    new Tooltip(icon.querySelector('[data-toggle="tooltip"]'))
     this.iconListTarget.appendChild(icon)
   }
 

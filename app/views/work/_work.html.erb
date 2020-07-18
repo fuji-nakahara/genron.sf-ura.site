@@ -29,7 +29,7 @@
         <% work.voters.each do |user| %>
           <li class="list-inline-item" data-target="<%= 'vote.icon' if user == current_user %>">
             <%= link_to twitter_profile_url(user.twitter_screen_name), target: '_blank' do %>
-              <%= image_tag user.image_url, size: '24x24', class: 'border rounded-circle' %>
+              <%= image_tag user.image_url, size: '24x24', class: 'border rounded-circle', data: { toggle: 'tooltip', placement: 'top' }, title: user.twitter_screen_name %>
             <% end %>
           </li>
         <% end %>
@@ -37,7 +37,7 @@
           <template data-target="vote.iconTemplate">
             <li class="list-inline-item">
               <%= link_to twitter_profile_url(current_user.twitter_screen_name), target: '_blank' do %>
-                <%= image_tag current_user.image_url, size: '24x24', class: 'border rounded-circle' %>
+                <%= image_tag current_user.image_url, size: '24x24', class: 'border rounded-circle', data: { toggle: 'tooltip', placement: 'top' }, title: current_user.twitter_screen_name %>
               <% end %>
             </li>
           </template>
