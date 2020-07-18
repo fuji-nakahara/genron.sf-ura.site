@@ -23,10 +23,7 @@ class User < ApplicationRecord
 
     build_twitter_credential if twitter_credential.nil?
 
-    student.assign_attributes(
-      name: auth_hash.info.name,
-      url: auth_hash.info.urls['Twitter'],
-    )
+    student.assign_attributes(name: auth_hash.info.name, url: auth_hash.info.urls['Twitter']) unless student.genron_sf_id
     assign_attributes(
       image_url: auth_hash.info.image,
       twitter_screen_name: auth_hash.info.nickname,
