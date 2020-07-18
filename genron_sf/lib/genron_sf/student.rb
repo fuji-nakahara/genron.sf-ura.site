@@ -43,7 +43,7 @@ module GenronSF
     end
 
     def twitter_screen_name
-      profile[%r{https?://twitter\.com/(\w{1,15})}, 1] || profile[/\W@(\w{1,15})/, 1] if profile
+      profile[%r{https?://twitter\.com/(\w{1,15})}, 1] || profile[/(^|\W)@(\w{1,15})/, 2] if profile
     end
 
     def works
