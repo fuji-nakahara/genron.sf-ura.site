@@ -6,7 +6,7 @@ module Admin
 
     def show
       @users = User.all.reverse_order
-      @genron_sf_student_ids = Student.left_joins(:user).where(users: { id: nil }).pluck(:genron_sf_id).compact
+      @genron_sf_student_ids = Student.left_joins(:user).where(users: { id: nil }).pluck(:genron_sf_id)
       @twitter_screen_names = User.joins(:student).merge(Student.where(genron_sf_id: nil)).pluck(:twitter_screen_name)
     end
   end
