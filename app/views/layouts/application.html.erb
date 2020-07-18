@@ -7,7 +7,10 @@
     <title><%= content_for?(:title) ? "#{content_for(:title)} - 裏SF創作講座" : '裏SF創作講座' %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= render 'layouts/favicon' %>
+
+    <%= render 'layouts/ogp' %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
@@ -16,8 +19,10 @@
     <%= render 'layouts/navbar' %>
     <div class="container">
       <%= render 'layouts/flash' %>
+
       <%= render 'modal_error' %>
       <%= render 'modal_require_login' unless current_user %>
+
       <main id="main">
         <%= yield %>
       </main>
