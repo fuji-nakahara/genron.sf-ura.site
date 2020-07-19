@@ -1,0 +1,10 @@
+<% if errors.present? %>
+  <div class="alert alert-danger">
+    <strong><%= errors.size %> 件のエラーがあります</strong>
+    <ul class="mb-0">
+      <% errors.to_a.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

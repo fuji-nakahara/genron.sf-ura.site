@@ -10,9 +10,9 @@ class KougaisController < ApplicationController
 
   def create
     kadai = Kadai.find(params[:kadai_id])
-    kougai = kadai.kougais.build(kougai_params.merge(student: current_user.student))
+    @kougai = kadai.kougais.build(kougai_params.merge(student: current_user.student))
 
-    if kougai.save
+    if @kougai.save
       redirect_to kadai, notice: '登録しました'
     else
       render :new

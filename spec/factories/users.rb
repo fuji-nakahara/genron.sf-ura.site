@@ -5,7 +5,7 @@ FactoryBot.define do
     student factory: :student, genron_sf_id: nil
     sequence(:twitter_id)
     image_url { 'http://example.com/user/image' }
-    twitter_screen_name { 'twitter_screen_name' }
+    sequence(:twitter_screen_name) { |n| "twitter_screen_name#{n}" }
     last_logged_in_at { Time.zone.now }
   end
 end

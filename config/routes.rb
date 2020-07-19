@@ -16,8 +16,6 @@ Rails.application.routes.draw do
 
     resources :jissakus, only: %i[new create]
 
-    resources :works, only: :destroy, shallow: true
-
     resources :links, only: %i[create destroy], shallow: true
   end
 
@@ -27,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :works, only: [] do
+  resources :works, only: :destroy do
     resource :vote, only: %i[create destroy]
   end
 

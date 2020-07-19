@@ -10,9 +10,9 @@ class JissakusController < ApplicationController
 
   def create
     kadai = Kadai.find(params[:kadai_id])
-    jissaku = kadai.jissakus.build(jissaku_params.merge(student: current_user.student))
+    @jissaku = kadai.jissakus.build(jissaku_params.merge(student: current_user.student))
 
-    if jissaku.save
+    if @jissaku.save
       redirect_to kadai, notice: '登録しました'
     else
       render :new

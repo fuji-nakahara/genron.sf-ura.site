@@ -38,7 +38,7 @@ RSpec.describe 'LinksController:', type: :request do
         allow(OpenGraphReader).to receive(:fetch!).and_raise(OpenGraphReader::NoOpenGraphDataError)
       end
 
-      it 'does not create any links and redirects to /kadais/:id' do
+      it 'redirects to /kadais/:id' do
         expect { post kadai_links_path(kadai), params: params }
           .not_to(change { kadai.links.count })
 

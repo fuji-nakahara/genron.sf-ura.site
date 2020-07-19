@@ -5,8 +5,12 @@ class WorksController < ApplicationController
   before_action :require_author
 
   def destroy
-    @work.destroy!
-    redirect_to @work.kadai, notice: '削除しました'
+    if @work.destroy
+      flash.notice = '削除しました'
+    else
+      flash.alert = @work.errors.full_messages.join(' / ')
+    end
+    redirect_to @work.kadai
   end
 
   private
