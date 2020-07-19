@@ -13,6 +13,12 @@ class KougaisController < ApplicationController
     @kougai = kadai.kougais.build(kougai_params.merge(student: current_user.student))
 
     if @kougai.save
+      TweetJob.perform_later(<<~TWEET)
+        【梗概】 @#{current_user.twitter_screen_name} 『#{@kougai.title}』
+        #裏SF創作講座
+        #{kadai_url(kadai)}
+        #{@kougai.url}
+      TWEET
       redirect_to kadai, notice: '登録しました'
     else
       render :new
