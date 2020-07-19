@@ -30,8 +30,8 @@
   <section class="mb-3">
     <%= form_with model: @kadai.links.build, url: kadai_links_path(@kadai), local: true do |form| %>
       <div class="input-group">
-        <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/' %>
-        <%= form.submit '関連リンクを登録する', class: 'btn btn-primary' %>
+        <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/', required: true %>
+        <%= form.submit '関連リンクを登録', class: 'btn btn-primary' %>
       </div>
     <% end %>
   </section>
