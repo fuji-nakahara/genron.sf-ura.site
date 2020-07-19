@@ -8,7 +8,7 @@ create_table :links, force: :cascade do |t|
 
   t.timestamps
 
-  t.index %i[kadai_id created_at]
+  t.index :kadai_id
   t.index :user_id
 end
 add_foreign_key :links, :kadais
