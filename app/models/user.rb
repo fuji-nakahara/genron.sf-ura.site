@@ -4,6 +4,7 @@ class User < ApplicationRecord
   belongs_to :student
   has_one :twitter_credential, dependent: :destroy
   has_many :votes, dependent: :delete_all
+  has_many :links, dependent: :nullify
 
   def save_auth_hash!(auth_hash) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     if student.nil?

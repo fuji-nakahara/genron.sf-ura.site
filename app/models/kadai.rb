@@ -9,6 +9,7 @@ class Kadai < ApplicationRecord
            -> { left_joins(:score).order('scores.value desc nulls last, created_at asc') },
            inverse_of: :kadai,
            dependent: :restrict_with_exception
+  has_many :links, dependent: :delete_all
 
   scope :newest_order, -> { order(year: :desc, number: :desc) }
   scope :newest3, -> { newest_order.limit(3) }

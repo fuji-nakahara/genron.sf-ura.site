@@ -22,6 +22,7 @@ gem 'font-awesome-sass'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
+gem 'open_graph_reader'
 gem 'rails-i18n'
 gem 'ridgepole', require: false
 gem 'sentry-raven'

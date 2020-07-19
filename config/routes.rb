@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     collection do
       get '/find/:year/:number', action: :find
     end
+
+    resources :links, only: %i[create destroy], shallow: true
   end
 
   resources :students, only: :show do
