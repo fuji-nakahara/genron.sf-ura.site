@@ -4,7 +4,7 @@ class Link < ApplicationRecord
   belongs_to :kadai
   belongs_to :user, optional: true
 
-  validates :url, format: /\A#{URI.regexp(%w[http https])}\z/
+  validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validate :contain_open_graph, on: :create
 
   def url_domain

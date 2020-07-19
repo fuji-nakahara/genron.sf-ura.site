@@ -7,7 +7,7 @@ class Kougai < Work
         kougai.update!(
           kadai: kadai,
           student: Student.import(work.student),
-          title: work.summary_title || '',
+          title: work.summary_title || '（タイトルなし）',
           url: work.url,
         )
       end

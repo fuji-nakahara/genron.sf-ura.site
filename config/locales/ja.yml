@@ -38,6 +38,9 @@ ja:
       student: 受講生
       user: ユーザー
       work: 作品
+  attributes:
+    title: タイトル
+    url: URL
   date:
     formats:
       default: "%Y/%-m/%-d"

@@ -45,12 +45,12 @@
       </ul>
 
       <% if current_user %>
-        <%= button_tag class: 'btn btn-sm btn-outline-success', disabled: current_user.student_id == work.student.id, data: { target: 'vote.button', action: 'click->vote#toggle' } do %>
+        <%= button_tag class: "btn btn-sm btn-outline-#{work_color(work)}", disabled: current_user.student_id == work.student.id, data: { target: 'vote.button', action: 'click->vote#toggle' } do %>
           <%= icon('fas', 'thumbs-up') %> <span data-target="vote.buttonText"></span>
           <span class="badge rounded-pill bg-light text-dark" data-target="vote.count"><%= work.votes_count %></span>
         <% end %>
       <% else %>
-        <button class="card-link btn btn-sm btn-outline-success" data-toggle="modal" data-target="#modal-require-login">
+        <button class="card-link btn btn-sm btn-outline-<%= work_color(work) %>" data-toggle="modal" data-target="#modal-require-login">
           <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
         </button>
       <% end %>

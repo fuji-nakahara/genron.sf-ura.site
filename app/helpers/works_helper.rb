@@ -15,4 +15,13 @@ module WorksHelper
                       end
     tag.span "#{distance_of_time_in_words_to_now(deadline_time)}後", class: "badge bg-#{bootstrap_color}"
   end
+
+  def work_color(work)
+    case work
+    when Jissaku
+      'success'
+    when Kougai
+      'info'
+    end
+  end
 end

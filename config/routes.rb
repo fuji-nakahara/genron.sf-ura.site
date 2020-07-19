@@ -12,6 +12,12 @@ Rails.application.routes.draw do
       get '/find/:year/:number', action: :find
     end
 
+    resources :kougais, only: %i[new create]
+
+    resources :jissakus, only: %i[new create]
+
+    resources :works, only: :destroy, shallow: true
+
     resources :links, only: %i[create destroy], shallow: true
   end
 

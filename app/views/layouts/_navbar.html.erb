@@ -23,7 +23,7 @@
           </li>
         </div>
       <% else %>
-        <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-info' %>
+        <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

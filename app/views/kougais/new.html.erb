@@ -1,0 +1,5 @@
+<% provide :title, "梗概提出 #{@kougai.kadai.year_and_number}" %>
+
+<%= render @kougai.kadai %>
+
+<%= render 'work/form', work: @kougai %>
