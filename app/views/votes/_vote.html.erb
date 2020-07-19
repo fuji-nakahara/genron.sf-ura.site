@@ -1,0 +1,14 @@
+<li class="list-group-item">
+  <div class="d-flex justify-content-between mb-1">
+    <%= link_to twitter_profile_url(vote.user.twitter_screen_name), class: 'link-secondary text-decoration-none', target: '_blank' do %>
+      <%= image_tag vote.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+      <%= vote.user.twitter_screen_name %>
+    <% end %>
+    <small class="text-muted"><%= distance_of_time_in_words_to_now(vote.created_at) %>前</small>
+  </div>
+  <p class="mb-0">
+    <%= link_to kadai_path(vote.work.kadai_id) do %><span class="badge bg-<%= work_color(vote.work) %>"><%= vote.work.class.model_name.human %></span><% end %>
+    <%= link_to vote.work.student.name, vote.work.student.url, class: 'link-dark', target: '_blank' %>『<%= link_to vote.work.title, vote.work.url, class: 'link-dark', target: '_blank' %>』に投票しました
+    <%= icon('far', 'thumbs-up') %>
+  </p>
+</li>
