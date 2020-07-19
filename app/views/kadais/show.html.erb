@@ -79,7 +79,7 @@
     <header class="border-bottom pb-2 mb-3">
       <h2>実作</h2>
     </header>
-    <% if @kadai.jissaku_deadline.future? %>
+    <% if @kadai.jissaku_deadline_time.future? %>
       <div class="mb-3">
         <%= link_to icon('fas', 'pen-nib', '実作を提出する'), new_kadai_jissaku_path(@kadai), class: 'btn btn-outline-success' %>
       </div>
@@ -95,7 +95,7 @@
     <header class="border-bottom pb-2 mb-3">
       <h2>梗概</h2>
     </header>
-    <% if @kadai.kougai_deadline.future? %>
+    <% if @kadai.kougai_deadline_time.future? %>
       <div class="mb-3">
         <%= link_to icon('fas', 'pen-nib', '梗概を提出する'), new_kadai_kougai_path(@kadai), class: 'btn btn-outline-info' %>
       </div>

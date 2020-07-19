@@ -4,12 +4,12 @@ class KougaisController < ApplicationController
   before_action :require_current_user
 
   def new
-    kadai = Kadai.find(params[:kadai_id])
+    kadai = Kadai.where('kougai_deadline >= ?', Time.zone.today).find(params[:kadai_id])
     @kougai = kadai.kougais.build(student: current_user.student)
   end
 
   def create
-    kadai = Kadai.find(params[:kadai_id])
+    kadai = Kadai.where('kougai_deadline >= ?', Time.zone.today).find(params[:kadai_id])
     @kougai = kadai.kougais.build(kougai_params.merge(student: current_user.student))
 
     if @kougai.save

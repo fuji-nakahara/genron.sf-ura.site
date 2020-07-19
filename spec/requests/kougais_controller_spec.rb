@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'KougaisController:', type: :request do
   describe 'GET /kadais/:kadai_id/kougais/new' do
     let(:user) { create(:user) }
-    let(:kadai) { create(:kadai) }
+    let(:kadai) { create(:kadai, kougai_deadline: 1.day.from_now.to_date) }
 
     before do
       log_in user
@@ -20,7 +20,7 @@ RSpec.describe 'KougaisController:', type: :request do
 
   describe 'POST /kadais/:kadai_id/kougais' do
     let(:user) { create(:user) }
-    let(:kadai) { create(:kadai) }
+    let(:kadai) { create(:kadai, kougai_deadline: 1.day.from_now.to_date) }
     let(:params) do
       {
         kougai: {
