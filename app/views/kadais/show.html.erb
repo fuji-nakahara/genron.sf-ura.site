@@ -14,14 +14,16 @@
     </ul>
     <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), @kadai.genron_sf_url, class: 'btn btn-outline-primary', target: '_blank' %>
   </div>
-  <div class="list-group list-group-flush">
-    <% @kadai.links.each do |link| %>
-      <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
-        <%= link.title %>
-        <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_domain) %></small>
+  <% unless @kadai.links.empty? %>
+    <div class="list-group list-group-flush">
+      <% @kadai.links.each do |link| %>
+        <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
+          <%= link.title %>
+          <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_domain) %></small>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </header>
 
 <% if current_user&.student&.genron_sf_id %>

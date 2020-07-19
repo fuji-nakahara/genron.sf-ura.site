@@ -33,6 +33,44 @@
 
 <section class="mb-3">
   <header>
+    <h2>リンク</h2>
+  </header>
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>作成日時</th>
+        <th>課題</th>
+        <th>タイトル</th>
+        <th>ドメイン</th>
+        <th>ユーザー</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @links.includes(:kadai, :user).each do |link| %>
+        <tr>
+          <td><%= localize link.created_at %></td>
+          <td><%= link_to link.kadai.year_and_number, link.kadai %></td>
+          <td><%= link_to link.title, link.url, target: '_blank' %></td>
+          <td><%= link_to link.url_domain, link.url, target: '_blank' %></td>
+          <td>
+            <%= link_to twitter_profile_url(link.user.twitter_screen_name), target: '_blank' do %>
+              <%= image_tag link.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+              <%= link.user.twitter_screen_name %>
+            <% end %>
+          </td>
+          </td>
+          <td><%= link_to '削除', link, method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<hr>
+
+<section class="mb-3">
+  <header>
     <h2>受講生マージ</h2>
   </header>
   <%= form_with url: merge_admin_students_path, local: true do |form| %>

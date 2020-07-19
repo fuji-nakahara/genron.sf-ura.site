@@ -14,4 +14,10 @@ class LinksController < ApplicationController
     end
     redirect_to kadai
   end
+
+  def destroy
+    link = Link.find(params[:id])
+    link.destroy!
+    redirect_back fallback_location: link.kadai
+  end
 end
