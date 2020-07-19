@@ -49,9 +49,6 @@
           <%= icon('fas', 'thumbs-up') %> <span data-target="vote.buttonText"></span>
           <span class="badge rounded-pill bg-light text-dark" data-target="vote.count"><%= work.votes_count %></span>
         <% end %>
-        <% if work.student_id == current_user.student_id %>
-          <%= link_to icon('fas', 'trash', '削除する'), work_path(work), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: '本当に削除しますか？' } %>
-        <% end %>
       <% else %>
         <button class="card-link btn btn-sm btn-outline-<%= work_color(work) %>" data-toggle="modal" data-target="#modal-require-login">
           <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>

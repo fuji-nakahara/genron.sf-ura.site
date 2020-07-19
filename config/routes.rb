@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :works, only: :destroy do
+  resources :works, only: [] do
     resource :vote, only: %i[create destroy]
   end
 
