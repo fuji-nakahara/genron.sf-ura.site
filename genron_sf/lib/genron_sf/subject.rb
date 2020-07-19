@@ -2,6 +2,8 @@
 
 module GenronSF
   class Subject < Resource
+    Score = Struct.new(:work, :value, keyword_init: true)
+
     class << self
       def build_url(year:, number:)
         "#{Resource::BASE_URL}#{year}/subjects/#{number}/"

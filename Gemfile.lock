@@ -77,6 +77,7 @@ GEM
     byebug (11.1.3)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    dalli (2.7.10)
     diff-lcs (1.4.4)
     diffy (3.3.0)
     domain_name (0.5.20190701)
@@ -318,6 +319,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   bullet
   byebug
+  dalli
   dotenv-rails
   factory_bot_rails
   font-awesome-sass

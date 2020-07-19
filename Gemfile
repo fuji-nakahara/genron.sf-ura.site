@@ -18,6 +18,7 @@ gem 'webpacker', '~> 5.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'dalli'
 gem 'font-awesome-sass'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
