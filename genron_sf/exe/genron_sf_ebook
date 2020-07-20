@@ -9,7 +9,7 @@ options = {
 }
 
 OptionParser.new do |opts|
-  opts.on('-t', '--type TYPE', %w[subject], 'subject or student') do |type|
+  opts.on('-t', '--type TYPE', %w[subject student], 'subject or student') do |type|
     options[:type] = type
   end
 
@@ -31,4 +31,7 @@ when 'subject'
   number = options[:id] || GenronSF::Subject.list(year: options[:year]).reverse_each.first.number
   puts "Generating ebook #{options[:year]}-#{number} ..."
   GenronSF::EBook::Subject.new(year: options[:year], number: number).generate(options[:path])
+when 'student'
+  puts "Generating ebook #{options[:year]}-#{options[:id]} ..."
+  GenronSF::EBook::Student.new(year: options[:year], id: options[:id]).generate(options[:path])
 end
