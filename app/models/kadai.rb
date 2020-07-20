@@ -32,7 +32,7 @@ class Kadai < ApplicationRecord
   end
 
   def jissaku_deadline_time
-    kougai_deadline&.in_time_zone&.end_of_day
+    jissaku_deadline&.in_time_zone&.end_of_day
   end
 
   def year_and_number
