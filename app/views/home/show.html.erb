@@ -46,8 +46,8 @@
 </section>
 
 <section class="d-none d-lg-block mb-5">
-  <canvas class="mb-2" id="score-chart" data-controller="score-chart" data-score-chart-labels="<%= @score_chart.labels.to_json %>" data-score-chart-datasets="<%= @score_chart.datasets.to_json %>"></canvas>
-  <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), GenronSF::ScoreTable.build_url(year: @score_chart.year), class: 'btn btn-outline-primary', target: '_blank' %>
+  <canvas class="mb-2" id="score-chart" data-controller="score-chart" data-score-chart-endpoint="<%= score_path(@kadais.last.year) %>"></canvas>
+  <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), GenronSF::ScoreTable.build_url(year: @kadais.last.year), class: 'btn btn-outline-primary', target: '_blank' %>
 </section>
 
 <section class="mb-5">

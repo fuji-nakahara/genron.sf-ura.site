@@ -1,19 +1,24 @@
 import { Controller } from 'stimulus'
 import Chart from 'chart.js'
-import * as palette from 'google-palette';
+import * as palette from 'google-palette'
 
 export default class extends Controller {
-  connect () {
-    const canvas = this.element
+  async connect () {
+    const scoreTable = await this.getScoreTable()
 
-    const labels = JSON.parse(this.data.get('labels'))
-    const rawDatasets = JSON.parse(this.data.get('datasets'))
+    scoreTable.forEach(row => {
+      let sum = 0
+      row.accumulatedScores = row.scores.map(score => {
+        sum += score
+        return sum
+      })
+    })
 
-    const colors = palette('tol-rainbow', rawDatasets.length).map(hex => '#' + hex);
-    const datasets = rawDatasets.map((dataset, i) => {
+    const colors = palette('tol-rainbow', scoreTable.length).map(hex => '#' + hex)
+    const datasets = scoreTable.map((row, i) => {
       return {
-        label: dataset.label,
-        data: dataset.data,
+        label: row.student,
+        data: row.accumulatedScores,
         backgroundColor: colors[i],
         borderColor: colors[i],
         pointRadius: 8,
@@ -22,7 +27,10 @@ export default class extends Controller {
       }
     })
 
-    new Chart(canvas, {
+    const labelLength = scoreTable.map(row => row.scores.length).reduce((maxScore, score) => Math.max(maxScore, score))
+    const labels = Array.from(Array(labelLength).keys()).map(i => `第${i + 1}回`)
+
+    new Chart(this.element, {
       type: 'line',
       data: {
         labels: labels,
@@ -39,6 +47,16 @@ export default class extends Controller {
         hover: {
           mode: 'point'
         }
+      }
+    })
+  }
+
+  getScoreTable () {
+    return fetch(this.data.get('endpoint')).then(response => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        return Promise.reject(new Error(`${response.status}: ${response.statusText}`))
       }
     })
   }

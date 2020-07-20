@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     resource :vote, only: %i[create destroy]
   end
 
+  resources :scores, only: :show, param: :year
+
   namespace :admin do
     root 'home#show'
 
