@@ -1,24 +1,35 @@
-# README
+# genron-sf-fun
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://genron-sf-fun.herokuapp.com/
 
-Things you may want to cover:
+## Ruby version
 
-* Ruby version
+See [.ruby-version](.ruby-version)
 
-* System dependencies
+## System dependencies
 
-* Configuration
+- PostgreSQL 9.2 and later
 
-* Database creation
+## Setup development environment
 
-* Database initialization
+    $ bin/setup
 
-* How to run the test suite
+## Database creation & initialization
 
-* Services (job queues, cache servers, search engines, etc.)
+    $ bin/rake db:create
+    $ bin/rake ridgepole:apply
 
-* Deployment instructions
+## How to run the test suite
 
-* ...
+    $ bin/rake spec
+
+## Deployment
+
+Every push to `master` will start CI, and after it passes deployment on Heroku happens automatically. 
+
+## Heroku add-ons
+
+- Heroku Postgres
+- Heroku Scheduler
+- MemCachier
+- Sentry
