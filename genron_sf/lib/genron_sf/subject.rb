@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'lecturer_list'
+require_relative 'resource'
+require_relative 'student'
+require_relative 'subject_list'
+require_relative 'work'
+
 module GenronSF
   class Subject < Resource
     Score = Struct.new(:work, :value, keyword_init: true)

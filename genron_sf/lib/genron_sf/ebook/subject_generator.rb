@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'gepub'
+require_relative 'generator'
+require_relative 'template_util'
 
 module GenronSF
   module EBook
-    class Subject
-      attr_reader :year, :number, :book
+    class SubjectGenerator < Generator
+      attr_reader :subject
 
-      def initialize(year:, number:)
-        @year = year
-        @number = number
-        @book = GEPUB::Book.new
+      def initialize(subject)
+        @subject = subject
+        super()
       end
 
       def generate(path = nil) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -39,12 +39,6 @@ module GenronSF
         end
 
         book.generate_epub(path || "SF創作講座#{subject.year}-#{subject.number.to_s.rjust(2, '0')}.epub")
-      end
-
-      private
-
-      def subject
-        @subject ||= GenronSF::Subject.new(year: year, number: number)
       end
     end
   end

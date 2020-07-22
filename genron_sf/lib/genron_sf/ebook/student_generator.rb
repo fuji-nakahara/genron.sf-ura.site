@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'gepub'
+require_relative 'generator'
+require_relative 'template_util'
 
 module GenronSF
   module EBook
-    class Student
-      attr_reader :year, :id, :book
+    class StudentGenerator < Generator
+      attr_reader :student
 
-      def initialize(year:, id:)
-        @year = year
-        @id = id
-        @book = GEPUB::Book.new
+      def initialize(student)
+        @student = student
+        super()
       end
 
       def generate(path = nil) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         book.identifier = student.url
         book.language = 'ja'
-        book.title = "#{student.name} SF創作講座 #{year} 作品集"
+        book.title = "#{student.name} SF創作講座 #{student.year} 作品集"
         book.creator = student.name
         book.contributor = 'ゲンロン 大森望 SF創作講座'
 
@@ -40,12 +40,6 @@ module GenronSF
         end
 
         book.generate_epub(path || "SF創作講座#{student.year}-#{student.id}.epub")
-      end
-
-      private
-
-      def student
-        @student ||= GenronSF::Student.get(year: year, id: id)
       end
     end
   end

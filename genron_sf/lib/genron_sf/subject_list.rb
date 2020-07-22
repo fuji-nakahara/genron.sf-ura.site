@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative 'resource'
+require_relative 'subject'
+
 module GenronSF
   class SubjectList < Resource
     include Enumerable

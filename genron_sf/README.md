@@ -20,39 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-### 課題一覧の取得
+### Scraper
 
 ```ruby
-GenronSF::Subject.list(year: 2018)
+GenronSF::Subject.list(year: 2018) # 課題一覧
+GenronSF::Subject.get(year: 2018, number: 1) # 課題詳細
+
+GenronSF::Student.list(year: 2018) # 受講生一覧
+GenronSF::Student.get(year: 2018, id: 'fujinakahara') # 受講生詳細
+
+GenronSF::Work.get(year: 2018, student_id: 'fujinakahara', id: 2788) # 作品詳細
+
+GenronSF::ScoreTable.get(year: 2018) # 得点一覧表
 ```
 
-### 課題詳細の取得
+### EBook Generator
 
-```ruby
-GenronSF::Subject.get(year: 2018, number: 1)
-```
+    $ genron_sf_ebook --type student --year 2018 --id fujinakahara --output ./genron_sf-2018-fujinakahara.epub
 
-### 受講生一覧の取得
-
-```ruby
-GenronSF::Student.list(year: 2018)
-```
-
-### 受講生詳細の取得
-
-```ruby
-GenronSF::Student.get(year: 2018, id: 'fujinakahara')
-```
-
-### 作品の取得
-
-```ruby
-GenronSF::Work.get(year: 2018, student_id: 'fujinakahara', id: 2788)
-```
-
-### 電子書籍の作成
-
-    $ genron_sf_ebook --type student --year 2018 --id fujinakahara --output ./genron_sf-fujinakahara-2018.epub
+Run `genron_sf_ebook --help` for more detail.
 
 ## Development
 

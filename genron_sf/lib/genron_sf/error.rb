@@ -2,4 +2,5 @@
 
 module GenronSF
   class Error < StandardError; end
+  class HTTPError < Error; end
 end

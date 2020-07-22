@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'resource'
+require_relative 'student_list'
+require_relative 'subject'
+require_relative 'work'
+
 module GenronSF
   class Student < Resource
     class << self

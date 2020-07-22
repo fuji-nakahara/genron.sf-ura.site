@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'resource'
+
 module GenronSF
   class ScoreTable < Resource
     include Enumerable

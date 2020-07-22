@@ -29,9 +29,7 @@ end.parse!
 case options[:type]
 when 'subject'
   number = options[:id] || GenronSF::Subject.list(year: options[:year]).reverse_each.first.number
-  puts "Generating ebook #{options[:year]}-#{number} ..."
-  GenronSF::EBook::Subject.new(year: options[:year], number: number).generate(options[:path])
+  GenronSF::EBook.generate_subject(year: options[:year], number: number, path: options[:path])
 when 'student'
-  puts "Generating ebook #{options[:year]}-#{options[:id]} ..."
-  GenronSF::EBook::Student.new(year: options[:year], id: options[:id]).generate(options[:path])
+  GenronSF::EBook.generate_student(year: options[:year], id: options[:id], path: options[:path])
 end

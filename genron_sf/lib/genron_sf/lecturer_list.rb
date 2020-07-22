@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module GenronSF
+  Lecturer = Struct.new(:name, :roles, :note, keyword_init: true)
+
   class LecturerList
     include Enumerable
 
