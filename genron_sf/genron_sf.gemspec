@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Fuji Nakahara']
   spec.email         = ['fujinakahara2032@gmail.com']
 
-  spec.summary       = 'Client for 超・SF作家育成サイト'
+  spec.summary       = 'Utility for 超・SF作家育成サイト'
   spec.homepage      = 'https://github.com/fuji-nakahara/genron-sf-fun/tree/master/genron_sf'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
