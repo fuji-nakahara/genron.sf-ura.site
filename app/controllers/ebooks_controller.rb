@@ -14,7 +14,7 @@ class EbooksController < ApplicationController
     if @ebook_form.valid?
       EBookGenerateJob.perform_later(
         year: @ebook_form.year,
-        genron_sf_student_id: current_user.student.genron_sf_id,
+        student: current_user.student,
         email: @ebook_form.email,
       )
       redirect_to ebooks_path, notice: '電子書籍を作成しだいメールを送信します。しばらくお待ちください。'
