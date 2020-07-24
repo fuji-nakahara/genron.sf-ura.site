@@ -69,11 +69,11 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { protocol: :https, host: 'genron-sf-fun.herokuapp.com' }
   config.action_mailer.smtp_settings = {
-    address: ENV['MAILGUN_SMTP_SERVER'],
-    port: ENV['MAILGUN_SMTP_PORT'],
+    address: 'smtp.gmail.com',
+    port: 587,
     domain: 'genron-sf-fun.herokuapp.com',
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    user_name: ENV['GMAIL_USER_NAME'],
+    password: ENV['GMAIL_PASSWORD'],
     authentication: :plain,
     enable_starttls_auto: true,
   }
