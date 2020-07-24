@@ -31,5 +31,6 @@ Every push to `master` will start CI, and after it passes deployment on Heroku h
 
 - Heroku Postgres
 - Heroku Scheduler
+- Mailgun
 - MemCachier
 - Sentry
