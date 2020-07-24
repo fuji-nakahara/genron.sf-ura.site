@@ -1,31 +1,28 @@
 # genron-sf-fun
 
+A Ruby on Rails application for [ゲンロン 大森望 SF創作講座](https://school.genron.co.jp/sf/) community.  
 https://genron-sf-fun.herokuapp.com/
-
-## Ruby version
-
-See [.ruby-version](.ruby-version)
 
 ## System dependencies
 
-- PostgreSQL 9.2 and later
+- Ruby
+- PostgreSQL
 
 ## Setup development environment
 
     $ bin/setup
 
-## Database creation & initialization
-
-    $ bin/rake db:create
-    $ bin/rake ridgepole:apply
-
-## How to run the test suite
+## Run the test suite
 
     $ bin/rake spec
 
+## Update database schema
+
+    $ bin/rake ridgepole:apply
+
 ## Deployment
 
-Every push to `master` will start CI, and after it passes deployment on Heroku happens automatically. 
+Every push to `master` will start CI, and after it passes, deployment to Heroku will happen automatically. 
 
 ## Heroku add-ons
 
