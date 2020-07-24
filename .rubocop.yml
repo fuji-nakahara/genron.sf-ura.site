@@ -28,6 +28,9 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Enabled: false
 
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
 Style/Next:
   Enabled: false
 

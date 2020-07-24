@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   resources :scores, only: :show, param: :year
 
+  resources :ebooks, only: %i[index create]
+
   namespace :admin do
     root 'home#show'
 

@@ -30,6 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ja:
+  activemodel:
+    attributes:
+      ebook_form:
+        year: 受講年度
+        email: 送信先メールアドレス
+        accept_generating_ebook: ゲンロン 大森望 SF創作講座 にあなたが提出した作品を当サイトが取得し、電子書籍を作成することに同意する
   activerecord:
     models:
       jissaku: 実作

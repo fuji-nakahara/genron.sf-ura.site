@@ -1,12 +1,16 @@
 <%= form_with model: work, url: [work.kadai, work], local: true do |form| %>
   <%= render 'error_messages', errors: work.errors %>
+
   <div class="mb-3">
     <%= form.label :title, class: 'form-label' %>
     <%= form.text_field :title, class: 'form-control', required: true %>
   </div>
+
   <div class="mb-3">
     <%= form.label :url, class: 'form-label' %>
     <%= form.url_field :url, class: 'form-control', required: true %>
   </div>
+
   <%= form.submit "#{work.class.model_name.human}を提出する", class: "btn btn-#{work_color(work)}" %>
+
 <% end %>

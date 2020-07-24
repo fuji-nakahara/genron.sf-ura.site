@@ -1,0 +1,36 @@
+<% provide :title, '電子書籍の作成' %>
+
+<p class="lead">
+  指定した受講年度の作品を1冊の電子書籍にまとめて、ご入力のメールアドレスにお送りします。
+</p>
+
+<% if @ebook_form.available_years.empty? %>
+
+  <div class="alert alert-danger">
+    電子書籍にできる作品がありません
+  </div>
+
+<% else %>
+
+  <%= form_with model: @ebook_form, url: ebooks_path, local: true do |form| %>
+    <%= render 'error_messages', errors: @ebook_form.errors %>
+
+    <div class="mb-3">
+      <%= form.label :year, class: 'form-label' %>
+      <%= form.select :year, options_for_select(@ebook_form.available_years), {}, class: 'form-select' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :email, class: 'form-label' %>
+      <%= form.email_field :email, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3 form-check">
+      <%= form.check_box :accept_generating_ebook, class: 'form-check-input' %>
+      <%= form.label :accept_generating_ebook %>
+    </div>
+
+    <%= form.submit '電子書籍を作成する', class: 'btn btn-primary' %>
+  <% end %>
+
+<% end %>

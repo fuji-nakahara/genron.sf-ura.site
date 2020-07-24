@@ -4,6 +4,7 @@ class Kadai < ApplicationRecord
   YEARS = [2018, 2019].freeze
   LATEST_YEAR = YEARS.last
 
+  has_many :works, dependent: :restrict_with_exception
   has_many :kougais, dependent: :restrict_with_exception
   has_many :jissakus,
            -> { left_joins(:score).order('scores.value desc nulls last, created_at asc') },

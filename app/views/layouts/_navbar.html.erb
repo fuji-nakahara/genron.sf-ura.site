@@ -17,6 +17,9 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-menu">
               <li><%= link_to '作品一覧', current_user.student, class: 'dropdown-item' %></li>
+              <% if current_user.student.genron_sf_id %>
+                <li><%= link_to '電子書籍の作成', ebooks_path, class: 'dropdown-item' %></li>
+              <% end %>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to 'ログアウト', logout_path, method: :post, class: 'dropdown-item' %></li>
             </ul>

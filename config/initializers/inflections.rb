@@ -7,4 +7,5 @@
 # locales as you wish. All of these examples are active by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'SF'
+  inflect.acronym 'EBook'
 end

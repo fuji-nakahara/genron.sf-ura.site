@@ -29,7 +29,7 @@ gem 'ridgepole', require: false
 gem 'sentry-raven'
 gem 'twitter'
 
-gem 'genron_sf', path: './genron_sf'
+gem 'genron_sf', path: './genron_sf', require: 'genron_sf/ebook'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
