@@ -7,7 +7,7 @@ export default class extends Controller {
 
   initialize () {
     this.updateButton()
-    this.iconListTarget.querySelectorAll('[data-toggle="tooltip"]').forEach(tooltipElement => {
+    this.element.querySelectorAll('[data-toggle="tooltip"]').forEach(tooltipElement => {
       new Tooltip(tooltipElement)
     })
   }

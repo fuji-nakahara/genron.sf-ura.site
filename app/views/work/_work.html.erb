@@ -5,10 +5,10 @@
         <% if local_assigns[:header] == :kadai %>
           <%= link_to work.kadai.year_and_number, work.kadai, class: 'link-secondary' %>
         <% else %>
-          <%= link_to work.student.url, class: 'link-secondary', target: '_blank' do %>
-            <%= work.student.name %>
-            <% if work.student.user %>
-              <%= image_tag work.student.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+          <%= link_to work.student.name, work.student.url, class: 'link-secondary', target: '_blank' %>
+          <% if work.student.user %>
+            <%= link_to twitter_profile_url(work.student.user.twitter_screen_name), target: '_blank' do %>
+              <%= image_tag work.student.user.image_url, size: '24x24', class: 'border rounded-circle', data: { toggle: 'tooltip', placement: 'top' }, title: work.student.user.twitter_screen_name %>
             <% end %>
           <% end %>
         <% end %>
