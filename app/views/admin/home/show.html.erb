@@ -2,6 +2,35 @@
 
 <section class="mb-3">
   <header>
+    <h2>受講生マージ</h2>
+  </header>
+  <%= form_with url: merge_admin_students_path, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :genron_sf_id, 'genron_sf_student_id', class: 'form-label' %>
+      <%= form.text_field :genron_sf_id, list: 'genron_sf_student_ids', class: 'form-control' %>
+      <datalist id="genron_sf_student_ids">
+        <% @genron_sf_student_ids.each do |genron_sf_student_id| %>
+          <option value="<%= genron_sf_student_id %>"></option>
+        <% end %> %>
+      </datalist>
+    </div>
+    <div class="mb-3">
+      <%= form.label :twitter_screen_name, 'twitter_screen_name', class: 'form-label' %>
+      <%= form.text_field :twitter_screen_name, list: 'twitter_screen_names', class: 'form-control' %>
+      <datalist id="twitter_screen_names">
+        <% @twitter_screen_names.each do |twitter_screen_name| %>
+          <option value="<%= twitter_screen_name %>"></option>
+        <% end %> %>
+      </datalist>
+    </div>
+    <%= form.submit '実行', class: 'btn btn-primary' %>
+  <% end %>
+</section>
+
+<hr>
+
+<section class="mb-3">
+  <header>
     <h2>リンク</h2>
   </header>
   <table class="table table-striped table-sm">
@@ -36,31 +65,3 @@
   </table>
 </section>
 
-<hr>
-
-<section class="mb-3">
-  <header>
-    <h2>受講生マージ</h2>
-  </header>
-  <%= form_with url: merge_admin_students_path, local: true do |form| %>
-    <div class="mb-3">
-      <%= form.label :genron_sf_id, 'genron_sf_student_id', class: 'form-label' %>
-      <%= form.text_field :genron_sf_id, list: 'genron_sf_student_ids', class: 'form-control' %>
-      <datalist id="genron_sf_student_ids">
-        <% @genron_sf_student_ids.each do |genron_sf_student_id| %>
-          <option value="<%= genron_sf_student_id %>"></option>
-        <% end %> %>
-      </datalist>
-    </div>
-    <div class="mb-3">
-      <%= form.label :twitter_screen_name, 'twitter_screen_name', class: 'form-label' %>
-      <%= form.text_field :twitter_screen_name, list: 'twitter_screen_names', class: 'form-control' %>
-      <datalist id="twitter_screen_names">
-        <% @twitter_screen_names.each do |twitter_screen_name| %>
-          <option value="<%= twitter_screen_name %>"></option>
-        <% end %> %>
-      </datalist>
-    </div>
-    <%= form.submit '実行', class: 'btn btn-primary' %>
-  <% end %>
-</section>
