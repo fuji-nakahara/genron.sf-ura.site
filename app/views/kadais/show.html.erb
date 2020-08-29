@@ -22,30 +22,9 @@
         </li>
       <% end %>
     </ul>
-    <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), @kadai.genron_sf_url, class: 'btn btn-outline-primary', target: '_blank' %>
+    <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), @kadai.genron_sf_url, class: 'btn btn-outline-primary stretched-link', target: '_blank' %>
   </div>
-  <% unless @kadai.links.empty? %>
-    <div class="list-group list-group-flush">
-      <% @kadai.links.each do |link| %>
-        <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
-          <%= link.title %>
-          <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_domain) %></small>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
 </header>
-
-<% if current_user&.student&.genron_sf_id %>
-  <section class="mb-3">
-    <%= form_with model: @kadai.links.build, url: kadai_links_path(@kadai), local: true do |form| %>
-      <div class="input-group">
-        <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/', required: true %>
-        <%= form.submit '関連リンクを登録', class: 'btn btn-primary' %>
-      </div>
-    <% end %>
-  </section>
-<% end %>
 
 <nav class="mb-3">
   <ul class="pagination justify-content-center">
@@ -79,11 +58,13 @@
     <header class="border-bottom pb-2 mb-3">
       <h2>実作</h2>
     </header>
+
     <% if @kadai.jissaku_deadline_time.future? %>
       <div class="mb-3">
         <%= link_to icon('fas', 'pen-nib', '実作を提出する'), new_kadai_jissaku_path(@kadai), class: 'btn btn-outline-success' %>
       </div>
     <% end %>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
       <%= render @kadai.jissakus.includes(:score, :voters, student: :user), header: :student %>
     </div>
@@ -95,13 +76,43 @@
     <header class="border-bottom pb-2 mb-3">
       <h2>梗概</h2>
     </header>
+
     <% if @kadai.kougai_deadline_time.future? %>
       <div class="mb-3">
         <%= link_to icon('fas', 'pen-nib', '梗概を提出する'), new_kadai_kougai_path(@kadai), class: 'btn btn-outline-info' %>
       </div>
     <% end %>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
       <%= render @kadai.kougais.includes(:voters, student: :user), header: :student %>
     </div>
   </section>
 <% end %>
+
+<section class="mb-3">
+  <header class="border-bottom pb-2 mb-3">
+    <h2>関連リンク</h2>
+  </header>
+
+  <% unless @kadai.links.empty? %>
+    <div class="list-group mb-3">
+      <% @kadai.links.each do |link| %>
+        <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
+          <%= link.title %>
+          <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_domain) %></small>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if current_user&.student&.genron_sf_id %>
+    <section class="mb-3">
+      <%= form_with model: @kadai.links.build, url: kadai_links_path(@kadai), local: true do |form| %>
+        <div class="input-group">
+          <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/', required: true %>
+          <%= form.submit '関連リンクを登録', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+</section>
