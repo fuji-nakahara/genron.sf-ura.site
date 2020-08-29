@@ -17,7 +17,7 @@ class Link < ApplicationRecord
     return if title.present?
 
     object = OpenGraphReader.fetch!(url)
-    assign_attributes(url: object.og.url, title: object.og.title)
+    self.title = object.og.title
   rescue OpenGraphReader::NoOpenGraphDataError
     errors.add(:base, 'タイトルの取得に失敗しました')
   end
