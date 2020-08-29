@@ -6,10 +6,12 @@ export default class extends Controller {
   static targets = ['button', 'buttonText', 'count', 'iconList', 'icon', 'iconTemplate']
 
   initialize () {
-    this.updateButton()
     this.element.querySelectorAll('[data-toggle="tooltip"]').forEach(tooltipElement => {
       new Tooltip(tooltipElement)
     })
+    if (this.hasButtonTarget) {
+      this.updateButton()
+    }
   }
 
   async toggle () {
