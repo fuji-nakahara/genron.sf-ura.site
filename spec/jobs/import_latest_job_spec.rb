@@ -44,7 +44,7 @@ RSpec.describe ImportLatestJob, type: :job do
         梗概締切: 2020年7月17日(金)
         実作締切: 2020年8月28日(金)
         #SF創作講座 #裏SF創作講座
-        https://school.genron.co.jp/works/sf/2019/subjects/1/
+        https://school.genron.co.jp/works/sf/2020/subjects/1/
         https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
       KADAI_TWEEET
       expect(twitter_client).to have_received(:update).with(<<~KOUGAI_TWEEET.chomp)
