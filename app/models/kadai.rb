@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Kadai < ApplicationRecord
-  YEARS = [2018, 2019].freeze
+  YEARS = [2018, 2019, 2020].freeze
   LATEST_YEAR = YEARS.last
 
   has_many :works, dependent: :restrict_with_exception

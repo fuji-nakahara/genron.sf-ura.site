@@ -1,36 +1,13 @@
 <header class="bg-light p-4 p-md-5 rounded-lg mb-3">
   <h1 class="mb-3"><span class="text-light bg-dark bg-gradient">裏</span>SF創作講座</h1>
-  <p>
+  <p class="lead">
     <%= link_to 'ゲンロン 大森望 SF創作講座', genron_sf_url, class: 'link-dark', target: '_blank' %>
     の裏サイト（ファンサイト）。<br>
-    3期受講生・5期聴講生
-    <%= link_to 'フジ・ナカハラ', 'https://twitter.com/fuji_nakahara', class: 'link-dark', target: '_blank' %>
-    が運営しています。
+    非公式に作品に投票したり、非公式に作品を投稿したりできます。<br>
   </p>
-  <p>
-    <%= link_to '超・SF作家育成サイトの「得点一覧表」', 'https://school.genron.co.jp/works/sf/2019/scores/', class: 'link-dark', target: '_blank' %> には、
-  </p>
-  <blockquote class="text-muted">
-    <p>
-      各受講生が提出した梗概および実作に対して、Facebookのアカウントでつけられた「いいね！」の数を集計し、こちらも講評の参考とします。いいね数に関しては、梗概と実作を区別しません。主任講師の選考には漏れたものの、ネットの読者からは高い評価を得る、といったこともありえます。
-    </p>
-  </blockquote>
-  <p>
-    と書かれています。
-  </p>
-  <p>
-    しかし、実際には講評で「いいね！」の数が言及されたことはなかったように思います。<br>
-    また、受講生においては Facebook よりも Twitter がさかんです。
-  </p>
-  <p>
-    そこで、この<span class="text-light bg-dark bg-gradient">裏</span>SF創作講座では、Twitter アカウントを使って各回3作品まで投票できるようにしています。<br>
-    もちろん非公式なので講評の参考にされるわけではありませんが、このサイトを通じて受講生の作品が「主任講師の選考には漏れたものの、ネットの読者からは高い評価を得る」ことにつながれば幸いです。
-  </p>
-  <ul class="list-inline">
-    <% unless current_user %>
-      <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-lg btn-primary' %>
-    <% end %>
-  </ul>
+  <% unless current_user %>
+    <p><%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-lg btn-primary' %></p>
+  <% end %>
 </header>
 
 <section class="mb-3">
