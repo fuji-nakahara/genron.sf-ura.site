@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'home#show'
 
+    resources :prizes, only: :create
+
     resources :students, only: [] do
       collection do
         post :merge

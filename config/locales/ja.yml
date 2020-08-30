@@ -41,10 +41,12 @@ ja:
       jissaku: 実作
       kadai: 課題
       kougai: 梗概
+      prize: 賞
       student: 受講生
       user: ユーザー
       work: 作品
   attributes:
+    position: 位置
     title: タイトル
     url: URL
   date:

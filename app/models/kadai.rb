@@ -5,14 +5,8 @@ class Kadai < ApplicationRecord
   LATEST_YEAR = YEARS.last
 
   has_many :works, dependent: :restrict_with_exception
-  has_many :kougais,
-           -> { order(votes_count: :desc, created_at: :asc) },
-           inverse_of: :kadai,
-           dependent: :restrict_with_exception
-  has_many :jissakus,
-           -> { left_joins(:score).order('scores.value desc nulls last, votes_count desc, created_at asc') },
-           inverse_of: :kadai,
-           dependent: :restrict_with_exception
+  has_many :kougais, dependent: :restrict_with_exception
+  has_many :jissakus, dependent: :restrict_with_exception
   has_many :links, dependent: :delete_all
 
   scope :newest_order, -> { order(year: :desc, number: :desc) }

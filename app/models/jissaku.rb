@@ -2,6 +2,7 @@
 
 class Jissaku < Work
   has_one :score, dependent: :destroy
+  has_one :prize, dependent: :destroy
 
   class << self
     def import(work, kadai:)
