@@ -9,7 +9,7 @@ module GenronSF
 
     class << self
       def default_logger
-        Logger.new(STDOUT, progname: 'genron_sf')
+        Logger.new($stdout, progname: 'genron_sf')
       end
     end
 

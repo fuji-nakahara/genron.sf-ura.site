@@ -32,8 +32,8 @@ class ImportLatestJob < ApplicationJob
     lines = []
     lines << "【課題】 第#{kadai.number}回「#{kadai.title}」"
     lines << "課題提示: #{kadai.author}" if kadai.author.present?
-    lines << "梗概締切: #{I18n.localize(kadai.kougai_deadline, format: :long)}" if kadai.kougai_deadline
-    lines << "実作締切: #{I18n.localize(kadai.jissaku_deadline, format: :long)}" if kadai.jissaku_deadline
+    lines << "梗概締切: #{I18n.l(kadai.kougai_deadline, format: :long)}" if kadai.kougai_deadline
+    lines << "実作締切: #{I18n.l(kadai.jissaku_deadline, format: :long)}" if kadai.jissaku_deadline
     lines << '#SF創作講座 #裏SF創作講座'
     lines << kadai.genron_sf_url
     lines << "https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}"

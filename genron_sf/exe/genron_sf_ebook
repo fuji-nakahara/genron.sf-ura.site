@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'net/http'
 require 'optparse'
@@ -40,7 +41,6 @@ begin
     abort 'Specify `--id` option' if options[:id].nil?
     GenronSF::EBook.generate_student(year: options[:year], id: options[:id], path: options[:path])
   end
-
 rescue GenronSF::HTTPError => e
   abort e.message
 end
