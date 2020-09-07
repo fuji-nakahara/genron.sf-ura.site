@@ -10,4 +10,9 @@ namespace :genron_sf do
   task import_twitter_screen_names: :environment do
     ImportTwitterScreenNamesJob.perform_now
   end
+
+  desc 'Update users whose profile images changed'
+  task update_user_images: :environment do
+    UserImagesUpdateJob.perform_now
+  end
 end
