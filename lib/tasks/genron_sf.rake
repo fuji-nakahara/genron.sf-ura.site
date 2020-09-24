@@ -6,9 +6,9 @@ namespace :genron_sf do
     ImportLatestJob.perform_now(tweet: true)
   end
 
-  desc 'Import twitter_screen_names from student profiles.'
+  desc 'Import twitter_screen_names from latest year student profiles.'
   task import_twitter_screen_names: :environment do
-    ImportTwitterScreenNamesJob.perform_now
+    ImportTwitterScreenNamesJob.perform_now(year: Kadai::LATEST_YEAR)
   end
 
   desc 'Update users whose profile images changed'
