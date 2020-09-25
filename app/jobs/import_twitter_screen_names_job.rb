@@ -6,6 +6,7 @@ class ImportTwitterScreenNamesJob < ApplicationJob
       students = GenronSF::Student.list(year: y)
       students.each do |student|
         logger.info "Importing #{y} #{student.id}"
+        Student.import(student)
         next unless (twitter_screen_name = student.twitter_screen_name)
 
         candidate = StudentTwitterCandidate.find_or_initialize_by(genron_sf_id: student.id)
