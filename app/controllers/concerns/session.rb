@@ -19,7 +19,7 @@ module Session
     if request.xhr?
       render status: :unauthorized, json: { errors: %w[ログインしてください] }
     else
-      redirect_to root_path, alert: 'ログインしてください'
+      redirect_back fallback_location: root_path, allow_other_host: false, alert: 'ログインしてください'
     end
   end
 
