@@ -93,30 +93,32 @@
   </section>
 <% end %>
 
-<section class="mb-3">
-  <header class="border-bottom pb-2 mb-3">
-    <h2>関連リンク</h2>
-  </header>
+<% if !@kadai.links.empty? || current_user&.student&.genron_sf_id %>
+  <section class="mb-3">
+    <header class="border-bottom pb-2 mb-3">
+      <h2>関連リンク</h2>
+    </header>
 
-  <% unless @kadai.links.empty? %>
-    <div class="list-group mb-3">
-      <% @kadai.links.each do |link| %>
-        <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
-          <%= link.title %>
-          <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_domain) %></small>
+    <% unless @kadai.links.empty? %>
+      <div class="list-group mb-3">
+        <% @kadai.links.each do |link| %>
+          <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
+            <%= link.title %>
+            <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_domain) %></small>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 
-  <% if current_user&.student&.genron_sf_id %>
-    <section class="mb-3">
-      <%= form_with model: @kadai.links.build, url: kadai_links_path(@kadai), local: true do |form| %>
-        <div class="input-group">
-          <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/', required: true %>
-          <%= form.submit '関連リンクを登録', class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-    </section>
-  <% end %>
-</section>
+    <% if current_user&.student&.genron_sf_id %>
+      <section class="mb-3">
+        <%= form_with model: @kadai.links.build, url: kadai_links_path(@kadai), local: true do |form| %>
+          <div class="input-group">
+            <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/', required: true %>
+            <%= form.submit '関連リンクを登録', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+  </section>
+<% end %>
