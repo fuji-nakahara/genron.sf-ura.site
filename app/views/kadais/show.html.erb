@@ -28,24 +28,24 @@
 
 <nav class="mb-3">
   <ul class="pagination justify-content-center">
-    <% if (previous_kadai = @kadai.previous) %>
-      <li class="page-item">
-        <%= link_to previous_kadai, class: 'page-link' do %>
-          <% if previous_kadai.year == @kadai.year %>
-            <%= "« #{previous_kadai.number_str}" %>
-          <% else %>
-            <%= "« #{previous_kadai.year_and_number}" %>
-          <% end %>
-        <% end %>
-      </li>
-    <% end %>
     <% if (next_kadai = @kadai.next) %>
       <li class="page-item">
         <%= link_to next_kadai, class: 'page-link' do %>
           <% if next_kadai.year == @kadai.year %>
-            <%= "#{next_kadai.number_str} »" %>
+            <%= "« #{next_kadai.number_str}" %>
           <% else %>
-            <%= "#{next_kadai.year_and_number} »" %>
+            <%= "« #{next_kadai.year_and_number}" %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if (previous_kadai = @kadai.previous) %>
+      <li class="page-item">
+        <%= link_to previous_kadai, class: 'page-link' do %>
+          <% if previous_kadai.year == @kadai.year %>
+            <%= "#{previous_kadai.number_str} »" %>
+          <% else %>
+            <%= "#{previous_kadai.year_and_number} »" %>
           <% end %>
         <% end %>
       </li>
