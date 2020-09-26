@@ -11,19 +11,19 @@ class ImportLatestJob < ApplicationJob
 
     Kadai
       .where(year: Kadai::LATEST_YEAR, created_at: start_time..)
-      .each { |kadai| tweet(kadai_tweet_text(kadai)) }
+      .each { |kadai| post_tweet(kadai_tweet_text(kadai)) }
 
     Kougai
       .includes(student: :user)
       .joins(:kadai).merge(Kadai.newest3)
       .where(created_at: start_time..).where.not(genron_sf_id: nil)
-      .each { |kougai| tweet(work_tweet_text(kougai)) }
+      .each { |kougai| post_tweet(work_tweet_text(kougai)) }
 
     Jissaku
       .includes(student: :user)
       .joins(:kadai).merge(Kadai.newest3)
       .where(created_at: start_time..).where.not(genron_sf_id: nil)
-      .each { |jissaku| tweet(work_tweet_text(jissaku)) }
+      .each { |jissaku| post_tweet(work_tweet_text(jissaku)) }
   end
 
   private
@@ -52,7 +52,7 @@ class ImportLatestJob < ApplicationJob
     lines.join("\n")
   end
 
-  def tweet(text)
+  def post_tweet(text)
     GenronSFFun::TwitterClient.instance.update(text)
   rescue Twitter::Error => e
     Raven.capture_exception(e, extra: { tweet: text })
