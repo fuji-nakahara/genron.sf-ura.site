@@ -1,20 +1,30 @@
 <% provide :title, "#{@student.name}" %>
 
-<header class="mb-3">
-  <h1><%= link_to @student.name, @student.url, class: 'link-dark', target: '_blank' %></h1>
+<header class="card mb-3">
+  <div class="card-body">
+    <h1 class="card-title"><%= @student.name %></h1>
+    <%= link_to icon('fas', 'external-link-alt', @student.url), @student.url, class: 'card-link link-secondary', target: '_blank' %>
+  </div>
 </header>
 
-<section class="mb-3">
-  <h2 class="border-bottom pb-2 mb-3">実作</h2>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-    <%= render @student.jissakus.includes(:kadai, :voters, :score).reverse_order, header: :kadai %>
-  </div>
-</section>
+<% unless @student.jissakus.empty? %>
+  <section class="mb-3">
+    <header class="border-bottom pb-2 mb-3">
+      <h2>実作</h2>
+    </header>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <%= render @student.jissakus.includes(:kadai, :voters, :score).reverse_order, header: :kadai %>
+    </div>
+  </section>
+<% end %>
 
-<section class="mb-3">
-  <h2 class="border-bottom pb-2 mb-3">梗概</h2>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-    <%= render @student.kougais.includes(:kadai, :voters).reverse_order, header: :kadai %>
-  </div>
-</section>
-
+<% unless @student.kougais.empty? %>
+  <section class="mb-3">
+    <header class="border-bottom pb-2 mb-3">
+      <h2>梗概</h2>
+    </header>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <%= render @student.kougais.includes(:kadai, :voters).reverse_order, header: :kadai %>
+    </div>
+  </section>
+<% end %>
