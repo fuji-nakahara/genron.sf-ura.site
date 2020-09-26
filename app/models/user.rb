@@ -43,4 +43,22 @@ class User < ApplicationRecord
       twitter_credential.save!
     end
   end
+
+  def update_by_twitter_user!(twitter_user)
+    transaction do
+      update!(
+        image_url: twitter_user.profile_image_uri_https(:bigger),
+        twitter_screen_name: twitter_user.screen_name,
+        updated_at: Time.zone.now,
+      )
+      student.update!(name: twitter_user.name, url: twitter_user.url) unless student.genron_sf_id
+    end
+  end
+
+  def destroy_with_student!
+    transaction do
+      destroy!
+      student.reload.destroy! unless student.genron_sf_id
+    end
+  end
 end

@@ -13,12 +13,9 @@ class UserImagesUpdateJob < ApplicationJob
       when Net::HTTPNotFound
         begin
           twitter_user = GenronSFFun::TwitterClient.instance.user(user.twitter_id)
-          user.update!(
-            twitter_screen_name: twitter_user.screen_name,
-            image_url: twitter_user.profile_image_uri_https(:bigger),
-          )
-        rescue Twitter::Error::NotFound => e
-          Raven.capture_exception(e, extra: { user_id: user.id, twitter_id: user.twitter_id })
+          user.update_by_twitter_user!(twitter_user)
+        rescue Twitter::Error::NotFound
+          user.destroy_with_student!
         end
       end
     end
