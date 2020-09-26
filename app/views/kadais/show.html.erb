@@ -1,4 +1,11 @@
-<% provide :title, "#{@kadai.year_and_number}「#{@kadai.title}」" %>
+<%
+  provide :title, "#{@kadai.year_and_number}「#{@kadai.title}」"
+  description = []
+  description << "課題提示：#{@kadai.author}"  if @kadai.author.present?
+  description << "梗概締切：#{localize @kadai.kougai_deadline, format: :long}" if @kadai.kougai_deadline
+  description << "実作締切：#{localize @kadai.jissaku_deadline, format: :long}" if @kadai.jissaku_deadline
+  provide :description, description.join('、')
+%>
 
 <header class="card mb-3">
   <div class="card-body">

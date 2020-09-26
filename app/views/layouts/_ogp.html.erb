@@ -1,4 +1,7 @@
-<meta property="og:title" content="<%= content_for(:title).presence || '裏SF創作講座' %>">
+<meta property="og:title" content="<%= content_for(:title).presence || translate('app.title') %>">
+<% if content_for?(:description) %>
+  <meta property="og:description" content="<%= content_for(:description) %>">
+<% end %>
 <meta property="og:type" content="website">
 <meta property="og:image" content="<%= image_url 'logo.png' %>">
 <meta property="og:url" content="<%= request.original_url %>">

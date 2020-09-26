@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><%= content_for?(:title) ? "#{content_for(:title)} - 裏SF創作講座" : '裏SF創作講座' %></title>
+    <title><%= content_for?(:title) ? "#{content_for(:title)} - #{translate('app.title')}" : translate('app.title') %></title>
+    <meta name="description" content="<%= content_for(:description).presence || translate('app.description') %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

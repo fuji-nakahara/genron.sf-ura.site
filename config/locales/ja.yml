@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ja:
+  app:
+    title: 裏SF創作講座
+    description: ゲンロン 大森望 SF創作講座 の裏サイト（ファンサイト）。非公式に作品に投票したり、非公式に作品を投稿したりできます。
   activemodel:
     attributes:
       ebook_form:
