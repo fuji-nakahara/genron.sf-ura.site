@@ -13,7 +13,7 @@ class Link < ApplicationRecord
 
   private
 
-  def has_title_or_contains_open_graph # rubocop:disable Name/PredicateName
+  def has_title_or_contains_open_graph # rubocop:disable Naming/PredicateName
     return if title.present?
 
     object = OpenGraphReader.fetch!(url)
