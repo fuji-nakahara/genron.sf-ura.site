@@ -46,6 +46,7 @@ ja:
       user: ユーザー
       work: 作品
   attributes:
+    name: 名前
     position: 位置
     title: タイトル
     url: URL

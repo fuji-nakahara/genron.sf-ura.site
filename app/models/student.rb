@@ -7,6 +7,9 @@ class Student < ApplicationRecord
   has_many :jissakus, dependent: :destroy
   has_one :user, dependent: :restrict_with_exception
 
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :url, presence: true, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }
+
   class << self
     def import(genron_sf_student)
       find_or_initialize_by(genron_sf_id: genron_sf_student.id).tap do |student|
@@ -21,9 +24,9 @@ class Student < ApplicationRecord
   private
 
   def unable_to_destroy_imported_student
-    return if genron_sf_id.nil?
-
-    errors.add(:base, '超・SF作家育成サイトからインポートした受講生は削除できません')
-    throw :abort
+    if genron_sf_id
+      errors.add(:base, '超・SF作家育成サイトからインポートした受講生は削除できません')
+      throw :abort
+    end
   end
 end

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   resources :ebooks, only: %i[index create]
 
+  resource :profile, only: %i[show update]
+
   namespace :admin do
     root 'home#show'
 

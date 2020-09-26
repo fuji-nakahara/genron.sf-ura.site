@@ -15,7 +15,7 @@ class UserImagesUpdateJob < ApplicationJob
           twitter_user = GenronSFFun::TwitterClient.instance.user(user.twitter_id)
           user.update_by_twitter_user!(twitter_user)
         rescue Twitter::Error::NotFound
-          user.destroy_with_student!
+          user.destroy!
         end
       end
     end

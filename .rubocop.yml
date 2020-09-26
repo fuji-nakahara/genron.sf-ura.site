@@ -31,6 +31,9 @@ Style/Documentation:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
+Style/GuardClause:
+  Enabled: false
+
 Style/Next:
   Enabled: false
 
