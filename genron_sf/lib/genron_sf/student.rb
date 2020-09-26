@@ -7,6 +7,14 @@ require_relative 'work'
 
 module GenronSF
   class Student < Resource
+    TWITTER_SCREEN_NAME_REGEXP = %r{
+      (?:
+        https?://twitter\.com/
+        |(?:^|\W)@
+      )
+      (?<screen_name>\w{1,15})
+    }x.freeze
+
     class << self
       def build_url(year:, id:)
         "#{Resource::BASE_URL}#{year}/students/#{id}/"
@@ -48,7 +56,7 @@ module GenronSF
     end
 
     def twitter_screen_name
-      profile[%r{https?://twitter\.com/(\w{1,15})}, 1] || profile[/(^|\W)@(\w{1,15})/, 2] if profile
+      profile[TWITTER_SCREEN_NAME_REGEXP, :screen_name] if profile
     end
 
     def works
