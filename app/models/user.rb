@@ -6,22 +6,8 @@ class User < ApplicationRecord
   has_many :votes, dependent: :delete_all
   has_many :links, dependent: :nullify
 
-  def save_auth_hash!(auth_hash) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    if student.nil?
-      if (candidate = StudentTwitterCandidate.find_by(twitter_screen_name: auth_hash.info.nickname))
-        Raven.capture_message(
-          '受講生がログインした可能性があります',
-          level: :info,
-          extra: {
-            genron_sf_id: candidate.genron_sf_id,
-            genron_sf_url: candidate.student&.url,
-            twitter_url: auth_hash.info.urls['Twitter'],
-          },
-        )
-      end
-      build_student
-    end
-
+  def save_auth_hash!(auth_hash) # rubocop:disable Metrics/AbcSize
+    build_student if student.nil?
     build_twitter_credential if twitter_credential.nil?
 
     unless student.genron_sf_id
