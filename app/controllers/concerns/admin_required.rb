@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module AdminRequired
-  ADMIN_TWITTER_SCREEN_NAME = 'fuji_nakahara'
-
   extend ActiveSupport::Concern
 
   included do
@@ -13,6 +11,6 @@ module AdminRequired
   private
 
   def require_admin
-    head :unauthorized if current_user.twitter_screen_name != ADMIN_TWITTER_SCREEN_NAME
+    redirect_back fallback_location: root_path, allow_other_host: false, alert: '権限がありません' unless current_user.admin?
   end
 end

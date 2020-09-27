@@ -6,6 +6,7 @@ create_table :users, force: :cascade do |t|
   t.string :image_url, null: false
   t.string :twitter_screen_name, null: false
   t.datetime :last_logged_in_at, null: false
+  t.boolean :admin, null: false, default: false
 
   t.timestamps
 
