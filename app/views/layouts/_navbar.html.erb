@@ -29,6 +29,9 @@
         </div>
       <% else %>
         <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-primary' %>
+        <% if Rails.env.development? %>
+          <%= link_to icon('fas', 'code', 'ログイン'), "/auth/twitter_dev?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'ml-2 btn btn-secondary' %>
+        <% end %>
       <% end %>
     </div>
   </div>

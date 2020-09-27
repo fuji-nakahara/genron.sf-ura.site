@@ -14,11 +14,13 @@ class User < ApplicationRecord
         twitter_screen_name: auth_hash.info.nickname,
         last_logged_in_at: Time.zone.now,
       )
-      build_twitter_credential if twitter_credential.nil?
-      twitter_credential.update!(
-        token: auth_hash.credentials.token,
-        secret: auth_hash.credentials.secret,
-      )
+      if auth_hash.provider == 'twitter'
+        build_twitter_credential if twitter_credential.nil?
+        twitter_credential.update!(
+          token: auth_hash.credentials.token,
+          secret: auth_hash.credentials.secret,
+        )
+      end
     end
   end
 

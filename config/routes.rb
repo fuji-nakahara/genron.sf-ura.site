@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#show'
 
   get '/auth/twitter/callback', to: 'sessions#create'
+  post '/auth/twitter_dev/callback', to: 'sessions#create' if Rails.env.development?
   get '/auth/failure', to: 'sessions#failure'
   post '/logout', to: 'sessions#destroy'
 

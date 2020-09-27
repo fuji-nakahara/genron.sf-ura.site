@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create if Rails.env.development?
+
   def create
     auth_hash = request.env['omniauth.auth']
     user = User.find_or_initialize_by(twitter_id: auth_hash.uid)
