@@ -16,6 +16,22 @@ https://genron-sf-fun.herokuapp.com/
 
     $ bin/rake spec
 
+## Fetch and save the data from [超・SF作家育成サイト](https://school.genron.co.jp/works/sf/)
+
+    $ bin/rake db:seed
+
+To load only the latest data:
+
+    $ bin/rails runner 'ImportLatestJob.perform_now'
+
+## Make the first user be admin
+
+    $ bin/rails runner 'User.first.toggle!(:admin)'
+
+## Enable Twitter integration
+
+Update `TWITTER_*` values in `.env` with your Twitter app credentials.
+
 ## Update database schema
 
     $ bin/rake ridgepole:apply
