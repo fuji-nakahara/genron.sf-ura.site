@@ -7,7 +7,7 @@
   "dependencies": {
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
-    "bootstrap": "^5.0.0-alpha1",
+    "bootstrap": "^5.0.0-alpha2",
     "chart.js": "^2.9.3",
     "google-palette": "^1.1.0",
     "popper.js": "^1.16.1",
