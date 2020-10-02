@@ -16,7 +16,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "prettier": "^2.1.2",
     "webpack-dev-server": "^3.11.0"
