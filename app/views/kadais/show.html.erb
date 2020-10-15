@@ -63,7 +63,17 @@
 <% unless @kadai.jissaku_deadline.nil? %>
   <section class="mb-3">
     <header class="border-bottom pb-2 mb-3">
-      <h2>実作</h2>
+      <h2>
+        実作
+        <% if @kadai.jissakus.where.not(genron_sf_id: nil).count > 0 %>
+          <span class="badge rounded-pill bg-success">
+            <%= @kadai.jissakus.where.not(genron_sf_id: nil).count %>
+            <% if @kadai.jissakus.where(genron_sf_id: nil).count > 0 %>
+              + <%= @kadai.jissakus.where(genron_sf_id: nil).count %>
+            <% end %>
+          </span>
+        <% end %>
+      </h2>
     </header>
 
     <% if @kadai.jissaku_deadline_time.future? %>
@@ -85,7 +95,17 @@
 <% unless @kadai.kougai_deadline.nil? %>
   <section class="mb-3">
     <header class="border-bottom pb-2 mb-3">
-      <h2>梗概</h2>
+      <h2>
+        梗概
+        <% if @kadai.kougais.where.not(genron_sf_id: nil).count > 0 %>
+          <span class="badge rounded-pill bg-info">
+            <%= @kadai.kougais.where.not(genron_sf_id: nil).count %>
+            <% if @kadai.kougais.where(genron_sf_id: nil).count > 0 %>
+              + <%= @kadai.kougais.where(genron_sf_id: nil).count %>
+            <% end %>
+          </span>
+        <% end %>
+      </h2>
     </header>
 
     <% if @kadai.kougai_deadline_time.future? %>
