@@ -56,6 +56,8 @@
           <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
         </button>
       <% end %>
+      <% tweet_param = { text: "#{work.student.name}『#{work.title}』", url: work.url, hashtags: work.genron_sf_id ? 'SF創作講座' : '裏SF創作講座' } %>
+      <%= link_to icon('fab', 'twitter', 'コメントする'), twitter_tweet_url(tweet_param), class: 'card-link btn btn-sm btn-outline-primary', target: '_blank' %>
     </div>
   </div>
 </div>
