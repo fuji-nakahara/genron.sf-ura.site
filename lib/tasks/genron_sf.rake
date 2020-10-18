@@ -11,13 +11,29 @@ namespace :genron_sf do
     ImportTwitterScreenNamesJob.perform_now(year: Kadai::LATEST_YEAR)
   end
 
-  desc 'Update users whose profile images changed'
+  desc 'Update users whose profile images changed.'
   task update_user_images: :environment do
     UserImagesUpdateJob.perform_now
   end
 
-  desc 'Tweet deadline expired (expected run at 00:00)'
+  desc 'Tweet deadline expired. (expected run at 00:00)'
   task tweet_deadline_expired: :environment do
     TweetDeadlineExpiredJob.perform_now(1.day.ago.to_date)
+  end
+
+  desc 'Tweet vote results if today is comment day.'
+  task tweet_vote_results: :environment do
+    date = Time.zone.today
+    subjects = GenronSF::Subject.list(year: Kadai::LATEST_YEAR)
+    summary_comment_subject = subjects.find { |subject| subject.summary_comment_date == date }
+    if summary_comment_subject
+      kadai = Kadai.find_by!(year: summary_comment_subject.year, number: summary_comment_subject.number)
+      TweetVoteResultsJob.perform_now(kadai, type: 'Kougai')
+    end
+    work_comment_subject = subjects.find { |subject| subject.work_comment_date == date }
+    if work_comment_subject
+      kadai = Kadai.find_by!(year: summary_comment_subject.year, number: summary_comment_subject.number)
+      TweetVoteResultsJob.perform_now(kadai, type: 'Jissaku')
+    end
   end
 end
