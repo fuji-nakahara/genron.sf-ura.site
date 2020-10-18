@@ -12,4 +12,6 @@ create_table :kadais, force: :cascade do |t|
   t.timestamps
 
   t.index %i[year number], unique: true
+  t.index :kougai_deadline
+  t.index :jissaku_deadline
 end

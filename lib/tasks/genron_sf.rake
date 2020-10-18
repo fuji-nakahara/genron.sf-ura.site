@@ -15,4 +15,9 @@ namespace :genron_sf do
   task update_user_images: :environment do
     UserImagesUpdateJob.perform_now
   end
+
+  desc 'Tweet deadline expired (expected run at 00:00)'
+  task tweet_deadline_expired: :environment do
+    TweetDeadlineExpiredJob.perform_now(1.day.ago.to_date)
+  end
 end
