@@ -14,9 +14,9 @@ class JissakusController < ApplicationController
 
     if @jissaku.save
       TweetJob.perform_later(<<~TWEET)
-        【実作】 @#{current_user.twitter_screen_name} 『#{@jissaku.title}』
+        【実作】@#{current_user.twitter_screen_name}『#{@jissaku.title}』
         #裏SF創作講座
-        #{kadai_url(kadai)}
+        #{kadai_url(kadai, anchor: "work-#{@jissaku.id}")}
         #{@jissaku.url}
       TWEET
       redirect_to kadai, notice: '登録しました'

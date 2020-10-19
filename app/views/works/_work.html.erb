@@ -1,4 +1,4 @@
-<div class="col">
+<div class="col" id="work-<%= work.id %>">
   <div class="card mb-3" data-controller="vote" data-vote-endpoint="<%= work_vote_path(work) %>" data-vote-voted="<%= work.voters.include?(current_user) %>">
     <div class="card-body">
       <div class="card-subtitle text-muted mb-1">

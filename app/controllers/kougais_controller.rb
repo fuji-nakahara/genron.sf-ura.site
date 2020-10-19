@@ -14,9 +14,9 @@ class KougaisController < ApplicationController
 
     if @kougai.save
       TweetJob.perform_later(<<~TWEET)
-        【梗概】 @#{current_user.twitter_screen_name} 『#{@kougai.title}』
+        【梗概】@#{current_user.twitter_screen_name}『#{@kougai.title}』
         #裏SF創作講座
-        #{kadai_url(kadai)}
+        #{kadai_url(kadai, anchor: "work-#{@kougai.id}")}
         #{@kougai.url}
       TWEET
       redirect_to kadai, notice: '登録しました'

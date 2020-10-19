@@ -1,4 +1,4 @@
-<%= link_to kadai_path(vote.work.kadai_id), class: 'list-group-item list-group-item-action' do %>
+<%= link_to kadai_path(vote.work.kadai_id, anchor: "work-#{vote.work.id}"), class: 'list-group-item list-group-item-action' do %>
   <div class="d-flex justify-content-between mb-1">
     <span class="text-secondary">
       <%= image_tag vote.user.image_url, size: '24x24', class: 'border rounded-circle' %>
