@@ -16,13 +16,7 @@
 
       <h3 class="card-title h5">
         <%= link_to work.title, work.url, class: 'link-dark text-decoration-none', target: '_blank' %>
-        <% if work.is_a?(Jissaku) && work.score %>
-          <span class="badge rounded-pill bg-success"><%= work.score.value %></span>
-        <% elsif work.is_a?(Kougai) && work.election %>
-          <span class="badge bg-info">選出</span>
-        <% elsif work.is_a?(Jissaku) && work.prize %>
-          <span class="badge rounded-pill bg-success"><%= work.prize.title %></span>
-        <% end %>
+        <%= yield %>
       </h3>
 
       <p class="card-text">
