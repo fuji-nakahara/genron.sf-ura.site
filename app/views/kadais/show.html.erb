@@ -61,7 +61,7 @@
 </nav>
 
 <% unless @kadai.jissaku_deadline.nil? %>
-  <section class="mb-3">
+  <section class="mb-3" id="jissaku">
     <header class="border-bottom pb-2 mb-3">
       <h2>
         実作
@@ -93,7 +93,7 @@
 <% end %>
 
 <% unless @kadai.kougai_deadline.nil? %>
-  <section class="mb-3">
+  <section class="mb-3" id="kougai">
     <header class="border-bottom pb-2 mb-3">
       <h2>
         梗概
@@ -121,7 +121,7 @@
 <% end %>
 
 <% if !@kadai.links.empty? || current_user&.student&.genron_sf_id %>
-  <section class="mb-3">
+  <section class="mb-3" id="link">
     <header class="border-bottom pb-2 mb-3">
       <h2>関連リンク</h2>
     </header>
