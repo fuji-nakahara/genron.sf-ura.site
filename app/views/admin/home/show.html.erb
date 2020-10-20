@@ -30,6 +30,49 @@
 <hr>
 
 <section class="mb-3">
+  <hader>
+    <h2>梗概選出</h2>
+  </hader>
+  <%= form_with model: Election.new, url: admin_elections_path, local: true do |form| %>
+    <div class="mb-3">
+      <%= label_tag :genron_sf_id, 'genron_sf_id', class: 'form-label' %>
+      <%= number_field_tag :genron_sf_id, nil, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :tweet_url, class: 'form-label' %>
+      <%= form.text_field :tweet_url, class: 'form-control' %>
+    </div>
+    <%= form.submit class: 'btn btn-primary' %>
+  <% end %>
+</section>
+
+<hr>
+
+<section class="mb-3">
+  <header>
+    <h2>賞</h2>
+  </header>
+  <%= form_with model: Prize.new, url: admin_prizes_path, local: true do |form| %>
+    <div class="mb-3">
+      <%= label_tag :genron_sf_id, 'genron_sf_id', class: 'form-label' %>
+      <%= number_field_tag :genron_sf_id, nil, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :position, class: 'form-label' %>
+      <%= form.number_field :position, class: 'form-control' %>
+    </div>
+    <%= form.submit class: 'btn btn-primary' %>
+  <% end %>
+</section>
+
+
+<hr>
+
+<section class="mb-3">
   <header>
     <h2>リンク</h2>
   </header>
@@ -57,33 +100,9 @@
               <%= link.user.twitter_screen_name %>
             <% end %>
           </td>
-          </td>
           <td><%= link_to '削除', link, method: :delete %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</section>
-
-<hr>
-
-<section class="mb-3">
-  <header>
-    <h2>賞</h2>
-  </header>
-  <%= form_with model: Prize.new, url: admin_prizes_path, local: true do |form| %>
-    <div class="mb-3">
-      <%= label_tag :genron_sf_id, 'genron_sf_id', class: 'form-label' %>
-      <%= number_field_tag :genron_sf_id, nil, class: 'form-control' %>
-    </div>
-    <div class="mb-3">
-      <%= form.label :title, class: 'form-label' %>
-      <%= form.text_field :title, class: 'form-control' %>
-    </div>
-    <div class="mb-3">
-      <%= form.label :position, class: 'form-label' %>
-      <%= form.number_field :position, class: 'form-control' %>
-    </div>
-    <%= form.submit class: 'btn btn-primary' %>
-  <% end %>
 </section>
