@@ -100,7 +100,7 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    font-awesome-sass (5.13.0)
+    font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     gepub (1.0.5)
       nokogiri (>= 1.8.2, < 1.11)
