@@ -83,11 +83,7 @@
     <% end %>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @kadai.jissakus
-                       .includes(:prize, :score, :voters, student: :user)
-                       .left_joins(:prize, :score)
-                       .order('prizes.position asc nulls last, scores.value desc nulls last, votes_count desc, created_at asc'),
-                 header: :student %>
+      <%= render @jissakus, header: :student %>
     </div>
   </section>
 <% end %>
@@ -115,11 +111,7 @@
     <% end %>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @kadai.kougais
-                       .includes(:election, :voters, student: :user)
-                       .left_joins(:election)
-                       .order('(elections.id is null), votes_count desc, created_at asc'),
-                 header: :student %>
+      <%= render @kougais, header: :student %>
     </div>
   </section>
 <% end %>

@@ -11,6 +11,8 @@ class Work < ApplicationRecord
   validates :title, presence: true
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
 
+  scope :genron_sf_order, -> { joins(:student).order(:'students.genron_sf_id') }
+
   def url_domain
     URI.parse(url).host
   end
