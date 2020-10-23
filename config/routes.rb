@@ -54,6 +54,10 @@ Rails.application.routes.draw do
     'https://school.genron.co.jp/sf/'
   end
 
+  direct :github_repo do
+    'https://github.com/fuji-nakahara/genron-sf-fun'
+  end
+
   direct :twitter_profile do |screen_name|
     "https://twitter.com/#{screen_name}"
   end
