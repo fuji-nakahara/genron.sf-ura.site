@@ -46,10 +46,6 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
 
-Rails:
-  Exclude:
-    - 'genron_sf/**/*'
-
 Rails/HasAndBelongsToMany:
   Enabled: false
 

@@ -1,9 +1,10 @@
-PATH
-  remote: genron_sf
+GIT
+  remote: https://github.com/fuji-nakahara/genron_sf.git
+  revision: 8295d120c6e8ec3b175712c5abc63d1e85d75992
   specs:
     genron_sf (0.1.0)
-      gepub (~> 1.0)
-      nokogiri (~> 1.10)
+      gepub (>= 1.0)
+      nokogiri (>= 1.10)
 
 GEM
   remote: https://rubygems.org/
