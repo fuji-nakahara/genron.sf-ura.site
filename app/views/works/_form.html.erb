@@ -9,6 +9,7 @@
   <div class="mb-3">
     <%= form.label :url, class: 'form-label' %>
     <%= form.url_field :url, class: 'form-control', required: true %>
+    <div class="form-text"><%= yield %></div>
   </div>
 
   <%= form.submit "#{work.class.model_name.human}を提出する", class: "btn btn-#{work_color(work)}" %>

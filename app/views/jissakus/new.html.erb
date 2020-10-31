@@ -2,4 +2,6 @@
 
 <%= render @jissaku.kadai %>
 
-<%= render 'works/form', work: @jissaku %>
+<%= render 'works/form', work: @jissaku do %>
+  原稿用紙50枚以内
+<% end %>
