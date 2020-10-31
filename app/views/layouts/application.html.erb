@@ -25,7 +25,9 @@
       function gtag () {dataLayer.push(arguments)}
 
       gtag('js', new Date())
-      gtag('config', 'G-EQD93JBL02')
+      gtag('config', 'G-EQD93JBL02', {
+        'user_id': '<%= current_user&.id %>'
+      })
     </script>
   </head>
   <body>
