@@ -22,9 +22,13 @@ RSpec.describe MergeStudentsJob, type: :job do
           twitter_screen_name: source_user.twitter_screen_name,
           genron_sf_id: target_student.genron_sf_id,
         )
-      end.to change { target_student.kougais.count }.by(2)
-               .and change { target_student.jissakus.count }.by(2)
-                      .and change { source_user.votes.count }.by(-1)
+      end.to change {
+        target_student.kougais.count
+      }.by(2).and change {
+        target_student.jissakus.count
+      }.by(2).and change {
+        source_user.votes.count
+      }.by(-1)
 
       expect(source_user.reload.student).to eq target_student
       expect { source_student.reload }.to raise_error ActiveRecord::RecordNotFound

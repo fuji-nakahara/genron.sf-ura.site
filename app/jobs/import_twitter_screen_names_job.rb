@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportTwitterScreenNamesJob < ApplicationJob
-  def perform(year: Kadai::YEARS) # rubocop:disable Metrics/MethodLength
+  def perform(year: Kadai::YEARS)
     Array(year).each do |y|
       students = GenronSF::Student.list(year: y)
       students.each do |student|
@@ -13,19 +13,18 @@ class ImportTwitterScreenNamesJob < ApplicationJob
         candidate.update!(twitter_screen_name: twitter_screen_name)
         next if candidate.previous_changes.empty?
 
-        user = User
-                 .joins(:student).merge(Student.where(genron_sf_id: nil))
-                 .find_by(twitter_screen_name: twitter_screen_name)
-        if user
-          Raven.capture_message(
-            'ユーザーが受講生プロフィールにTwitterアカウントを載せた可能性があります',
-            level: :info,
-            extra: {
-              genron_sf_url: student.url,
-              twitter_url: "https://twitter.com/#{twitter_screen_name}",
-            },
-          )
-        end
+        user = User.joins(:student).merge(Student.where(genron_sf_id: nil))
+                   .find_by(twitter_screen_name: twitter_screen_name)
+        next if user.nil?
+
+        Raven.capture_message(
+          'ユーザーが受講生プロフィールにTwitterアカウントを載せた可能性があります',
+          level: :info,
+          extra: {
+            genron_sf_url: student.url,
+            twitter_url: "https://twitter.com/#{twitter_screen_name}",
+          },
+        )
       end
     end
   end

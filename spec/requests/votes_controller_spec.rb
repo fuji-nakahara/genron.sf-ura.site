@@ -21,7 +21,7 @@ RSpec.describe 'VotesController:', type: :request do
 
     context 'when user have already voted for other 3 works' do
       before do
-        3.times do # rubocop:disable FactoryBot/CreateList
+        3.times do # rubocop:disable RSpec/FactoryBot/CreateList
           create(:vote, user: user, work: create(:kougai, kadai: kougai.kadai))
         end
       end

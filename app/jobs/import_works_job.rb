@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportWorksJob < ApplicationJob
-  def perform(kadais: Kadai.all) # rubocop:disable Metrics/AbcSize
+  def perform(kadais: Kadai.all)
     kadais.each do |kadai|
       subject = kadai.fetch_genron_sf_subject
 
