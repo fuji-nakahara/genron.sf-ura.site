@@ -5,8 +5,8 @@
         <h5 class="modal-title" id="modal-require-login-label">ログインしてください</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-primary btn-lg btn-block' %>
+      <div class="modal-body d-grid d-block">
+        <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-primary' %>
       </div>
     </div>
   </div>

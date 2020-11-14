@@ -11,7 +11,7 @@
     <% if current_user %>
       <iframe src="https://github.com/sponsors/fuji-nakahara/button" title="Sponsor fuji-nakahara" height="35" width="116" style="border: 0;"></iframe>
     <% else %>
-      <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-lg btn-primary' %>
+      <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), '/auth/twitter', method: :post, class: 'btn btn-primary' %>
     <% end %>
   </p>
 </header>
