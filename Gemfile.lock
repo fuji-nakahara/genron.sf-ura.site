@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fuji-nakahara/genron_sf.git
-  revision: 6f1e485bb2b6746922233d5a04ed7bd72c0bc7fe
+  revision: c1112faf7b599aaffd740380e76d702e070a7f54
   specs:
     genron_sf (0.1.0)
       gepub (>= 1.0)
