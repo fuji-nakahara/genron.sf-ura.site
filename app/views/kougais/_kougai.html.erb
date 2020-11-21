@@ -1,5 +1,5 @@
 <%= render 'works/work', work: kougai, header: local_assigns[:header] do %>
-  <% if kougai.election %>
+  <% if kougai.selected %>
     <span class="badge bg-info">選出</span>
   <% end %>
 <% end %>
