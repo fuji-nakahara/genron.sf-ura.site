@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Kougai < Work
-  has_one :election, dependent: :destroy
-
-  scope :default_order, -> { left_joins(:election).order('(elections.id is null), votes_count desc, created_at asc') }
+  scope :default_order, -> { order(selected: :desc, votes_count: :desc, created_at: :asc) }
 
   class << self
     def import(work, kadai:)
@@ -13,6 +11,7 @@ class Kougai < Work
           student: Student.import(work.student),
           title: work.summary_title || '（タイトルなし）',
           url: work.url,
+          score: 1,
         )
       end
     end
