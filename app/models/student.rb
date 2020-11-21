@@ -5,10 +5,23 @@ class Student < ApplicationRecord
 
   has_many :kougais, dependent: :destroy
   has_many :jissakus, dependent: :destroy
+  has_many :works, dependent: :delete_all
   has_one :user, dependent: :restrict_with_exception
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :url, presence: true, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }
+
+  scope :with_votes_sum, lambda {
+    joins(:works)
+      .select(
+        'students.*',
+        "sum(case when works.type = 'Kougai' then works.votes_count else 0 end) as kougai_votes_sum",
+        "sum(case when works.type = 'Jissaku' then works.votes_count else 0 end) as jissaku_votes_sum",
+        'sum(works.votes_count) as votes_sum',
+      )
+      .group(:id)
+      .having('sum(works.votes_count) > 0')
+  }
 
   class << self
     def import(genron_sf_student)

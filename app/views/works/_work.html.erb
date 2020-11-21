@@ -7,9 +7,7 @@
         <% else %>
           <%= link_to work.student.name, work.student.url, class: 'link-secondary', target: '_blank' %>
           <% if work.student.user %>
-            <%= link_to twitter_profile_url(work.student.user.twitter_screen_name), target: '_blank' do %>
-              <%= image_tag work.student.user.image_url, size: '24x24', class: 'border rounded-circle', data: { toggle: 'tooltip', placement: 'top' }, title: work.student.user.twitter_screen_name %>
-            <% end %>
+            <%= link_to_twitter_profile_with_image(work.student.user) %>
           <% end %>
         <% end %>
       </div>
@@ -26,17 +24,13 @@
       <ul class="card-text list-inline" data-target="vote.iconList">
         <% work.voters.each do |user| %>
           <li class="list-inline-item mr-0" data-target="<%= 'vote.icon' if user == current_user %>">
-            <%= link_to twitter_profile_url(user.twitter_screen_name), target: '_blank' do %>
-              <%= image_tag user.image_url, size: '24x24', class: 'border rounded-circle', data: { toggle: 'tooltip', placement: 'top' }, title: user.twitter_screen_name %>
-            <% end %>
+            <%= link_to_twitter_profile_with_image(user) %>
           </li>
         <% end %>
         <% if current_user %>
           <template data-target="vote.iconTemplate">
             <li class="list-inline-item">
-              <%= link_to twitter_profile_url(current_user.twitter_screen_name), target: '_blank' do %>
-                <%= image_tag current_user.image_url, size: '24x24', class: 'border rounded-circle', data: { toggle: 'tooltip', placement: 'top' }, title: current_user.twitter_screen_name %>
-              <% end %>
+              <%= link_to_twitter_profile_with_image(current_user) %>
             </li>
           </template>
         <% end %>
