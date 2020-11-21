@@ -62,7 +62,7 @@
 
 <% unless @kadai.jissaku_deadline.nil? %>
   <section class="mb-3" id="jissaku">
-    <header class="border-bottom pb-2 mb-3">
+    <header class="border-bottom mb-3">
       <h2>
         実作
         <% if @kadai.jissakus.where.not(genron_sf_id: nil).count > 0 %>
@@ -91,7 +91,7 @@
 
 <% unless @kadai.kougai_deadline.nil? %>
   <section class="mb-3" id="kougai">
-    <header class="border-bottom pb-2 mb-3">
+    <header class="border-bottom mb-3">
       <h2>
         梗概
         <% if @kadai.kougais.where.not(genron_sf_id: nil).count > 0 %>

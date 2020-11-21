@@ -8,23 +8,33 @@
 </header>
 
 <% unless @student.jissakus.empty? %>
-  <section class="mb-3">
-    <header class="border-bottom pb-2 mb-3">
-      <h2>実作</h2>
+  <section class="mb-3" id="jissaku">
+    <header class="border-bottom mb-3">
+      <h2>
+        実作
+        <span class="badge rounded-pill bg-success">
+          <%= @student.jissakus.count %> 編
+        </span>
+      </h2>
     </header>
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @student.jissakus.includes(:kadai, :voters).reverse_order, header: :kadai %>
+      <%= render @jissakus, header: :kadai %>
     </div>
   </section>
 <% end %>
 
 <% unless @student.kougais.empty? %>
-  <section class="mb-3">
-    <header class="border-bottom pb-2 mb-3">
-      <h2>梗概</h2>
+  <section class="mb-3" id="kougai">
+    <header class="border-bottom mb-3">
+      <h2>
+        梗概
+        <span class="badge rounded-pill bg-info">
+          <%= @student.kougais.count %> 編
+        </span>
+      </h2>
     </header>
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @student.kougais.includes(:kadai, :voters).reverse_order, header: :kadai %>
+      <%= render @kougais, header: :kadai %>
     </div>
   </section>
 <% end %>
