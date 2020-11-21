@@ -71,6 +71,7 @@
             <% if @kadai.jissakus.where(genron_sf_id: nil).count > 0 %>
               + <%= @kadai.jissakus.where(genron_sf_id: nil).count %>
             <% end %>
+            編
           </span>
         <% end %>
       </h2>
@@ -99,6 +100,7 @@
             <% if @kadai.kougais.where(genron_sf_id: nil).count > 0 %>
               + <%= @kadai.kougais.where(genron_sf_id: nil).count %>
             <% end %>
+            編
           </span>
         <% end %>
       </h2>
