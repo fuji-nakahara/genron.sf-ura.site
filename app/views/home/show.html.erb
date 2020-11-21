@@ -27,20 +27,3 @@
     <%= render @votes %>
   </div>
 </section>
-
-<section class="d-none d-lg-block mb-5">
-  <canvas class="mb-2" id="score-chart" data-controller="score-chart" data-score-chart-endpoint="<%= score_path(@kadais.last.year) %>"></canvas>
-  <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), GenronSF::ScoreTable.build_url(year: @kadais.last.year), class: 'btn btn-outline-primary', target: '_blank' %>
-</section>
-
-<section class="mb-5">
-  <div class="row row-cols-1 row-cols-md-2">
-    <div class="col">
-      <a class="twitter-timeline" data-lang="ja" data-theme="light" href="https://twitter.com/genron_sf_fun?ref_src=twsrc%5Etfw">Tweets by genron_sf_fun</a>
-    </div>
-    <div class="col">
-      <a class="twitter-timeline" data-lang="ja" data-theme="light" href="https://twitter.com/genronschool?ref_src=twsrc%5Etfw">Tweets by genronschool</a>
-    </div>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </div>
-</section>
