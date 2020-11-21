@@ -19,7 +19,7 @@ class ImportWorksJob < ApplicationJob
         Jissaku.import(work, kadai: kadai) unless Jissaku.exists?(genron_sf_id: work.id)
       end
 
-      if Time.zone.today < subject.work_comment_date
+      if subject.work_comment_date && Time.zone.today < subject.work_comment_date
         logger.info "Importing selected: #{subject.url}"
         subject.excellent_entries.each do |work|
           kougai = Kougai.find_by(genron_sf_id: work.id)
