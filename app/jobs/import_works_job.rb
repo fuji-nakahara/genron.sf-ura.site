@@ -24,8 +24,7 @@ class ImportWorksJob < ApplicationJob
         jissaku = Jissaku.find_by(genron_sf_id: score.work.id)
         next if jissaku.nil?
 
-        jissaku.build_score if jissaku.score.nil?
-        jissaku.score.update!(value: score.value) if score.value.positive?
+        jissaku.update!(score: score.value) if score.value.positive?
       end
     end
   end
