@@ -8,6 +8,6 @@ class HomeController < ApplicationController
                        .joins(works: :kadai)
                        .merge(Kadai.where(year: @kadais.last.year))
                        .with_votes_sum
-                       .order(votes_sum: :desc)
+                       .order(votes_sum: :desc, genron_sf_id: :asc)
   end
 end
