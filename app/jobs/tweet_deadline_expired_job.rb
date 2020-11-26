@@ -8,9 +8,15 @@ class TweetDeadlineExpiredJob < ApplicationJob
 
     jissaku_expired_texts = jissaku_expired_kadais.map { |kadai| "第#{kadai.number}回実作" }
     kougai_expired_texts = kougai_expired_kadais.map { |kadai| "第#{kadai.number}回梗概" }
-    GenronSFFun::TwitterClient.instance.update(<<~TWEET.chomp)
+    tweet = <<~TWEET.chomp
       #{(jissaku_expired_texts + kougai_expired_texts).join('、')}締切です！
       #SF創作講座 #裏SF創作講座
     TWEET
+
+    begin
+      GenronSFFun::TwitterClient.instance.update(tweet)
+    rescue Twitter::Error => e
+      Raven.capture_exception(e, extra: { tweet: tweet })
+    end
   end
 end
