@@ -82,7 +82,7 @@ export default class extends Controller {
 
   addIcon () {
     const icon = document.importNode(this.iconTemplateTarget.content, true)
-    icon.firstElementChild.dataset.target = 'vote.icon'
+    icon.firstElementChild.dataset.voteTarget = 'icon'
     this.iconListTarget.appendChild(icon)
   }
 
