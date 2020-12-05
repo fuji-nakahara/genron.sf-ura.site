@@ -42,7 +42,6 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rubycw', require: false
-  gem 'webmock'
 end
 
 group :development do
@@ -53,4 +52,14 @@ group :development do
   gem 'bullet'
   gem 'dotenv-rails'
   gem 'rails_real_favicon'
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
+
+  gem 'webmock'
 end
