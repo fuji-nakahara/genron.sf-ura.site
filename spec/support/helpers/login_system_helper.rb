@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module LoginSystemHelper
-  def log_in(user)
+  def log_in(user, from: root_path)
     OmniAuth.config.add_mock(
       :twitter,
       {
@@ -21,7 +21,7 @@ module LoginSystemHelper
       },
     )
 
-    visit root_path
+    visit from
     click_link 'Twitter でログイン', match: :first
   end
 end
