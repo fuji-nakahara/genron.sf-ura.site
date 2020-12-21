@@ -3,8 +3,9 @@
 class TweetVoteResultsJob < ApplicationJob
   def perform(kadai, type:)
     max_vote_count = kadai.works.where(type: type).maximum(:votes_count)
-    top_works = kadai.works.where(type: type, votes_count: max_vote_count)
+    return if max_vote_count <= 1
 
+    top_works = kadai.works.where(type: type, votes_count: max_vote_count)
     tweet = <<~TWEET.chomp
       現時点での第#{kadai.number}回#{type.constantize.model_name.human}の最高得票作は
       #{top_works.map { |work| "#{work.student.name}『#{work.title}』" }.join("\n")}

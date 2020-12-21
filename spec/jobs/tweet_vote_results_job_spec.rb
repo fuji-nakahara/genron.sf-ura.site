@@ -16,7 +16,7 @@ RSpec.describe TweetVoteResultsJob, type: :job do
 
       before do
         student = create(:student, name: 'フジ・ナカハラ')
-        create(:kougai, kadai: kadai, student: student, title: '式年遷皇', votes_count: 1)
+        create(:kougai, kadai: kadai, student: student, title: '式年遷皇', votes_count: 2)
         create(:kougai, kadai: kadai)
       end
 
@@ -26,7 +26,7 @@ RSpec.describe TweetVoteResultsJob, type: :job do
         expect(twitter_client).to have_received(:update).with(<<~TWEET.chomp)
           現時点での第1回梗概の最高得票作は
           フジ・ナカハラ『式年遷皇』
-          で1票です！
+          で2票です！
           #裏SF創作講座
           https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
         TWEET
