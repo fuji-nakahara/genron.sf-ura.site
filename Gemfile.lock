@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fuji-nakahara/genron_sf.git
-  revision: c1112faf7b599aaffd740380e76d702e070a7f54
+  revision: aafe5a0a8704fa4ed39853a6e6d2440eedf5ab19
   specs:
     genron_sf (0.1.0)
       gepub (>= 1.0)
@@ -112,9 +112,9 @@ GEM
       rake
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
-    gepub (1.0.11)
+    gepub (1.0.12)
       nokogiri (>= 1.8.2, < 1.11)
-      rubyzip (> 1.1.1, < 2.3)
+      rubyzip (> 1.1.1, < 2.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.1)
@@ -268,7 +268,7 @@ GEM
     rubocop-rubycw (0.1.4)
       rubocop
     ruby-progressbar (1.11.0)
-    rubyzip (2.2.0)
+    rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
