@@ -17,7 +17,7 @@ class ImportTwitterScreenNamesJob < ApplicationJob
                    .find_by(twitter_screen_name: twitter_screen_name)
         next if user.nil?
 
-        Raven.capture_message(
+        Sentry.capture_message(
           'ユーザーが受講生プロフィールにTwitterアカウントを載せた可能性があります',
           level: :info,
           extra: {

@@ -26,7 +26,7 @@ gem 'omniauth-twitter'
 gem 'open_graph_reader'
 gem 'rails-i18n'
 gem 'ridgepole', require: false
-gem 'sentry-raven'
+gem 'sentry-rails'
 gem 'twitter'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', require: 'genron_sf/ebook'

@@ -3,12 +3,12 @@
 class ApplicationController < ActionController::Base
   include Session
 
-  before_action :set_raven_context
+  before_action :set_sentry_user
 
   private
 
-  def set_raven_context
-    Raven.user_context(
+  def set_sentry_user
+    Sentry.set_user(
       {
         id: current_user&.id,
         username: current_user&.twitter_screen_name,

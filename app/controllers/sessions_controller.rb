@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       student = StudentTwitterCandidate.find_by(twitter_screen_name: auth_hash.info.nickname)&.student
       student ||= Student.find_by(genron_sf_id: auth_hash.info.nickname.sub('_', '').downcase)
       if student
-        Raven.capture_message(
+        Sentry.capture_message(
           '受講生がログインした可能性があります',
           level: :info,
           extra: {

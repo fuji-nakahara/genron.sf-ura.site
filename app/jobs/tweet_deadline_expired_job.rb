@@ -16,7 +16,7 @@ class TweetDeadlineExpiredJob < ApplicationJob
     begin
       GenronSFFun::TwitterClient.instance.update(tweet)
     rescue Twitter::Error => e
-      Raven.capture_exception(e, extra: { tweet: tweet })
+      Sentry.capture_exception(e, extra: { tweet: tweet })
     end
   end
 end
