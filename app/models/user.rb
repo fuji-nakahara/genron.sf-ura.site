@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   def save_auth_hash!(auth_hash)
     transaction do
-      create_student!(name: auth_hash.info.name, url: auth_hash.info.urls['Twitter']) if new_record?
+      build_student(name: auth_hash.info.name, url: auth_hash.info.urls['Twitter']) if new_record?
       update!(
         image_url: auth_hash.info.image,
         twitter_screen_name: auth_hash.info.nickname,

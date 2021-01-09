@@ -27,7 +27,7 @@ RSpec.describe 'SessionsController:', type: :request do
 
       it 'creates a user and sets session[:user_id]' do
         expect { get auth_twitter_callback_path }
-          .to change(User, :count).by(1)
+          .to change(User, :count).by(1).and change(Student, :count).by(1)
 
         expect(session[:user_id]).not_to be_nil
         expect(response).to redirect_to root_path
