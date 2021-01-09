@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master ]
   pull_request:
+    paths:
+      - db/Schemafile
+      - db/schemas/**
+      - Gemfile.lock
 
 jobs:
   ridgepole:
