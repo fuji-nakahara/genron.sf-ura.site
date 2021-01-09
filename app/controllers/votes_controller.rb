@@ -17,6 +17,6 @@ class VotesController < ApplicationController
   def destroy
     vote = Vote.find_by!(work_id: params[:work_id], user_id: current_user.id)
     vote.destroy!
-    head :ok
+    head :no_content
   end
 end

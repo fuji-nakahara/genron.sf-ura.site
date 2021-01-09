@@ -44,11 +44,11 @@ RSpec.describe 'VotesController:', type: :request do
       log_in user
     end
 
-    it 'destroys the vote and responds OK' do
+    it 'destroys the vote and responds No Content' do
       expect { delete work_vote_path(vote.work) }
         .to change(Vote, :count).by(-1)
 
-      expect(response).to have_http_status :ok
+      expect(response).to have_http_status :no_content
     end
   end
 end
