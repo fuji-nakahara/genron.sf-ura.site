@@ -25,7 +25,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
 gem 'open_graph_reader'
 gem 'rails-i18n'
-gem 'ridgepole', require: false
+gem 'ridgepole', '>= 0.9.0.beta', require: false
 gem 'sentry-rails'
 gem 'twitter'
 
