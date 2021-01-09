@@ -228,8 +228,8 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.8.2)
     rexml (3.2.4)
-    ridgepole (0.8.12)
-      activerecord (>= 5.0.1, < 6.1)
+    ridgepole (0.9.0.beta)
+      activerecord (>= 5.1, < 6.2)
       diffy
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
@@ -371,7 +371,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-i18n
   rails_real_favicon
-  ridgepole
+  ridgepole (>= 0.9.0.beta)
   rspec-rails
   rubocop
   rubocop-performance
