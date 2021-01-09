@@ -1,6 +1,6 @@
 <% provide :title, "設定" %>
 
-<%= form_with model: @student, url: profile_path, local: true do |form| %>
+<%= form_with model: @student, url: profile_path do |form| %>
   <%= render 'error_messages', errors: @student.errors %>
 
   <div class="mb-3">
