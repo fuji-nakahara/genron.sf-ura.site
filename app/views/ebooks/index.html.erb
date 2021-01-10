@@ -12,7 +12,7 @@
 
 <% else %>
 
-  <%= form_with model: @ebook_form, url: ebooks_path, local: true do |form| %>
+  <%= form_with model: @ebook_form, url: ebooks_path do |form| %>
     <%= render 'error_messages', errors: @ebook_form.errors %>
 
     <div class="mb-3">

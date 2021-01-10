@@ -4,7 +4,7 @@
   <header>
     <h2>受講生マージ</h2>
   </header>
-  <%= form_with url: merge_admin_students_path, local: true do |form| %>
+  <%= form_with url: merge_admin_students_path do |form| %>
     <div class="mb-3">
       <%= form.label :genron_sf_id, 'genron_sf_student_id', class: 'form-label' %>
       <%= form.text_field :genron_sf_id, list: 'genron_sf_student_ids', class: 'form-control' %>
@@ -33,7 +33,7 @@
   <header>
     <h2>賞</h2>
   </header>
-  <%= form_with model: Prize.new, url: admin_prizes_path, local: true do |form| %>
+  <%= form_with model: Prize.new, url: admin_prizes_path do |form| %>
     <div class="mb-3">
       <%= label_tag :genron_sf_id, 'genron_sf_id', class: 'form-label' %>
       <%= number_field_tag :genron_sf_id, nil, class: 'form-control' %>
