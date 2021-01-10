@@ -10,7 +10,7 @@ class KadaisController < ApplicationController
   end
 
   def find
-    @kadai = Kadai.find_by!(year: params[:year], number: params[:number])
-    redirect_to @kadai, status: :moved_permanently
+    kadai = Kadai.find_by!(year: params[:year], number: params[:number])
+    redirect_to kadai, status: :moved_permanently
   end
 end
