@@ -1,37 +1,16 @@
 # frozen_string_literal: true
 
-class ImportLatestJob < ApplicationJob
-  def perform(tweet: false)
-    start_time = Time.zone.now
-
-    ImportKadaisJob.perform_now(year: Kadai::LATEST_YEAR)
-    ImportWorksJob.perform_now(kadais: Kadai.newest3)
-
-    return unless tweet
-
-    Kadai
-      .where(year: Kadai::LATEST_YEAR, created_at: start_time..)
-      .each do |kadai|
+class TweetImportedJob < ApplicationJob
+  def perform
+    Kadai.latest_year.where(tweet_url: nil).each do |kadai|
       tweet = post_tweet(kadai_tweet_text(kadai))
       kadai.update!(tweet_url: tweet.url) if tweet
     end
 
-    Kougai
-      .includes(student: :user)
-      .joins(:kadai).merge(Kadai.newest3)
-      .where(created_at: start_time..).where.not(genron_sf_id: nil)
-      .each do |kougai|
-      tweet = post_tweet(work_tweet_text(kougai))
-      kougai.update!(tweet_url: tweet.url) if tweet
-    end
-
-    Jissaku
-      .includes(student: :user)
-      .joins(:kadai).merge(Kadai.newest3)
-      .where(created_at: start_time..).where.not(genron_sf_id: nil)
-      .each do |jissaku|
-      tweet = post_tweet(work_tweet_text(jissaku))
-      jissaku.update!(tweet_url: tweet.url) if tweet
+    works = Work.where(kadai_id: Kadai.latest_year.select(:id), tweet_url: nil).where.not(genron_sf_id: nil).order(:id)
+    works.includes(student: :user).each do |work|
+      tweet = post_tweet(work_tweet_text(work))
+      work.update!(tweet_url: tweet.url) if tweet
     end
   end
 

@@ -3,7 +3,9 @@
 namespace :genron_sf do
   desc 'Import latest genron_sf resources and tweets newly created ones.'
   task import_latest_and_tweet: :environment do
-    ImportLatestJob.perform_now(tweet: true)
+    ImportKadaisJob.perform_now(year: Kadai::LATEST_YEAR)
+    ImportWorksJob.perform_now(kadais: Kadai.newest3)
+    TweetImportedJob.perform_now
   end
 
   desc 'Import twitter_screen_names from latest year student profiles.'

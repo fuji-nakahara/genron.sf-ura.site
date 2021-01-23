@@ -9,6 +9,7 @@ class Kadai < ApplicationRecord
   has_many :jissakus, dependent: :restrict_with_exception
   has_many :links, dependent: :delete_all
 
+  scope :latest_year, -> { where(year: LATEST_YEAR) }
   scope :newest_order, -> { order(year: :desc, number: :desc) }
   scope :newest3, -> { newest_order.limit(3) }
 

@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe ImportLatestJob, type: :job do
+RSpec.describe TweetImportedJob, type: :job do
   describe '#perform' do
-    let(:kadai) do
+    let!(:kadai) do
       create(
         :kadai,
         year: Kadai::LATEST_YEAR,
@@ -13,30 +13,44 @@ RSpec.describe ImportLatestJob, type: :job do
         author: '大森望',
         kougai_deadline: '2020-07-17'.to_date,
         jissaku_deadline: '2020-08-28'.to_date,
+        tweet_url: nil,
       )
     end
-    let(:kougai) do
-      create(:kougai, kadai: kadai, student: student, title: 'コウガイ', url: 'http://example.com/k', genron_sf_id: 1)
+    let!(:kougai) do
+      create(
+        :kougai,
+        kadai: kadai,
+        student: student,
+        title: 'コウガイ',
+        url: 'http://example.com/k',
+        genron_sf_id: 1,
+        tweet_url: nil,
+      )
     end
-    let(:jissaku) do
-      create(:jissaku, kadai: kadai, student: student, title: 'ジッサク', url: 'http://example.com/j', genron_sf_id: 2)
+    let!(:jissaku) do
+      create(
+        :jissaku,
+        kadai: kadai,
+        student: student,
+        title: 'ジッサク',
+        url: 'http://example.com/j',
+        genron_sf_id: 2,
+        tweet_url: nil,
+      )
     end
     let(:student) { create(:student, name: 'フジ・ナカハラ') }
 
     let(:twitter_client) { instance_double(GenronSFFun::TwitterClient) }
 
     before do
-      allow(ImportKadaisJob).to receive(:perform_now) { kadai }
-      allow(ImportWorksJob).to receive(:perform_now) do
-        kougai
-        jissaku
-      end
       allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
-      allow(twitter_client).to receive(:update)
+      allow(twitter_client).to receive(:update).and_return(
+        instance_double(Twitter::Tweet, url: 'https://twitter.com/genron_sf_fun/status/1234567890123456789'),
+      )
     end
 
     it 'tweets new kadais, kougais and jissakus' do
-      described_class.perform_now(tweet: true)
+      described_class.perform_now
 
       expect(twitter_client).to have_received(:update).with(<<~KADAI_TWEEET.chomp)
         【課題】 第1回「「100年後の未来」の物語を書いてください」
@@ -57,6 +71,9 @@ RSpec.describe ImportLatestJob, type: :job do
         #SF創作講座
         http://example.com/j
       JISSAKU_TWEEET
+      expect(kadai.reload.tweet_url).not_to be_nil
+      expect(kougai.reload.tweet_url).not_to be_nil
+      expect(jissaku.reload.tweet_url).not_to be_nil
     end
   end
 end
