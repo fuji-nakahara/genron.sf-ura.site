@@ -5,8 +5,9 @@ create_table :users, force: :cascade do |t|
   t.bigint :twitter_id, null: false
   t.string :image_url, null: false
   t.string :twitter_screen_name, null: false
-  t.datetime :last_logged_in_at, null: false
+  t.jsonb :preference, null: false, default: {}
   t.boolean :admin, null: false, default: false
+  t.datetime :last_logged_in_at, null: false
 
   t.timestamps
 
