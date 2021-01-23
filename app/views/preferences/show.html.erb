@@ -1,0 +1,29 @@
+<% provide :title, "設定" %>
+
+<% if current_user.student.genron_sf_id.nil? %>
+  <nav class="nav nav-pills mb-3">
+    <%= link_to '設定', preference_path, class: 'nav-link active' %>
+    <%= link_to 'プロフィール', profile_path, class: 'nav-link' %>
+  </nav>
+<% end %>
+
+<%= form_with model: @preference, url: preference_path do |form| %>
+  <%= render 'error_messages', errors: @preference.errors %>
+
+  <div>
+    <%= form.label :works_order, class: 'form-label' %>
+  </div>
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :works_order, 'default', class: 'form-check-input' %>
+      <%= form.label :works_order_default, '投稿順', class: 'form-check-label' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :works_order, 'genron_sf', class: 'form-check-input' %>
+      <%= form.label :works_order_genron_sf, 'SF創作講座順', class: 'form-check-label' %>
+    </div>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
+

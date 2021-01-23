@@ -31,4 +31,8 @@ class User < ApplicationRecord
       updated_at: Time.zone.now,
     )
   end
+
+  def preference_object
+    UserPreference.new(preference)
+  end
 end

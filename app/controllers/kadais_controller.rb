@@ -4,9 +4,9 @@ class KadaisController < ApplicationController
   def show
     @kadai = Kadai.find(params[:id])
 
-    order = params[:order] == 'genron_sf' ? 'genron_sf' : 'default'
-    @jissakus = @kadai.jissakus.includes(:prize, :voters, student: :user).send("#{order}_order")
-    @kougais = @kadai.kougais.includes(:voters, student: :user).send("#{order}_order")
+    order = current_user&.preference_object&.works_order || 'default'
+    @jissakus = @kadai.jissakus.includes(:prize, :voters, student: :user).__send__("#{order}_order")
+    @kougais = @kadai.kougais.includes(:voters, student: :user).__send__("#{order}_order")
   end
 
   def find

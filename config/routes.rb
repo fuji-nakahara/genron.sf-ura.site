@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   resource :profile, only: %i[show update]
 
+  resource :preference, only: %i[show update]
+
   namespace :admin do
     root 'home#show'
 

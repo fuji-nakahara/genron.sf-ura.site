@@ -1,4 +1,9 @@
-<% provide :title, "設定" %>
+<% provide :title, "プロフィール" %>
+
+<nav class="nav nav-pills mb-3">
+  <%= link_to '設定', preference_path, class: 'nav-link' %>
+  <%= link_to 'プロフィール', profile_path, class: 'nav-link active' %>
+</nav>
 
 <%= form_with model: @student, url: profile_path do |form| %>
   <%= render 'error_messages', errors: @student.errors %>

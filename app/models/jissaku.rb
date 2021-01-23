@@ -6,7 +6,15 @@ class Jissaku < Work
   has_one :prize, dependent: :destroy
 
   scope :default_order, lambda {
-    left_joins(:prize).order('prizes.position asc nulls last, score desc, votes_count desc, created_at asc')
+    left_joins(:prize).order('prizes.position asc nulls last', score: :desc, votes_count: :desc, created_at: :asc)
+  }
+  scope :genron_sf_order, lambda {
+    left_joins(:prize).joins(:student).order(
+      Arel.sql("#{table_name}.genron_sf_id is null"),
+      'prizes.position asc nulls last',
+      score: :desc,
+      'students.genron_sf_id': :asc,
+    )
   }
 
   class << self
