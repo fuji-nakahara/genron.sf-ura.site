@@ -16,7 +16,7 @@ class ImportWorksJob < ApplicationJob
         next if Jissaku.exists?(genron_sf_id: work.id)
 
         logger.info "Importing work: #{work.url}"
-        Jissaku.import(work, kadai: kadai) unless Jissaku.exists?(genron_sf_id: work.id)
+        Jissaku.import(work, kadai: kadai)
       end
 
       if subject.work_comment_date && Time.zone.today < subject.work_comment_date
