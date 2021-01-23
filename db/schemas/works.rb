@@ -8,6 +8,7 @@ create_table :works, force: :cascade do |t|
   t.integer :genron_sf_id
   t.string :title, null: false
   t.string :url, null: false
+  t.string :tweet_url
   t.boolean :selected, null: false, default: false
   t.integer :score, null: false, default: 0, limit: 2
 
