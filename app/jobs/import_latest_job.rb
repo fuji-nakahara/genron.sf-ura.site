@@ -11,19 +11,28 @@ class ImportLatestJob < ApplicationJob
 
     Kadai
       .where(year: Kadai::LATEST_YEAR, created_at: start_time..)
-      .each { |kadai| post_tweet(kadai_tweet_text(kadai)) }
+      .each do |kadai|
+      tweet = post_tweet(kadai_tweet_text(kadai))
+      kadai.update!(tweet_url: tweet.url) if tweet
+    end
 
     Kougai
       .includes(student: :user)
       .joins(:kadai).merge(Kadai.newest3)
       .where(created_at: start_time..).where.not(genron_sf_id: nil)
-      .each { |kougai| post_tweet(work_tweet_text(kougai)) }
+      .each do |kougai|
+      tweet = post_tweet(work_tweet_text(kougai))
+      kougai.update!(tweet_url: tweet.url) if tweet
+    end
 
     Jissaku
       .includes(student: :user)
       .joins(:kadai).merge(Kadai.newest3)
       .where(created_at: start_time..).where.not(genron_sf_id: nil)
-      .each { |jissaku| post_tweet(work_tweet_text(jissaku)) }
+      .each do |jissaku|
+      tweet = post_tweet(work_tweet_text(jissaku))
+      jissaku.update!(tweet_url: tweet.url) if tweet
+    end
   end
 
   private
@@ -56,5 +65,6 @@ class ImportLatestJob < ApplicationJob
     GenronSFFun::TwitterClient.instance.update(text)
   rescue Twitter::Error => e
     Sentry.capture_exception(e, extra: { tweet: text })
+    nil
   end
 end
