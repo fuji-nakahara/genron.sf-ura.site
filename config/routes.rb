@@ -9,10 +9,6 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   resources :kadais, only: :show do
-    collection do
-      get '/find/:year/:number', action: :find
-    end
-
     resources :kougais, only: %i[new create]
 
     resources :jissakus, only: %i[new create]
@@ -20,11 +16,7 @@ Rails.application.routes.draw do
     resources :links, only: %i[create destroy], shallow: true
   end
 
-  resources :students, only: :show do
-    collection do
-      get '/find/:genron_sf_id', action: :find
-    end
-  end
+  resources :students, only: :show
 
   resources :works, only: [] do
     resource :vote, only: %i[create destroy]
