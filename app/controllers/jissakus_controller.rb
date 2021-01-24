@@ -13,12 +13,7 @@ class JissakusController < ApplicationController
     @jissaku = kadai.jissakus.build(jissaku_params.merge(student: current_user.student))
 
     if @jissaku.save
-      TweetJob.perform_later(<<~TWEET)
-        【実作】@#{current_user.twitter_screen_name}『#{@jissaku.title}』
-        #裏SF創作講座
-        #{kadai_url(kadai, anchor: "work-#{@jissaku.id}")}
-        #{@jissaku.url}
-      TWEET
+      TweetWorkSubmittedJob.perform_later(@jissaku)
       redirect_to kadai, notice: '登録しました'
     else
       render :new
