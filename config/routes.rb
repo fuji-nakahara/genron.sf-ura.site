@@ -54,6 +54,10 @@ Rails.application.routes.draw do
     "https://twitter.com/#{screen_name}"
   end
 
+  direct :twitter_search do |options|
+    "https://twitter.com/search?#{options.compact.to_param}"
+  end
+
   direct :twitter_tweet do |options|
     "https://twitter.com/intent/tweet?#{options.compact.to_param}"
   end
