@@ -16,7 +16,7 @@
   <div class="mb-3">
     <div class="form-check form-check-inline">
       <%= form.radio_button :works_order, 'default', class: 'form-check-input' %>
-      <%= form.label :works_order_default, '得票数・投票日時順（デフォルト）', class: 'form-check-label' %>
+      <%= form.label :works_order_default, '得票数・投稿日時順', class: 'form-check-label' %>
     </div>
     <div class="form-check form-check-inline">
       <%= form.radio_button :works_order, 'genron_sf', class: 'form-check-input' %>
@@ -26,4 +26,3 @@
 
   <%= form.submit class: "btn btn-primary" %>
 <% end %>
-
