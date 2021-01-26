@@ -31,6 +31,10 @@ gem 'twitter'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', require: 'genron_sf/ebook'
 
+# For nokogiri's security vulnerability
+# https://github.com/skoji/gepub/pull/125
+gem 'gepub', github: 'skoji/gepub', branch: 'dependabot/bundler/nokogiri-gte-1.8.2-and-lt-1.12'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
