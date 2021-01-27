@@ -10,6 +10,7 @@ class Student < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :url, presence: true, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }
+  validates :description, length: { maximum: 300 }
 
   scope :with_votes_sum, lambda {
     joins(:works)

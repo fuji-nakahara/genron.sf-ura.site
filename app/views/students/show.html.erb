@@ -3,11 +3,20 @@
 
 <header class="card mb-3">
   <div class="card-body">
-    <h1 class="card-title mb-3"><%= @student.name %></h1>
+    <h1 class="card-title"><%= @student.name %></h1>
+    <ul class="card-text list-inline">
+      <li class="list-inline-item">
+        <%= link_to icon('fas', 'external-link-alt', @student.url_domain), @student.url, class: 'link-secondary', target: '_blank' %>
+      </li>
+      <% if @student.user %>
+        <li class="list-inline-item">
+          <%= link_to icon('fab', 'twitter', "@#{@student.user.twitter_screen_name}"), twitter_profile_url(@student.user.twitter_screen_name), class: 'link-secondary', target: '_blank' %>
+        </li>
+      <% end %>
+    </ul>
     <p class="card-text lead"><%= @student.description %></p>
-    <%= link_to icon('fas', 'external-link-alt', @student.url_domain), @student.url, class: 'card-link link-secondary', target: '_blank' %>
-    <% if @student.user %>
-      <%= link_to icon('fab', 'twitter', "@#{@student.user.twitter_screen_name}"), twitter_profile_url(@student.user.twitter_screen_name), class: 'card-link link-secondary', target: '_blank' %>
+    <% if current_user && current_user == @student.user %>
+      <%= link_to icon('fas', 'edit', 'プロフィールを編集する'), profile_path, class: 'btn btn-sm btn-outline-primary' %>
     <% end %>
   </div>
 </header>

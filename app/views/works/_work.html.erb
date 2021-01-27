@@ -5,7 +5,7 @@
         <% if local_assigns[:header] == :kadai %>
           <%= link_to work.kadai.year_and_number, work.kadai, class: 'link-secondary' %>
         <% else %>
-          <%= render work.student %>
+          <%= link_to work.student.name, work.student, class: 'link-dark' %>
         <% end %>
       </div>
 

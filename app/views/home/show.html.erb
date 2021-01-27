@@ -55,7 +55,7 @@
         <tbody>
           <% @students.each do |student| %>
             <tr>
-              <td><%= render student %></td>
+              <td><%= link_to student.name, student, class: 'link-dark' %></td>
               <td><%= student.kougai_votes_sum %></td>
               <td><%= student.jissaku_votes_sum %></td>
               <td><span class="badge rounded-pill bg-primary"><%= student.votes_sum %></span></td>
