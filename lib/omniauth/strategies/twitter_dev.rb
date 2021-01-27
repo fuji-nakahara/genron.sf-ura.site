@@ -26,8 +26,10 @@ module OmniAuth
           name: screen_name,
           nickname: screen_name,
           image: "https://robohash.org/#{screen_name}.png?size=72x72",
+          description: nil,
           urls: {
             'Twitter': "https://twitter.com/#{screen_name}",
+            'Website': nil,
           },
         }
       end

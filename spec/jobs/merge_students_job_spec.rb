@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe MergeStudentsJob, type: :job do
   describe '#perform' do
-    let(:source_user) { create(:user) }
+    let(:source_user) { create(:user, student: source_student) }
+    let(:source_student) { create(:student, genron_sf_id: nil, description: '自己紹介') }
     let(:target_student) { create(:student) }
 
     before do
@@ -15,8 +16,6 @@ RSpec.describe MergeStudentsJob, type: :job do
     end
 
     it 'updates student_id columns from source to target and destroys source' do
-      source_student = source_user.student
-
       expect do
         described_class.perform_now(
           twitter_screen_name: source_user.twitter_screen_name,
@@ -30,6 +29,7 @@ RSpec.describe MergeStudentsJob, type: :job do
         source_user.votes.count
       }.by(-1)
 
+      expect(target_student.reload.description).to eq '自己紹介'
       expect(source_user.reload.student).to eq target_student
       expect { source_student.reload }.to raise_error ActiveRecord::RecordNotFound
     end

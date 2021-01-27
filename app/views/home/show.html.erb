@@ -55,12 +55,7 @@
         <tbody>
           <% @students.each do |student| %>
             <tr>
-              <td>
-                <%= link_to student.name, student, class: 'link-dark' %>
-                <% if student.user %>
-                  <%= link_to_twitter_profile_with_image(student.user) %>
-                <% end %>
-              </td>
+              <td><%= render student %></td>
               <td><%= student.kougai_votes_sum %></td>
               <td><%= student.jissaku_votes_sum %></td>
               <td><span class="badge rounded-pill bg-primary"><%= student.votes_sum %></span></td>

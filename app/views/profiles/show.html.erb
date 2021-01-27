@@ -10,12 +10,17 @@
 
   <div class="mb-3">
     <%= form.label :name, class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control', required: true %>
+    <%= form.text_field :name, class: 'form-control', required: true, disabled: !@student.genron_sf_id.nil? %>
   </div>
 
   <div class="mb-3">
     <%= form.label :url, class: 'form-label' %>
-    <%= form.url_field :url, class: 'form-control', required: true %>
+    <%= form.url_field :url, class: 'form-control', required: true, disabled: !@student.genron_sf_id.nil? %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control', required: true %>
   </div>
 
   <%= form.submit class: "btn btn-primary" %>
