@@ -1,0 +1,6 @@
+<%= link_to student, class: 'link-dark' do %>
+  <%= student.name %>
+  <% if student.user %>
+    <%= image_tag student.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+  <% end %>
+<% end %>

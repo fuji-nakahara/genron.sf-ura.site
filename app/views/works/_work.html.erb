@@ -5,10 +5,7 @@
         <% if local_assigns[:header] == :kadai %>
           <%= link_to work.kadai.year_and_number, work.kadai, class: 'link-secondary' %>
         <% else %>
-          <%= link_to work.student.name, work.student.url, class: 'link-secondary', target: '_blank' %>
-          <% if work.student.user %>
-            <%= link_to_twitter_profile_with_image(work.student.user) %>
-          <% end %>
+          <%= render work.student %>
         <% end %>
       </div>
 
