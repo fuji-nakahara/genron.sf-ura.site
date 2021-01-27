@@ -1,9 +1,14 @@
-<% provide :title, "#{@student.name}" %>
+<% provide :title, @student.name %>
+<% provide :description, @student.description %>
 
 <header class="card mb-3">
   <div class="card-body">
-    <h1 class="card-title"><%= @student.name %></h1>
-    <%= link_to icon('fas', 'external-link-alt', @student.url), @student.url, class: 'card-link link-secondary', target: '_blank' %>
+    <h1 class="card-title mb-3"><%= @student.name %></h1>
+    <p class="card-text lead"><%= @student.description %></p>
+    <%= link_to icon('fas', 'external-link-alt', @student.url_domain), @student.url, class: 'card-link link-secondary', target: '_blank' %>
+    <% if @student.user %>
+      <%= link_to icon('fab', 'twitter', "@#{@student.user.twitter_screen_name}"), twitter_profile_url(@student.user.twitter_screen_name), class: 'card-link link-secondary', target: '_blank' %>
+    <% end %>
   </div>
 </header>
 

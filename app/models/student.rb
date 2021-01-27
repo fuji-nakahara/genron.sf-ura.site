@@ -34,6 +34,10 @@ class Student < ApplicationRecord
     end
   end
 
+  def url_domain
+    URI.parse(url).host
+  end
+
   private
 
   def unable_to_destroy_imported_student
