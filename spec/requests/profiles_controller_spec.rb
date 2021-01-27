@@ -15,16 +15,6 @@ RSpec.describe 'ProfilesController:', type: :request do
 
       expect(response).to have_http_status :ok
     end
-
-    context 'with Genron SF student' do
-      let(:user) { create(:user, student: create(:student)) }
-
-      it 'redirects to Genron SF profile' do
-        get profile_path
-
-        expect(response).to redirect_to user.student.url
-      end
-    end
   end
 
   describe 'POST /profile' do
@@ -34,10 +24,12 @@ RSpec.describe 'ProfilesController:', type: :request do
         student: {
           name: name,
           url: 'https://example.com/new_profile',
+          description: description,
         },
       }
     end
     let(:name) { '新しい名前' }
+    let(:description) { '新しい自己紹介' }
 
     before do
       log_in user
@@ -47,6 +39,7 @@ RSpec.describe 'ProfilesController:', type: :request do
       patch profile_path, params: params
 
       expect(user.student.reload.name).to eq '新しい名前'
+      expect(user.student.description).to eq '新しい自己紹介'
       expect(response).to redirect_to profile_path
     end
 
@@ -58,6 +51,18 @@ RSpec.describe 'ProfilesController:', type: :request do
 
         expect(user.student.reload.name).not_to eq ''
         expect(response).to have_http_status :ok
+      end
+    end
+
+    context 'when a Genron SF student tries to update their profile' do
+      let(:user) { create(:user, student: create(:student)) }
+
+      it 'updates their description but does not update name' do
+        patch profile_path, params: params
+
+        expect(user.student.reload.name).not_to eq '新しい名前'
+        expect(user.student.description).to eq '新しい自己紹介'
+        expect(response).to redirect_to profile_path
       end
     end
   end

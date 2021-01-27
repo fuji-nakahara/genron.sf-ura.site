@@ -50,6 +50,9 @@ ja:
       student: 受講生
       user: ユーザー
       work: 作品
+    attributes:
+      student:
+        description: 自己紹介
   attributes:
     name: 名前
     position: 位置

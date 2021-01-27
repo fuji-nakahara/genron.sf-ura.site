@@ -2,7 +2,6 @@
 
 class ProfilesController < ApplicationController
   before_action :require_current_user
-  before_action :require_ura_student
 
   def show
     @student = current_user.student
@@ -20,11 +19,11 @@ class ProfilesController < ApplicationController
 
   private
 
-  def require_ura_student
-    redirect_to current_user.student.url if current_user.student.genron_sf_id
-  end
-
   def profile_params
-    params.require(:student).permit(:name, :url)
+    if current_user.student.genron_sf_id
+      params.require(:student).permit(:description)
+    else
+      params.require(:student).permit(:name, :url, :description)
+    end
   end
 end

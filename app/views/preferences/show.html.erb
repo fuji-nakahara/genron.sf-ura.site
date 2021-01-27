@@ -1,11 +1,9 @@
 <% provide :title, "設定" %>
 
-<% if current_user.student.genron_sf_id.nil? %>
-  <nav class="nav nav-pills mb-3">
-    <%= link_to '設定', preference_path, class: 'nav-link active' %>
-    <%= link_to 'プロフィール', profile_path, class: 'nav-link' %>
-  </nav>
-<% end %>
+<nav class="nav nav-pills mb-3">
+  <%= link_to '設定', preference_path, class: 'nav-link active' %>
+  <%= link_to 'プロフィール', profile_path, class: 'nav-link' %>
+</nav>
 
 <%= form_with model: @preference, url: preference_path do |form| %>
   <%= render 'error_messages', errors: @preference.errors %>
