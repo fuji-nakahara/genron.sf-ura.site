@@ -10,8 +10,10 @@ module LoginSystemHelper
           nickname: user.twitter_screen_name,
           name: user.student.name,
           image: user.image_url,
+          description: user.student.description,
           urls: {
-            'Twitter': user.student.url,
+            'Website': user.student.url,
+            'Twitter': "https://twitter.com/#{user.twitter_screen_name}",
           },
         },
         credentials: {
