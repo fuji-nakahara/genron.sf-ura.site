@@ -5,5 +5,6 @@ FactoryBot.define do
     sequence(:genron_sf_id) { |n| "student_#{n}" }
     name { 'フジ・ナカハラ' }
     url { 'http://example.com/student' }
+    description { nil }
   end
 end
