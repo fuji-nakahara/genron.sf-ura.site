@@ -15,7 +15,7 @@ namespace :genron_sf do
 
   desc 'Update users whose profile images changed.'
   task update_user_images: :environment do
-    UserImagesUpdateJob.perform_now
+    UpdateUserImagesJob.perform_now
   end
 
   desc 'Tweet deadline expired. (expected run at 00:00)'
