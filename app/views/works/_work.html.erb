@@ -43,7 +43,7 @@
           <%= icon('fas', 'thumbs-up') %> 投票する <span class="badge rounded-pill bg-light text-dark"><%= work.votes_count %></span>
         </button>
       <% end %>
-      <% if current_user && current_user == work.student.user %>
+      <% if current_user && current_user.student == work.student %>
         <%= link_to icon('fab', 'twitter', 'コメントを探す'), twitter_search_url(q: work.url), class: 'card-link btn btn-sm btn-primary', target: '_blank' %>
       <% else %>
         <% tweet_param = { text: "【#{work.class.model_name.human}】#{work.student.name}『#{work.title}』", url: work.url, hashtags: work.genron_sf_id ? 'SF創作講座' : '裏SF創作講座' } %>

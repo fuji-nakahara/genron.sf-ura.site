@@ -5,7 +5,7 @@ class KadaisController < ApplicationController
     @kadai = Kadai.find(params[:id])
 
     order = current_user&.preference_object&.works_order || 'default'
-    @jissakus = @kadai.jissakus.includes(:prize, :voters, student: :user).__send__("#{order}_order")
-    @kougais = @kadai.kougais.includes(:voters, student: :user).__send__("#{order}_order")
+    @jissakus = @kadai.jissakus.includes(:prize, :voters, :student).__send__("#{order}_order")
+    @kougais = @kadai.kougais.includes(:voters, :student).__send__("#{order}_order")
   end
 end
