@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#show'
+  root 'terms#index'
 
   get '/auth/twitter/callback', to: 'sessions#create'
   post '/auth/twitter_dev/callback', to: 'sessions#create' if Rails.env.development?
   get '/auth/failure', to: 'sessions#failure'
   post '/logout', to: 'sessions#destroy'
+
+  resources :terms, only: :index, path: ''
 
   resources :kadais, only: :show do
     resources :kougais, only: %i[new create]

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
-  def show
+class TermsController < ApplicationController
+  def index
     @kadais = Kadai.newest3
     @votes = Vote.includes(:user, work: :student).reverse_order.limit(10)
     @students = Student.joins(works: :kadai)
