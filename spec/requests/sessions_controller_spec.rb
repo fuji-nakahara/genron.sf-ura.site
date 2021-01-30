@@ -15,8 +15,8 @@ RSpec.describe 'SessionsController:', type: :request do
               image: 'http://pbs.twimg.com/profile_images/988828274468962304/PkwwByKg_normal.jpg',
               description: 'SF小説とプログラムを書きます。主な言語は日本語とRuby。',
               urls: {
-                'Website': 'https://fuji-nakahara.page',
-                'Twitter': 'https://twitter.com/fuji_nakahara',
+                Website: 'https://fuji-nakahara.page',
+                Twitter: 'https://twitter.com/fuji_nakahara',
               },
             },
             credentials: {
@@ -49,8 +49,8 @@ RSpec.describe 'SessionsController:', type: :request do
               image: 'http://pbs.twimg.com/profile_images/988828274468962304/PkwwByKg_normal.jpg',
               description: 'SF小説とプログラムを書きます。主な言語は日本語とRuby。',
               urls: {
-                'Website': 'https://fuji-nakahara.page',
-                'Twitter': 'https://twitter.com/fuji_nakahara',
+                Website: 'https://fuji-nakahara.page',
+                Twitter: 'https://twitter.com/fuji_nakahara',
               },
             },
             credentials: {
