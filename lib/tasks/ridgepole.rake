@@ -15,14 +15,12 @@ end
 namespace :ridgepole do
   desc 'Runs `ridgepole --apply`'
   task apply: 'db:load_config' do
-    dry_run = (ENV['DRY_RUN'] == 'true')
-
     environments = [Rails.env]
-    environments << 'test' if Rails.env.development? && !dry_run
+    environments << 'test' if Rails.env.development?
 
     environments.each do |env|
       puts "For #{env}" if environments.size > 1
-      ridgepole_apply(env, dry_run: dry_run)
+      ridgepole_apply(env)
     end
   end
 
