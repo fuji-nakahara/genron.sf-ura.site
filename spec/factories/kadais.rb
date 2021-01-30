@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :kadai do
-    year { Time.zone.now.year }
+    term
     sequence(:round)
     title { '『これがSFだ！』という短編を書きなさい' }
     author { '大森望' }

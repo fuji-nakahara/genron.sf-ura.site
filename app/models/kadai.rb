@@ -4,6 +4,8 @@ class Kadai < ApplicationRecord
   YEARS = [2018, 2019, 2020].freeze
   LATEST_YEAR = YEARS.last
 
+  belongs_to :term, foreign_key: :year, primary_key: :year, inverse_of: :kadais
+
   has_many :works, dependent: :restrict_with_exception
   has_many :kougais, dependent: :restrict_with_exception
   has_many :jissakus, dependent: :restrict_with_exception
