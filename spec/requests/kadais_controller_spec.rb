@@ -3,6 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe 'KadaisController:', type: :request do
+  describe 'GET /:term_year' do
+    let(:term) { create(:term) }
+
+    before do
+      create_list(:kadai, 3, term: term)
+    end
+
+    it 'responds OK' do
+      get term_kadais_path(term)
+
+      expect(response).to have_http_status :ok
+    end
+  end
+
   describe 'GET /:term_year/:round' do
     let(:kadai) { create(:kadai) }
 

@@ -12,7 +12,7 @@ class Kougai < Work
         kougai.update!(
           kadai: kadai,
           student: Student.import(work.student),
-          title: work.summary_title || '（タイトルなし）',
+          title: work.summary_title.presence || '（タイトルなし）',
           url: work.url,
           score: 1,
         )

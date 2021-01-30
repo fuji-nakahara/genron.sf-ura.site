@@ -33,9 +33,7 @@
           </li>
         <% end %>
       </ul>
-      <%= link_to term_kadai_path(*kadai.year_round), class: 'btn btn-sm btn-outline-primary stretched-link' do %>
-        <%= icon('fas', 'list') %> 作品一覧へ
-      <% end %>
+      <%= link_to icon('fas', 'list', '作品一覧へ'), term_kadai_path(*kadai.year_round), class: 'btn btn-sm btn-outline-primary stretched-link' %>
     </div>
   </section>
 </div>

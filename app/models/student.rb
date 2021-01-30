@@ -16,12 +16,11 @@ class Student < ApplicationRecord
     joins(:works)
       .select(
         'students.*',
-        "sum(case when works.type = 'Kougai' then works.votes_count else 0 end) as kougai_votes_sum",
-        "sum(case when works.type = 'Jissaku' then works.votes_count else 0 end) as jissaku_votes_sum",
+        "count(case when works.type = 'Kougai' then 1 else null end) as kougais_count",
+        "count(case when works.type = 'Jissaku' then 1 else null end) as jissakus_count",
         'sum(works.votes_count) as votes_sum',
       )
       .group(:id)
-      .having('sum(works.votes_count) > 0')
   }
 
   class << self

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   resources :terms, only: [], path: '', param: :year, constraints: { year: /\d+/ } do
-    resources :kadais, only: :show, path: '', param: :round, constraints: { round: /\d+/ } do
+    resources :kadais, only: %i[index show], path: '', param: :round, constraints: { round: /\d+/ } do
       resources :kougais, only: %i[new create]
 
       resources :jissakus, only: %i[new create]
@@ -17,10 +17,10 @@ Rails.application.routes.draw do
       resources :links, only: %i[create destroy], shallow: true
     end
 
+    resources :students, only: %i[index show], shallow: true
+
     resources :scores, only: :index
   end
-
-  resources :students, only: :show
 
   resources :works, only: [] do
     resource :vote, only: %i[create destroy]

@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class KadaisController < ApplicationController
-  before_action :redirect_by_id
+  before_action :redirect_by_id, only: :show
+
+  def index
+    @term = Term.find(params[:term_year])
+  end
 
   def show
     @kadai = Kadai.find_by!(year: params[:term_year], round: params[:round])

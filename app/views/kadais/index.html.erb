@@ -1,0 +1,11 @@
+<% provide :title, "#{@term.year} 課題一覧" %>
+
+<%= render 'terms/nav', term: @term %>
+
+<aside class="mb-3">
+  <%= link_to_genron_sf @term.genron_sf_subjects_url %>
+</aside>
+
+<section class="row row-cols-1 row-cols-md-2 row-cols-xl-3 mb-3">
+  <%= render @term.kadais %>
+</section>

@@ -1,0 +1,28 @@
+<div class="col">
+  <section class="card mb-3">
+    <div class="card-body">
+      <h1 class="card-title h5"><%= student.name %></h1>
+      <ul class="card-text list-inline">
+        <% if student.jissakus_count > 0 %>
+          <li class="list-inline-item">
+            <span class="badge bg-success">実作 <%= student.jissakus_count %></span>
+          </li>
+        <% end %>
+        <% if student.kougais_count > 0 %>
+          <li class="list-inline-item">
+            <span class="badge bg-info">梗概 <%= student.kougais_count %></span>
+          </li>
+        <% end %>
+        <% if student.votes_sum > 0 %>
+          <li class="list-inline-item">
+            <span class="badge bg-primary">総得票 <%= student.votes_sum %></span>
+          </li>
+        <% end %>
+      </ul>
+      <p class="card-text text-secondary">
+        <%= student.description %>
+      </p>
+      <%= link_to icon('fas', 'list', '作品一覧へ'), student, class: 'btn btn-sm btn-outline-primary stretched-link' %>
+    </div>
+  </section>
+</div>
