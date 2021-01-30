@@ -28,8 +28,8 @@ module OmniAuth
           image: "https://robohash.org/#{screen_name}.png?size=72x72",
           description: nil,
           urls: {
-            'Twitter': "https://twitter.com/#{screen_name}",
-            'Website': nil,
+            Twitter: "https://twitter.com/#{screen_name}",
+            Website: nil,
           },
         }
       end

@@ -12,8 +12,8 @@ module LoginRequestHelper
           image: user.image_url,
           description: user.student.description,
           urls: {
-            'Website': user.student.url,
-            'Twitter': "https://twitter.com/#{user.twitter_screen_name}",
+            Website: user.student.url,
+            Twitter: "https://twitter.com/#{user.twitter_screen_name}",
           },
         },
         credentials: {
