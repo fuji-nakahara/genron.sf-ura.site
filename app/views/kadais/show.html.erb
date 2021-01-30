@@ -79,7 +79,7 @@
 
     <% if @kadai.jissaku_deadline_time.future? %>
       <div class="mb-3">
-        <%= link_to icon('fas', 'pen-nib', '実作を提出する'), new_kadai_jissaku_path(@kadai), class: 'btn btn-outline-success' %>
+        <%= link_to icon('fas', 'pen-nib', '実作を提出する'), new_term_kadai_jissaku_path(*@kadai.year_round), class: 'btn btn-outline-success' %>
       </div>
     <% end %>
 
@@ -108,7 +108,7 @@
 
     <% if @kadai.kougai_deadline_time.future? %>
       <div class="mb-3">
-        <%= link_to icon('fas', 'pen-nib', '梗概を提出する'), new_kadai_kougai_path(@kadai), class: 'btn btn-outline-info' %>
+        <%= link_to icon('fas', 'pen-nib', '梗概を提出する'), new_term_kadai_kougai_path(*@kadai.year_round), class: 'btn btn-outline-info' %>
       </div>
     <% end %>
 
@@ -137,7 +137,7 @@
 
     <% if current_user&.student&.genron_sf_id %>
       <section class="mb-3">
-        <%= form_with model: @kadai.links.build, url: kadai_links_path(@kadai) do |form| %>
+        <%= form_with model: @kadai.links.build, url: term_kadai_links_path(*@kadai.year_round) do |form| %>
           <div class="input-group">
             <%= form.url_field :url, class: 'form-control', placeholder: 'https://example.com/', required: true %>
             <%= form.submit '関連リンクを登録', class: 'btn btn-primary' %>

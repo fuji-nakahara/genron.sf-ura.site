@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   before_action :require_current_user
 
   def create
-    kadai = Kadai.find(params[:kadai_id])
+    kadai = Kadai.find_by!(year: params[:term_year], round: params[:kadai_round])
     link = kadai.links.build(user: current_user, url: params[:link][:url])
 
     if link.save

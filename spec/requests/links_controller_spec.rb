@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'LinksController:', type: :request do
-  describe 'POST /kadais/:kadai_id/links' do
+  describe 'POST /:term_year/:kadai_round/links' do
     let(:user) { create(:user) }
     let(:kadai) { create(:kadai) }
     let(:params) do
@@ -27,7 +27,7 @@ RSpec.describe 'LinksController:', type: :request do
     end
 
     it 'creates a link and redirects to /:term_year/:round' do
-      expect { post kadai_links_path(kadai), params: params }
+      expect { post term_kadai_links_path(*kadai.year_round), params: params }
         .to change { kadai.links.count }.by(1)
 
       expect(response).to redirect_to term_kadai_path(*kadai.year_round)
@@ -39,7 +39,7 @@ RSpec.describe 'LinksController:', type: :request do
       end
 
       it 'redirects to /:term_year/:round' do
-        expect { post kadai_links_path(kadai), params: params }
+        expect { post term_kadai_links_path(*kadai.year_round), params: params }
           .not_to(change { kadai.links.count })
 
         expect(response).to redirect_to term_kadai_path(*kadai.year_round)

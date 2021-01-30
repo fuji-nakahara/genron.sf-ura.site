@@ -9,17 +9,15 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   resources :terms, only: [], path: '', param: :year, constraints: { year: /\d+/ } do
-    resources :kadais, only: :show, path: '', param: :round, constraints: { round: /\d+/ }
+    resources :kadais, only: :show, path: '', param: :round, constraints: { round: /\d+/ } do
+      resources :kougais, only: %i[new create]
+
+      resources :jissakus, only: %i[new create]
+
+      resources :links, only: %i[create destroy], shallow: true
+    end
 
     resources :scores, only: :index
-  end
-
-  resources :kadais, only: :show do
-    resources :kougais, only: %i[new create]
-
-    resources :jissakus, only: %i[new create]
-
-    resources :links, only: %i[create destroy], shallow: true
   end
 
   resources :students, only: :show
@@ -33,6 +31,8 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show update]
 
   resource :preference, only: %i[show update]
+
+  resources :kadais, only: :show # For backward compatibility
 
   namespace :admin do
     root 'home#show'
