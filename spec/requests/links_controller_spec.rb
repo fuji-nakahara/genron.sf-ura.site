@@ -26,11 +26,11 @@ RSpec.describe 'LinksController:', type: :request do
       )
     end
 
-    it 'creates a link and redirects to /kadais/:id' do
+    it 'creates a link and redirects to /:term_year/:round' do
       expect { post kadai_links_path(kadai), params: params }
         .to change { kadai.links.count }.by(1)
 
-      expect(response).to redirect_to kadai
+      expect(response).to redirect_to term_kadai_path(*kadai.year_round)
     end
 
     context 'when failed to fetch OpenGraph data' do
@@ -38,11 +38,11 @@ RSpec.describe 'LinksController:', type: :request do
         allow(OpenGraphReader).to receive(:fetch!).and_raise(OpenGraphReader::NoOpenGraphDataError)
       end
 
-      it 'redirects to /kadais/:id' do
+      it 'redirects to /:term_year/:round' do
         expect { post kadai_links_path(kadai), params: params }
           .not_to(change { kadai.links.count })
 
-        expect(response).to redirect_to kadai
+        expect(response).to redirect_to term_kadai_path(*kadai.year_round)
       end
     end
   end

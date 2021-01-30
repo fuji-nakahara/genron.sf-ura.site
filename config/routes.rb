@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
   post '/logout', to: 'sessions#destroy'
 
-  resources :terms, only: :index, path: '', param: :year do
+  resources :terms, only: [], path: '', param: :year, constraints: { year: /\d+/ } do
+    resources :kadais, only: :show, path: '', param: :round, constraints: { round: /\d+/ }
+
     resources :scores, only: :index
   end
 

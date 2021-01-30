@@ -10,7 +10,7 @@ RSpec.describe 'TermsController:', type: :request do
     end
 
     it 'responds OK' do
-      get terms_path
+      get root_path
 
       expect(response).to have_http_status :ok
     end

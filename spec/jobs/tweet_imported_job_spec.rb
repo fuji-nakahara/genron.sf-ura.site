@@ -7,7 +7,7 @@ RSpec.describe TweetImportedJob, type: :job do
     let(:kadai) do
       create(
         :kadai,
-        term: create(:term, year: 2018),
+        term: create(:term, year: 2019),
         round: 1,
         title: '「100年後の未来」の物語を書いてください',
         author: '大森望',
@@ -58,8 +58,8 @@ RSpec.describe TweetImportedJob, type: :job do
         梗概締切: 2019年6月13日(木)
         実作締切: 2019年7月11日(木)
         #SF創作講座 #裏SF創作講座
-        https://school.genron.co.jp/works/sf/2018/subjects/1/
-        https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
+        https://school.genron.co.jp/works/sf/2019/subjects/1/
+        https://genron-sf-fun.herokuapp.com/2019/1
       KADAI_TWEEET
       expect(twitter_client).to have_received(:update).with(<<~KOUGAI_TWEEET.chomp)
         【梗概】フジ・ナカハラ『コウガイ』

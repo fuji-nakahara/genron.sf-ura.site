@@ -35,11 +35,11 @@ RSpec.describe 'KougaisController:', type: :request do
       log_in user
     end
 
-    it 'creates a kougai and redirects to /kadais/:id' do
+    it 'creates a kougai and redirects to /:term_year/:round' do
       expect { post kadai_kougais_path(kadai), params: params }
         .to change { kadai.kougais.count }.by(1)
 
-      expect(response).to redirect_to kadai
+      expect(response).to redirect_to term_kadai_path(*kadai.year_round)
     end
 
     context 'when url is invalid' do

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe TweetVoteResultsJob, type: :job do
   describe '#perform' do
-    let(:kadai) { create(:kadai, round: 1) }
+    let(:kadai) { create(:kadai, term: create(:term, year: 2020), round: 1) }
     let(:twitter_client) { instance_spy(GenronSFFun::TwitterClient) }
 
     before do
@@ -28,7 +28,7 @@ RSpec.describe TweetVoteResultsJob, type: :job do
           フジ・ナカハラ『式年遷皇』
           で2票です！
           #裏SF創作講座
-          https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
+          https://genron-sf-fun.herokuapp.com/2020/1
         TWEET
       end
     end
@@ -52,7 +52,7 @@ RSpec.describe TweetVoteResultsJob, type: :job do
           フジ・ナカハラ『透明な血のつながり』
           で2票です！
           #裏SF創作講座
-          https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
+          https://genron-sf-fun.herokuapp.com/2020/1
         TWEET
       end
     end

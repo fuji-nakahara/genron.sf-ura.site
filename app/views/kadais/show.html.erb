@@ -1,5 +1,5 @@
 <%
-  provide :title, "#{@kadai.year_and_round}「#{@kadai.title}」"
+  provide :title, "#{@kadai.human_year_round}「#{@kadai.title}」"
   description = []
   description << "課題提示：#{@kadai.author}" if @kadai.author.present?
   description << "梗概締切：#{localize @kadai.kougai_deadline, format: :long}" if @kadai.kougai_deadline
@@ -9,7 +9,7 @@
 
 <header class="card mb-3">
   <div class="card-body">
-    <div class="card-subtitle lead text-muted mb-1"><%= "#{@kadai.year_and_round} #{@kadai.author}" %></div>
+    <div class="card-subtitle lead text-muted mb-1"><%= "#{@kadai.human_year_round} #{@kadai.author}" %></div>
     <h1 class="card-title mb-3"><%= @kadai.title %></h1>
     <ul class="card-text list-unstyled lead">
       <% if @kadai.kougai_deadline %>
@@ -39,9 +39,9 @@
       <li class="page-item">
         <%= link_to next_kadai, class: 'page-link' do %>
           <% if next_kadai.year == @kadai.year %>
-            <%= "« #{next_kadai.round_str}" %>
+            <%= "« #{next_kadai.human_round}" %>
           <% else %>
-            <%= "« #{next_kadai.year_and_round}" %>
+            <%= "« #{next_kadai.human_year_round}" %>
           <% end %>
         <% end %>
       </li>
@@ -50,9 +50,9 @@
       <li class="page-item">
         <%= link_to previous_kadai, class: 'page-link' do %>
           <% if previous_kadai.year == @kadai.year %>
-            <%= "#{previous_kadai.round_str} »" %>
+            <%= "#{previous_kadai.human_round} »" %>
           <% else %>
-            <%= "#{previous_kadai.year_and_round} »" %>
+            <%= "#{previous_kadai.human_year_round} »" %>
           <% end %>
         <% end %>
       </li>

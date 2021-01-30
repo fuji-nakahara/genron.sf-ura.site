@@ -12,7 +12,7 @@ class LinksController < ApplicationController
     else
       flash.alert = link.errors.full_messages.join(' / ')
     end
-    redirect_to kadai
+    redirect_to term_kadai_path(*kadai.year_round)
   end
 
   def destroy

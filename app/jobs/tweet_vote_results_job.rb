@@ -11,7 +11,7 @@ class TweetVoteResultsJob < ApplicationJob
       #{top_works.map { |work| "#{work.student.name}『#{work.title}』" }.join("\n")}
       で#{max_vote_count}票です！
       #裏SF創作講座
-      https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
+      https://genron-sf-fun.herokuapp.com/#{kadai.year}/#{kadai.round}
     TWEET
 
     begin

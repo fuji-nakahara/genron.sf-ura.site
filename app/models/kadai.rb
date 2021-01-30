@@ -24,6 +24,10 @@ class Kadai < ApplicationRecord
     end
   end
 
+  def year_round
+    [year, round]
+  end
+
   def kougai_deadline_time
     kougai_deadline&.in_time_zone&.end_of_day
   end
@@ -32,11 +36,11 @@ class Kadai < ApplicationRecord
     jissaku_deadline&.in_time_zone&.end_of_day
   end
 
-  def year_and_round
-    "#{year} #{round_str}"
+  def human_year_round
+    "#{year} #{human_round}"
   end
 
-  def round_str
+  def human_round
     "第#{round}回"
   end
 
