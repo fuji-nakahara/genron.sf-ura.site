@@ -35,6 +35,10 @@ class Student < ApplicationRecord
     end
   end
 
+  def to_param
+    genron_sf_id || id.to_s
+  end
+
   def url_domain
     URI.parse(url).host
   end
