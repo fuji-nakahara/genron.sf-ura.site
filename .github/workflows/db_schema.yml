@@ -1,17 +1,15 @@
 name: DB Schema
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    paths:
-      - db/Schemafile
-      - db/schemas/**
-      - Gemfile.lock
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: dry-run
+        required: false
+        default: 'true'
 
 jobs:
-  ridgepole:
-    name: Ridgepole (dry-run)
+  Ridgepole:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +30,8 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
-      - run: bin/rake ridgepole:dry-run
+      - run: bin/rake ridgepole:apply
         env:
           RAILS_ENV: production
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DRY_RUN: ${{ github.event.inputs.dry-run }}
