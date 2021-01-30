@@ -6,7 +6,7 @@
     <h1 class="card-title"><%= @student.name %></h1>
     <ul class="card-text list-inline">
       <li class="list-inline-item">
-        <%= link_to icon('fas', 'external-link-alt', @student.url_domain), @student.url, class: 'link-secondary', target: '_blank' %>
+        <%= link_to icon('fas', 'external-link-alt', @student.url_host), @student.url, class: 'link-secondary', target: '_blank' %>
       </li>
       <% if @student.user %>
         <li class="list-inline-item">

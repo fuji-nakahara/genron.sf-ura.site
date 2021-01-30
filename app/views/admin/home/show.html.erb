@@ -73,7 +73,7 @@
           <td><%= localize link.created_at %></td>
           <td><%= link_to link.kadai.human_year_round, link.kadai %></td>
           <td><%= link_to link.title, link.url, target: '_blank' %></td>
-          <td><%= link_to link.url_domain, link.url, target: '_blank' %></td>
+          <td><%= link_to link.url_host, link.url, target: '_blank' %></td>
           <td>
             <%= link_to twitter_profile_url(link.user.twitter_screen_name), target: '_blank' do %>
               <%= image_tag link.user.image_url, size: '24x24', class: 'border rounded-circle' %>

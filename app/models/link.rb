@@ -7,7 +7,7 @@ class Link < ApplicationRecord
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validate :has_title_or_contains_open_graph, on: :create
 
-  def url_domain
+  def url_host
     URI.parse(url).host
   end
 

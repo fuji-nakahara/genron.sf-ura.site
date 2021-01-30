@@ -39,7 +39,7 @@ class Student < ApplicationRecord
     genron_sf_id || id.to_s
   end
 
-  def url_domain
+  def url_host
     URI.parse(url).host
   end
 

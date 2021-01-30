@@ -11,7 +11,7 @@ class Work < ApplicationRecord
   validates :title, presence: true
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
 
-  def url_domain
+  def url_host
     URI.parse(url).host
   end
 
