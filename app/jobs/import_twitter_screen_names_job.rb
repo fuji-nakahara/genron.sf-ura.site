@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportTwitterScreenNamesJob < ApplicationJob
-  def perform(year: Kadai::YEARS)
+  def perform(year:)
     Array(year).each do |y|
       students = GenronSF::Student.list(year: y)
       students.each do |student|

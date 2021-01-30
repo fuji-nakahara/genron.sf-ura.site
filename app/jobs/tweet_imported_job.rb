@@ -2,12 +2,12 @@
 
 class TweetImportedJob < ApplicationJob
   def perform
-    Kadai.latest_year.where(tweet_url: nil).each do |kadai|
+    Term.last.kadais.where(tweet_url: nil).each do |kadai|
       tweet = post_tweet(kadai_tweet_text(kadai))
       kadai.update!(tweet_url: tweet.url) if tweet
     end
 
-    works = Work.where(kadai_id: Kadai.latest_year.select(:id), tweet_url: nil).where.not(genron_sf_id: nil).order(:id)
+    works = Work.where(kadai: Kadai.newest3, tweet_url: nil).where.not(genron_sf_id: nil).order(:id)
     works.includes(student: :user).each do |work|
       tweet = post_tweet(work_tweet_text(work))
       work.update!(tweet_url: tweet.url) if tweet

@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Kadai < ApplicationRecord
-  YEARS = [2018, 2019, 2020].freeze
-  LATEST_YEAR = YEARS.last
-
   belongs_to :term, foreign_key: :year, primary_key: :year, inverse_of: :kadais
 
   has_many :works, dependent: :restrict_with_exception
@@ -11,7 +8,6 @@ class Kadai < ApplicationRecord
   has_many :jissakus, dependent: :restrict_with_exception
   has_many :links, dependent: :delete_all
 
-  scope :latest_year, -> { where(year: LATEST_YEAR) }
   scope :newest_order, -> { order(year: :desc, round: :desc) }
   scope :newest3, -> { newest_order.limit(3) }
 

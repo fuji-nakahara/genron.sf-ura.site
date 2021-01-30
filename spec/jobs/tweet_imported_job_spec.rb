@@ -4,15 +4,15 @@ require 'rails_helper'
 
 RSpec.describe TweetImportedJob, type: :job do
   describe '#perform' do
-    let!(:kadai) do
+    let(:kadai) do
       create(
         :kadai,
-        term: create(:term, year: Kadai::LATEST_YEAR),
+        term: create(:term, year: 2018),
         round: 1,
         title: '「100年後の未来」の物語を書いてください',
         author: '大森望',
-        kougai_deadline: '2020-07-17'.to_date,
-        jissaku_deadline: '2020-08-28'.to_date,
+        kougai_deadline: '2019-06-13'.to_date,
+        jissaku_deadline: '2019-07-11'.to_date,
         tweet_url: nil,
       )
     end
@@ -55,10 +55,10 @@ RSpec.describe TweetImportedJob, type: :job do
       expect(twitter_client).to have_received(:update).with(<<~KADAI_TWEEET.chomp)
         【課題】 第1回「「100年後の未来」の物語を書いてください」
         課題提示: 大森望
-        梗概締切: 2020年7月17日(金)
-        実作締切: 2020年8月28日(金)
+        梗概締切: 2019年6月13日(木)
+        実作締切: 2019年7月11日(木)
         #SF創作講座 #裏SF創作講座
-        https://school.genron.co.jp/works/sf/2020/subjects/1/
+        https://school.genron.co.jp/works/sf/2018/subjects/1/
         https://genron-sf-fun.herokuapp.com/kadais/#{kadai.id}
       KADAI_TWEEET
       expect(twitter_client).to have_received(:update).with(<<~KOUGAI_TWEEET.chomp)
