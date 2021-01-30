@@ -66,7 +66,7 @@
     </div>
 
     <div class="tab-pane fade" id="score" role="tabpanel" aria-labelledby="score-tab">
-      <canvas class="mb-2" id="score-chart" data-controller="score-chart" data-score-chart-endpoint="<%= score_path(@kadais.last.year) %>"></canvas>
+      <canvas class="mb-2" id="score-chart" data-controller="score-chart" data-score-chart-endpoint="<%= term_scores_path(@kadais.last.year) %>"></canvas>
       <%= link_to icon('fas', 'external-link-alt', '超・SF作家育成サイトで詳細を確認'), GenronSF::ScoreTable.build_url(year: @kadais.last.year), class: 'btn btn-outline-primary', target: '_blank' %>
     </div>
   </div>

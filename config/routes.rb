@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
   post '/logout', to: 'sessions#destroy'
 
-  resources :terms, only: :index, path: ''
+  resources :terms, only: :index, path: '', param: :year do
+    resources :scores, only: :index
+  end
 
   resources :kadais, only: :show do
     resources :kougais, only: %i[new create]
@@ -23,8 +25,6 @@ Rails.application.routes.draw do
   resources :works, only: [] do
     resource :vote, only: %i[create destroy]
   end
-
-  resources :scores, only: :show, param: :year
 
   resources :ebooks, only: %i[index create]
 
