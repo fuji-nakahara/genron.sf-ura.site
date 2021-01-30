@@ -1,17 +1,17 @@
 <div class="col" id="work-<%= work.id %>">
   <div class="card mb-3" data-controller="vote" data-vote-endpoint="<%= work_vote_path(work) %>" data-vote-voted="<%= work.voters.include?(current_user) %>">
     <div class="card-body">
-      <div class="card-subtitle text-muted mb-1">
+      <div class="card-subtitle d-flex justify-content-between align-items-center mb-1">
         <% if local_assigns[:header] == :kadai %>
           <%= link_to work.kadai.human_year_round, work.kadai, class: 'link-secondary' %>
         <% else %>
-          <%= link_to work.student.name, work.student, class: 'link-dark' %>
+          <%= link_to work.student.name, work.student, class: 'link-secondary' %>
         <% end %>
+        <%= yield %>
       </div>
 
       <h3 class="card-title h5">
         <%= link_to work.title, work.url, class: 'link-dark text-decoration-none', target: '_blank' %>
-        <%= yield %>
       </h3>
 
       <p class="card-text">
