@@ -10,6 +10,9 @@ create_table :kadais, force: :cascade do |t|
   t.string :tweet_url
   t.integer :works_count, null: false, default: 0, limit: 2
 
+  t.integer :kougais_count, null: false, default: 0, limit: 2
+  t.integer :jissakus_count, null: false, default: 0, limit: 2
+
   t.timestamps
 
   t.index %i[year round], unique: true

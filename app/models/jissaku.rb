@@ -3,6 +3,7 @@
 class Jissaku < Work
   self.ignored_columns = %i[selected]
 
+  belongs_to :kadai, counter_cache: true
   has_one :prize, dependent: :destroy
 
   scope :default_order, lambda {

@@ -3,7 +3,7 @@
 class Work < ApplicationRecord
   before_destroy :unable_to_destroy_imported_work
 
-  belongs_to :kadai, counter_cache: true
+  belongs_to :kadai
   belongs_to :student
   has_many :votes, dependent: :delete_all
   has_many :voters, through: :votes, source: :user
