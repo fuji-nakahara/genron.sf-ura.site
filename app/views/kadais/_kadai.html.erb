@@ -3,6 +3,18 @@
     <div class="card-body">
       <div class="card-subtitle text-muted mb-1"><%= "#{kadai.human_year_round} #{kadai.author}" %></div>
       <h1 class="card-title h5"><%= kadai.title %></h1>
+      <ul class="card-text list-inline">
+        <% if kadai.jissaku_deadline %>
+          <li class="list-inline-item">
+            <span class="badge bg-success">実作 <%= kadai.jissakus_count %></span>
+          </li>
+        <% end %>
+        <% if kadai.kougai_deadline %>
+          <li class="list-inline-item">
+            <span class="badge bg-info">梗概 <%= kadai.kougais_count %></span>
+          </li>
+        <% end %>
+      </ul>
       <ul class="card-text list-unstyled text-muted">
         <% if kadai.kougai_deadline %>
           <li>
@@ -22,7 +34,7 @@
         <% end %>
       </ul>
       <%= link_to term_kadai_path(*kadai.year_round), class: 'btn btn-sm btn-outline-primary stretched-link' do %>
-        <%= icon('fas', 'list') %> 作品一覧へ <span class="badge rounded-pill bg-light text-dark"><%= kadai.works_count %></span>
+        <%= icon('fas', 'list') %> 作品一覧へ
       <% end %>
     </div>
   </section>
