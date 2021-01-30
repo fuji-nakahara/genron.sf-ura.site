@@ -18,7 +18,7 @@ class TweetImportedJob < ApplicationJob
 
   def kadai_tweet_text(kadai)
     lines = []
-    lines << "【課題】 第#{kadai.number}回「#{kadai.title}」"
+    lines << "【課題】 第#{kadai.round}回「#{kadai.title}」"
     lines << "課題提示: #{kadai.author}" if kadai.author.present?
     lines << "梗概締切: #{I18n.l(kadai.kougai_deadline, format: :long)}" if kadai.kougai_deadline
     lines << "実作締切: #{I18n.l(kadai.jissaku_deadline, format: :long)}" if kadai.jissaku_deadline

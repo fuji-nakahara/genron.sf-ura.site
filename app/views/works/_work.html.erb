@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="card-subtitle text-muted mb-1">
         <% if local_assigns[:header] == :kadai %>
-          <%= link_to work.kadai.year_and_number, work.kadai, class: 'link-secondary' %>
+          <%= link_to work.kadai.year_and_round, work.kadai, class: 'link-secondary' %>
         <% else %>
           <%= link_to work.student.name, work.student, class: 'link-dark' %>
         <% end %>

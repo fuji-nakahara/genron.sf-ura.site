@@ -2,7 +2,7 @@
 
 create_table :kadais, force: :cascade do |t|
   t.integer :year, null: false, limit: 2
-  t.integer :number, null: false, limit: 2
+  t.integer :round, null: false, limit: 2, renamed_from: :number
   t.string :title, null: false
   t.string :author
   t.date :kougai_deadline
@@ -12,7 +12,7 @@ create_table :kadais, force: :cascade do |t|
 
   t.timestamps
 
-  t.index %i[year number], unique: true
+  # t.index %i[year number], unique: true
   t.index :kougai_deadline
   t.index :jissaku_deadline
 end

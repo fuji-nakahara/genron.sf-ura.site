@@ -8,7 +8,7 @@ RSpec.describe TweetImportedJob, type: :job do
       create(
         :kadai,
         year: Kadai::LATEST_YEAR,
-        number: 1,
+        round: 1,
         title: '「100年後の未来」の物語を書いてください',
         author: '大森望',
         kougai_deadline: '2020-07-17'.to_date,

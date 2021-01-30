@@ -29,12 +29,12 @@ namespace :genron_sf do
     subjects = GenronSF::Subject.list(year: Kadai::LATEST_YEAR)
     summary_comment_subject = subjects.find { |subject| subject.summary_comment_date == date }
     if summary_comment_subject
-      kadai = Kadai.find_by!(year: summary_comment_subject.year, number: summary_comment_subject.number)
+      kadai = Kadai.find_by!(year: summary_comment_subject.year, round: summary_comment_subject.number)
       TweetVoteResultsJob.perform_now(kadai, type: 'Kougai')
     end
     work_comment_subject = subjects.find { |subject| subject.work_comment_date == date }
     if work_comment_subject
-      kadai = Kadai.find_by!(year: summary_comment_subject.year, number: summary_comment_subject.number)
+      kadai = Kadai.find_by!(year: summary_comment_subject.year, round: summary_comment_subject.number)
       TweetVoteResultsJob.perform_now(kadai, type: 'Jissaku')
     end
   end

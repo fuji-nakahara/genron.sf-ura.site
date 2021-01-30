@@ -10,12 +10,12 @@ class Kadai < ApplicationRecord
   has_many :links, dependent: :delete_all
 
   scope :latest_year, -> { where(year: LATEST_YEAR) }
-  scope :newest_order, -> { order(year: :desc, number: :desc) }
+  scope :newest_order, -> { order(year: :desc, round: :desc) }
   scope :newest3, -> { newest_order.limit(3) }
 
   class << self
     def import(subject)
-      find_or_initialize_by(year: subject.year, number: subject.number).tap do |kadai|
+      find_or_initialize_by(year: subject.year, round: subject.number).tap do |kadai|
         kadai.update!(
           title: subject.theme,
           author: subject.lecturers.find { |lecturer| lecturer.roles.include?('課題提示') }&.name,
@@ -34,27 +34,27 @@ class Kadai < ApplicationRecord
     jissaku_deadline&.in_time_zone&.end_of_day
   end
 
-  def year_and_number
-    "#{year} #{number_str}"
+  def year_and_round
+    "#{year} #{round_str}"
   end
 
-  def number_str
-    "第#{number}回"
+  def round_str
+    "第#{round}回"
   end
 
   def previous
-    self.class.where('(year = ? and number < ?) or year < ?', year, number, year).newest_order.first
+    self.class.where('(year = ? and round < ?) or year < ?', year, round, year).newest_order.first
   end
 
   def next
-    self.class.where('(year = ? and number > ?) or year > ?', year, number, year).newest_order.last
+    self.class.where('(year = ? and round > ?) or year > ?', year, round, year).newest_order.last
   end
 
   def genron_sf_url
-    GenronSF::Subject.build_url(year: year, number: number)
+    GenronSF::Subject.build_url(year: year, number: round)
   end
 
   def fetch_genron_sf_subject
-    GenronSF::Subject.get(year: year, number: number)
+    GenronSF::Subject.get(year: year, number: round)
   end
 end

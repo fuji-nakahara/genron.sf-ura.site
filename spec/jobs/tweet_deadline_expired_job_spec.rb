@@ -8,7 +8,7 @@ RSpec.describe TweetDeadlineExpiredJob, type: :job do
     let(:twitter_client) { instance_spy(GenronSFFun::TwitterClient) }
 
     before do
-      create(:kadai, number: 2, kougai_deadline: deadline)
+      create(:kadai, round: 2, kougai_deadline: deadline)
       allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
     end
 
@@ -20,7 +20,7 @@ RSpec.describe TweetDeadlineExpiredJob, type: :job do
 
     context 'with one more expired kadai' do
       before do
-        create(:kadai, number: 1, jissaku_deadline: deadline)
+        create(:kadai, round: 1, jissaku_deadline: deadline)
       end
 
       it 'tweets all deadline expired kadais' do
