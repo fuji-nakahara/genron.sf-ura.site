@@ -26,7 +26,7 @@ RSpec.describe 'KadaisController:', type: :request do
     end
 
     it 'responds OK' do
-      get term_kadai_path(*kadai.year_round)
+      get term_kadai_path(kadai.year, kadai)
 
       expect(response).to have_http_status :ok
     end
@@ -36,9 +36,9 @@ RSpec.describe 'KadaisController:', type: :request do
     let(:kadai) { create(:kadai) }
 
     it 'redirects to /:term_year/:round' do
-      get kadai_path(kadai)
+      get kadai_path(kadai.id)
 
-      expect(response).to redirect_to term_kadai_path(*kadai.year_round)
+      expect(response).to redirect_to term_kadai_path(kadai.year, kadai)
     end
   end
 end

@@ -24,8 +24,8 @@ class Kadai < ApplicationRecord
     end
   end
 
-  def year_round
-    [year, round]
+  def to_param
+    round.to_s
   end
 
   def kougai_deadline_time

@@ -16,7 +16,7 @@ class JissakusController < ApplicationController
 
     if @jissaku.save
       TweetWorkSubmittedJob.perform_later(@jissaku)
-      redirect_to term_kadai_path(*kadai.year_round), notice: '登録しました'
+      redirect_to term_kadai_path(kadai.year, kadai), notice: '登録しました'
     else
       render :new
     end

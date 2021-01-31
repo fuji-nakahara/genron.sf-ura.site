@@ -12,7 +12,7 @@ RSpec.describe 'JissakusController:', type: :request do
     end
 
     it 'responds OK' do
-      get new_term_kadai_jissaku_path(*kadai.year_round)
+      get new_term_kadai_jissaku_path(kadai.year, kadai)
 
       expect(response).to have_http_status :ok
     end
@@ -36,17 +36,17 @@ RSpec.describe 'JissakusController:', type: :request do
     end
 
     it 'creates a jissaku and redirects to /:term_year/:round' do
-      expect { post term_kadai_jissakus_path(*kadai.year_round), params: params }
+      expect { post term_kadai_jissakus_path(kadai.year, kadai), params: params }
         .to change { kadai.jissakus.count }.by(1)
 
-      expect(response).to redirect_to term_kadai_path(*kadai.year_round)
+      expect(response).to redirect_to term_kadai_path(kadai.year, kadai)
     end
 
     context 'when url is invalid' do
       let(:url) { 'ftp://example.com/invalid' }
 
       it 'renders error' do
-        expect { post term_kadai_jissakus_path(*kadai.year_round), params: params }
+        expect { post term_kadai_jissakus_path(kadai.year, kadai), params: params }
           .not_to(change { kadai.jissakus.count })
 
         expect(response).to have_http_status :ok

@@ -21,7 +21,7 @@ class KadaisController < ApplicationController
     return if params[:id].nil?
 
     kadai = Kadai.find(params[:id])
-    redirect_to term_kadai_path(*kadai.year_round), status: :moved_permanently
+    redirect_to term_kadai_path(kadai.year, kadai), status: :moved_permanently
 
     Sentry.capture_message(
       'Old kadai URL access',
