@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Jissaku < Work
-  self.ignored_columns = %i[selected]
-
   belongs_to :kadai, counter_cache: true
   has_one :prize, dependent: :destroy
 
@@ -14,6 +12,7 @@ class Jissaku < Work
       Arel.sql("#{table_name}.genron_sf_id is null"),
       'prizes.position asc nulls last',
       score: :desc,
+      selected: :desc,
       'students.genron_sf_id': :asc,
     )
   }

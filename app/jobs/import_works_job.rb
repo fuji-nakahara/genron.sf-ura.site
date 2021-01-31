@@ -22,10 +22,9 @@ class ImportWorksJob < ApplicationJob
       if subject.work_comment_date && Time.zone.today < subject.work_comment_date
         logger.info "Importing selected: #{subject.url}"
         subject.excellent_entries.each do |work|
-          kougai = Kougai.find_by(genron_sf_id: work.id)
-          next if kougai.nil?
-
-          kougai.update!(selected: true)
+          Work.where(genron_sf_id: work.id).each do |w|
+            w.update!(selected: true)
+          end
         end
       end
 

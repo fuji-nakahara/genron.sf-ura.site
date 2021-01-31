@@ -1,6 +1,8 @@
 <%= render 'works/work', work: jissaku, header: local_assigns[:header] do %>
   <% if jissaku.score.positive? %>
     <span class="badge rounded-pill bg-success"><%= jissaku.score %></span>
+  <% elsif jissaku.selected %>
+    <span class="badge bg-info">選出</span>
   <% elsif jissaku.prize %>
     <span class="badge bg-success"><%= jissaku.prize.title %></span>
   <% end %>
