@@ -30,10 +30,7 @@ class ImportWorksJob < ApplicationJob
 
       logger.info "Importing scores: #{subject.url}"
       subject.scores.each do |score|
-        jissaku = Jissaku.find_by(genron_sf_id: score.work.id)
-        next if jissaku.nil?
-
-        jissaku.update!(score: score.value) if score.value.positive?
+        Jissaku.find_by(genron_sf_id: score.work.id)&.update!(score: score.value)
       end
     end
   end
