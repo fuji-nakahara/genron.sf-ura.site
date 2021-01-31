@@ -65,13 +65,9 @@
     <header class="border-bottom mb-3">
       <h2>
         実作
-        <% if @kadai.jissakus.where.not(genron_sf_id: nil).count > 0 %>
+        <% if @kadai.jissakus_count > 0 %>
           <span class="badge rounded-pill bg-success">
-            <%= @kadai.jissakus.where.not(genron_sf_id: nil).count %>
-            <% if @kadai.jissakus.where(genron_sf_id: nil).count > 0 %>
-              + <%= @kadai.jissakus.where(genron_sf_id: nil).count %>
-            <% end %>
-            編
+            <%= @kadai.jissakus_count %> 編
           </span>
         <% end %>
       </h2>
@@ -94,13 +90,9 @@
     <header class="border-bottom mb-3">
       <h2>
         梗概
-        <% if @kadai.kougais.where.not(genron_sf_id: nil).count > 0 %>
+        <% if @kadai.kougais_count > 0 %>
           <span class="badge rounded-pill bg-info">
-            <%= @kadai.kougais.where.not(genron_sf_id: nil).count %>
-            <% if @kadai.kougais.where(genron_sf_id: nil).count > 0 %>
-              + <%= @kadai.kougais.where(genron_sf_id: nil).count %>
-            <% end %>
-            編
+            <%= @kadai.kougais_count %> 編
           </span>
         <% end %>
       </h2>
