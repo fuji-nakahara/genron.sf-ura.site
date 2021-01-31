@@ -1,7 +1,12 @@
 <div class="col">
   <section class="card mb-3">
     <div class="card-body">
-      <h1 class="card-title h5"><%= student.name %></h1>
+      <header class="d-flex justify-content-between align-items-start">
+        <h1 class="card-title h5"><%= student.name %></h1>
+        <% if student.votes_sum > 0 %>
+          <span class="badge rounded-pill bg-primary"><%= icon('fas', 'thumbs-up', student.votes_sum) %></span>
+        <% end %>
+      </header>
       <ul class="card-text list-inline">
         <% if student.jissakus_count > 0 %>
           <li class="list-inline-item">
@@ -11,11 +16,6 @@
         <% if student.kougais_count > 0 %>
           <li class="list-inline-item">
             <span class="badge bg-info">梗概 <%= student.kougais_count %></span>
-          </li>
-        <% end %>
-        <% if student.votes_sum > 0 %>
-          <li class="list-inline-item">
-            <span class="badge bg-primary">総得票 <%= student.votes_sum %></span>
           </li>
         <% end %>
       </ul>
