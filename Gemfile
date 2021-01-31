@@ -26,6 +26,7 @@ gem 'omniauth-twitter'
 gem 'open_graph_reader'
 gem 'rails-i18n'
 gem 'ridgepole', '>= 0.9.0.beta', require: false
+gem 'scout_apm'
 gem 'sentry-rails'
 gem 'twitter'
 
