@@ -11,7 +11,11 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.where(id: params[:id]).or(Student.where(genron_sf_id: params[:id])).take!
-    @jissakus = @student.jissakus.includes(:prize, :kadai, :voters).reverse_order
-    @kougais = @student.kougais.includes(:kadai, :voters).reverse_order
+    @votes_sum_by_year = @student.works.joins(:kadai).order('kadais.year': :desc)
+                                 .group(:'kadais.year').sum(:votes_count)
+    @jissakus_by_year = @student.jissakus.includes(:prize, :kadai, :voters).reverse_order
+                                .group_by { |jissaku| jissaku.kadai.year }
+    @kougais_by_year = @student.kougais.includes(:kadai, :voters).reverse_order
+                               .group_by { |kougai| kougai.kadai.year }
   end
 end

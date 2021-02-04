@@ -22,7 +22,7 @@
       <p class="card-text text-secondary">
         <%= student.description %>
       </p>
-      <%= link_to icon('fas', 'list', '作品一覧へ'), student, class: 'btn btn-sm btn-outline-primary stretched-link' %>
+      <%= link_to icon('fas', 'list', '作品一覧へ'), student_path(student, anchor: year), class: 'btn btn-sm btn-outline-primary stretched-link' %>
     </div>
   </section>
 </div>
