@@ -385,7 +385,7 @@ DEPENDENCIES
   rails (~> 6.1.1)
   rails-i18n
   rails_real_favicon
-  ridgepole (>= 0.9.0.beta)
+  ridgepole (>= 0.9.0)
   rspec-rails
   rubocop
   rubocop-performance
