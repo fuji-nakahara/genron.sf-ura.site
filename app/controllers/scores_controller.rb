@@ -8,7 +8,7 @@ class ScoresController < ApplicationController
       format.html
 
       format.json do
-        score_table = Rails.cache.fetch("score_table/#{@term.year}", expires_in: 1.hour) do
+        score_table = Rails.cache.fetch("score_table/#{@term.year}") do
           GenronSF::ScoreTable.get(year: @term.year).to_h
         end
 

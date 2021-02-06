@@ -21,17 +21,17 @@ class ImportWorksJob < ApplicationJob
 
       if subject.work_comment_date && Time.zone.today < subject.work_comment_date
         logger.info "Importing selected: #{subject.url}"
-        subject.excellent_entries.each do |work|
-          Work.where(genron_sf_id: work.id).each do |w|
-            w.update!(selected: true)
-          end
+        ids = subject.excellent_entries.map(&:id)
+        Work.where(genron_sf_id: ids, selected: false).each do |work|
+          work.update!(selected: true)
         end
       end
 
       logger.info "Importing scores: #{subject.url}"
-      subject.scores.each do |score|
-        Jissaku.find_by(genron_sf_id: score.work.id)&.update!(score: score.value)
+      results = subject.scores.map do |score|
+        Jissaku.where(genron_sf_id: score.work.id).where.not(score: score).take&.update!(score: score)
       end
+      Rails.cache.delete("score_table/#{subject.year}") if results.any?
     end
   end
 end
