@@ -40,7 +40,7 @@ ja:
         email: 送信先メールアドレス
         accept_generating_ebook: ゲンロン 大森望 SF創作講座 にあなたが提出した作品を当サイトが取得し、電子書籍を作成することに同意する
       user_preference:
-        works_order: 作品の順序
+        works_order: 作品の表示順
   activerecord:
     models:
       jissaku: 実作
