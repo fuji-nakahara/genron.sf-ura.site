@@ -11,6 +11,8 @@ class Work < ApplicationRecord
   validates :title, presence: true
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
 
+  scope :default_order, -> { order(votes_count: :desc, created_at: :asc) }
+
   def url_host
     URI.parse(url).host
   end
