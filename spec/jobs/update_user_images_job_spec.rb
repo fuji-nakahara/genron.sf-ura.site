@@ -27,7 +27,7 @@ RSpec.describe UpdateUserImagesJob, type: :job do
     end
 
     it 'updates image_urls of image updated users' do
-      described_class.perform_now
+      described_class.perform_now(sleep_duration: 0)
 
       expect(image_updated_user.reload.image_url).to eq 'https://example.com/new_profile_image.jpeg'
     end
@@ -38,7 +38,7 @@ RSpec.describe UpdateUserImagesJob, type: :job do
       end
 
       it 'destroys the user' do
-        described_class.perform_now
+        described_class.perform_now(sleep_duration: 0)
 
         expect { image_updated_user.reload }.to raise_error ActiveRecord::RecordNotFound
       end
