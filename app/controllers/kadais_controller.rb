@@ -22,11 +22,5 @@ class KadaisController < ApplicationController
 
     kadai = Kadai.find(params[:id])
     redirect_to term_kadai_path(kadai.year, kadai), status: :moved_permanently
-
-    Sentry.capture_message(
-      'Old kadai URL access',
-      level: :info,
-      extra: { referer: request.referer },
-    )
   end
 end
