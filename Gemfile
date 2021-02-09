@@ -28,6 +28,7 @@ gem 'rails-i18n'
 gem 'ridgepole', '>= 0.9', require: false
 gem 'scout_apm'
 gem 'sentry-rails'
+gem 'sentry-ruby'
 gem 'twitter'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', require: 'genron_sf/ebook'
