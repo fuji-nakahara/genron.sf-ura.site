@@ -24,6 +24,7 @@ gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
 gem 'open_graph_reader'
+gem 'rack-timeout'
 gem 'rails-i18n'
 gem 'ridgepole', '>= 0.9', require: false
 gem 'scout_apm'
