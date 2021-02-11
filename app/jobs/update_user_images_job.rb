@@ -4,7 +4,7 @@ class UpdateUserImagesJob < ApplicationJob
   Error = Class.new(StandardError)
   Result = Struct.new(:succeeded_count, :updated, :failed, :deleted)
 
-  def perform(user_relation: User.all, sleep_duration: 0.1)
+  def perform(user_relation: User.all)
     result = Result.new(0, [], [], [])
 
     user_relation.find_each do |user|
@@ -31,12 +31,11 @@ class UpdateUserImagesJob < ApplicationJob
       when Net::HTTPServiceUnavailable
         logger.warn "Failed: #{response.to_hash})"
         result.failed << user.twitter_screen_name
+        sleep 1
       else
         response.value
         result.succeeded_count += 1
       end
-
-      sleep sleep_duration
     end
 
     logger.info result.inspect
