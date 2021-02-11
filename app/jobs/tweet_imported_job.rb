@@ -1,17 +1,31 @@
 # frozen_string_literal: true
 
 class TweetImportedJob < ApplicationJob
+  Error = Class.new(StandardError)
+
   def perform
+    failed = { kadai_ids: [], work_ids: [] }
+
     Term.last.kadais.where(tweet_url: nil).each do |kadai|
       tweet = post_tweet(kadai_tweet_text(kadai))
-      kadai.update!(tweet_url: tweet.url) if tweet
+      if tweet
+        kadai.update!(tweet_url: tweet.url)
+      else
+        failed[:kadai_ids] << kadai.id
+      end
     end
 
     works = Work.where(kadai: Kadai.newest3, tweet_url: nil).where.not(genron_sf_id: nil).order(:id)
     works.includes(student: :user).each do |work|
       tweet = post_tweet(work_tweet_text(work))
-      work.update!(tweet_url: tweet.url) if tweet
+      if tweet
+        work.update!(tweet_url: tweet.url)
+      else
+        failed[:work_ids] << work.id
+      end
     end
+
+    raise Error, "Failed to tweet: #{failed}" if failed.values.any?(&:present?)
   end
 
   private
