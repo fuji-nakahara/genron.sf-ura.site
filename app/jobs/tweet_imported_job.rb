@@ -43,7 +43,7 @@ class TweetImportedJob < ApplicationJob
   def post_tweet(text)
     GenronSFFun::TwitterClient.instance.update(text)
   rescue Twitter::Error => e
-    Sentry.capture_exception(e, extra: { tweet: text })
+    Sentry.capture_exception(e, extra: { tweet_text: text }, hint: { background: false })
     nil
   end
 end

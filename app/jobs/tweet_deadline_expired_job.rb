@@ -13,10 +13,9 @@ class TweetDeadlineExpiredJob < ApplicationJob
       #SF創作講座 #裏SF創作講座
     TWEET
 
-    begin
+    Sentry.with_scope do |scope|
+      scope.set_extras(tweet_text: tweet)
       GenronSFFun::TwitterClient.instance.update(tweet)
-    rescue Twitter::Error => e
-      Sentry.capture_exception(e, extra: { tweet: tweet })
     end
   end
 end

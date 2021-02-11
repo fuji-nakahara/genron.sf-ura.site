@@ -14,10 +14,9 @@ class TweetVoteResultsJob < ApplicationJob
       https://genron-sf-fun.herokuapp.com/#{kadai.year}/#{kadai.round}
     TWEET
 
-    begin
+    Sentry.with_scope do |scope|
+      scope.set_extras(tweet_text: tweet)
       GenronSFFun::TwitterClient.instance.update(tweet)
-    rescue Twitter::Error => e
-      Sentry.capture_exception(e, extra: { tweet: tweet })
     end
   end
 end

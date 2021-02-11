@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UpdateUserImagesJob < ApplicationJob
+  Error = Class.new(StandardError)
   Result = Struct.new(:succeeded_count, :updated, :failed, :deleted)
 
   def perform(user_relation: User.all, sleep_duration: 0.1)
@@ -25,7 +26,7 @@ class UpdateUserImagesJob < ApplicationJob
           user.destroy!
           logger.info "Deleted: #{user.inspect}"
           result.deleted << user.twitter_screen_name
-          Sentry.capture_message('Deleted a user', level: :info, extra: user.as_json)
+          Sentry.capture_message('Deleted a user', level: :info, extra: user.as_json, hint: { background: false })
         end
       when Net::HTTPServiceUnavailable
         logger.warn "Failed: #{response.to_hash})"
@@ -39,6 +40,6 @@ class UpdateUserImagesJob < ApplicationJob
     end
 
     logger.info result.inspect
-    Sentry.capture_message('Updated user images', level: :info, extra: result.to_h)
+    raise Error, 'Failed to fetch all of the user images' if result.succeeded_count.zero?
   end
 end

@@ -24,6 +24,7 @@ class ImportTwitterScreenNamesJob < ApplicationJob
             genron_sf_url: student.url,
             twitter_url: "https://twitter.com/#{twitter_screen_name}",
           },
+          hint: { background: false },
         )
       end
     end
