@@ -17,5 +17,5 @@ create_table :kadais, force: :cascade do |t|
   t.index %i[year round], unique: true
   t.index :kougai_deadline
   t.index :jissaku_deadline
+  t.foreign_key :terms, primary_key: :year, column: :year
 end
-add_foreign_key :kadais, :terms, primary_key: :year, column: :year

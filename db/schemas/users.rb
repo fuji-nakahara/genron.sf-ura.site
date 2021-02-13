@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 create_table :users, force: :cascade do |t|
-  t.bigint :student_id, null: false
+  t.references :student, null: false, index: { unique: true }, foreign_key: true
+
   t.bigint :twitter_id, null: false
   t.string :image_url, null: false
   t.string :twitter_screen_name, null: false
@@ -11,8 +12,6 @@ create_table :users, force: :cascade do |t|
 
   t.timestamps
 
-  t.index :student_id, unique: true
   t.index :twitter_id, unique: true
   t.index :twitter_screen_name, unique: true
 end
-add_foreign_key :users, :students
