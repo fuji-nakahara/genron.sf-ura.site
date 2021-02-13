@@ -22,7 +22,7 @@ class ImportWorksJob < ApplicationJob
       if subject.work_comment_date && Time.zone.today < subject.work_comment_date
         logger.info "Importing selected: #{subject.url}"
         ids = subject.excellent_entries.map(&:id)
-        Work.where(genron_sf_id: ids, selected: false).each do |work|
+        Work.where(type: %w[Kougai Jissaku], genron_sf_id: ids, selected: false).each do |work|
           work.update!(selected: true)
         end
       end
