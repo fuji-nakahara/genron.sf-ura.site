@@ -3,8 +3,8 @@
 namespace :genron_sf do
   desc 'Import latest genron_sf resources and tweets newly created ones.'
   task import_latest_and_tweet: :environment do
-    ImportKadaisJob.perform_now(year: Term.latest_year)
-    ImportWorksJob.perform_now(kadais: Kadai.newest3)
+    ImportKadaisJob.perform_now
+    ImportWorksJob.perform_now
     Term.find_or_create_by!(year: GenronSF::Term.latest.year)
     TweetImportedJob.perform_now
   end

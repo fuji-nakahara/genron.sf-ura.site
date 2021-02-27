@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportWorksJob < ApplicationJob
-  def perform(kadais: Kadai.all)
+  def perform(kadais: Kadai.newest3)
     kadais.each do |kadai|
       subject = kadai.fetch_genron_sf_subject
 

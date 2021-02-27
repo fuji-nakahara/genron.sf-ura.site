@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImportKadaisJob < ApplicationJob
-  def perform(year:)
+  def perform(year: Term.latest_year)
     Array(year).each do |y|
       subjects = GenronSF::Subject.list(year: y)
       subjects.each do |subject|

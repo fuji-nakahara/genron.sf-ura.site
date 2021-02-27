@@ -25,6 +25,6 @@ puts 'Importing students...'
 ImportStudentsJob.perform_now(year: year)
 
 puts 'Importing works...'
-ImportWorksJob.perform_now
+ImportWorksJob.perform_now(kadais: Kadai.all)
 
 # rubocop:enable Rails/Output

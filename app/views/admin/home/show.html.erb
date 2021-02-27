@@ -31,6 +31,26 @@
 
 <section class="mb-3">
   <header>
+    <h2>ジョブ実行</h2>
+  </header>
+  <%= form_with url: admin_jobs_path do |form| %>
+    <div class="mb-3">
+      <%= form.label :job_class, 'job_class', class: 'form-label' %>
+      <%= form.text_field :job_class, list: 'job_classes', class: 'form-control' %>
+      <datalist id="job_classes">
+        <% [ImportKadaisJob, ImportStudentsJob, ImportTwitterScreenNamesJob, ImportWorksJob, TweetDeadlineExpiredJob, TweetImportedJob, UpdateUserImagesJob].each do |job_class| %>
+          <option value="<%= job_class %>"></option>
+        <% end %> %>
+      </datalist>
+    </div>
+    <%= form.submit '実行', class: 'btn btn-primary' %>
+  <% end %>
+</section>
+
+<hr>
+
+<section class="mb-3">
+  <header>
     <h2>賞</h2>
   </header>
   <%= form_with model: Prize.new, url: admin_prizes_path do |form| %>
