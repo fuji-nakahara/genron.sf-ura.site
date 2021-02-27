@@ -15,6 +15,14 @@ RSpec.describe 'KadaisController:', type: :request do
 
       expect(response).to have_http_status :ok
     end
+
+    context 'with .json format' do
+      it 'responds OK' do
+        get term_kadais_path(term, format: :json)
+
+        expect(response).to have_http_status :ok
+      end
+    end
   end
 
   describe 'GET /:term_year/:round' do
@@ -29,6 +37,14 @@ RSpec.describe 'KadaisController:', type: :request do
       get term_kadai_path(kadai.year, kadai)
 
       expect(response).to have_http_status :ok
+    end
+
+    context 'with .json format' do
+      it 'responds OK' do
+        get term_kadai_path(kadai.year, kadai, format: :json)
+
+        expect(response).to have_http_status :ok
+      end
     end
   end
 

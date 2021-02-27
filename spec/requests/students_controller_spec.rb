@@ -17,6 +17,14 @@ RSpec.describe 'StudentsController:', type: :request do
 
       expect(response).to have_http_status :ok
     end
+
+    context 'with .json format' do
+      it 'responds OK' do
+        get term_students_path(term, format: :json)
+
+        expect(response).to have_http_status :ok
+      end
+    end
   end
 
   describe 'GET /students/:id' do
@@ -26,6 +34,14 @@ RSpec.describe 'StudentsController:', type: :request do
       get student_path(student)
 
       expect(response).to have_http_status :ok
+    end
+
+    context 'with .json format' do
+      it 'responds OK' do
+        get student_path(student, format: :json)
+
+        expect(response).to have_http_status :ok
+      end
     end
   end
 end
