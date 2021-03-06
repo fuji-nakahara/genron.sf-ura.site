@@ -35,7 +35,7 @@ namespace :genron_sf do
     end
     work_comment_subject = subjects.find { |subject| subject.work_comment_date == date }
     if work_comment_subject
-      kadai = Kadai.find_by!(year: summary_comment_subject.year, round: summary_comment_subject.number)
+      kadai = Kadai.find_by!(year: work_comment_subject.year, round: work_comment_subject.number)
       TweetVoteResultsJob.perform_now(kadai, type: 'Jissaku')
     end
   end
