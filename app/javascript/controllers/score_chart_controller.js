@@ -51,13 +51,12 @@ export default class extends Controller {
     })
   }
 
-  getScoreTable () {
-    return fetch(this.data.get('endpoint')).then(response => {
-      if (response.ok) {
-        return response.json()
-      } else {
-        return Promise.reject(new Error(`${response.status}: ${response.statusText}`))
-      }
-    })
+  async getScoreTable () {
+    const response = await fetch(this.data.get('endpoint'))
+    if (response.ok) {
+      return await response.json()
+    } else {
+      throw new Error(`${response.status}: ${response.statusText}`)
+    }
   }
 }

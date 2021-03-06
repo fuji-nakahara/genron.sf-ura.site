@@ -48,26 +48,24 @@ export default class extends Controller {
     this.countTarget.textContent = value
   }
 
-  request (method) {
+  async request (method) {
     this.buttonTarget.disabled = true
-    return fetch(this.data.get('endpoint'), {
-      method: method,
-      credentials: 'same-origin',
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-Token': Rails.csrfToken(),
+    try {
+      const response = await fetch(this.data.get('endpoint'), {
+        method: method,
+        credentials: 'same-origin',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': Rails.csrfToken(),
+        }
+      })
+      if (!response.ok) {
+        const body = await response.json()
+        throw new Error(body.errors.join('<br>'))
       }
-    }).then(response => {
-      if (response.ok) {
-        return Promise.resolve()
-      } else {
-        return response.json().then(body => {
-          return Promise.reject(new Error(body.errors.join('<br>')))
-        })
-      }
-    }).finally(() => {
+    } finally {
       this.buttonTarget.disabled = false
-    })
+    }
   }
 
   updateButton () {
