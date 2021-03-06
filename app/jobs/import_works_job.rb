@@ -29,7 +29,7 @@ class ImportWorksJob < ApplicationJob
 
       logger.info "Importing scores: #{subject.url}"
       results = subject.scores.map do |score|
-        Jissaku.where(genron_sf_id: score.work.id).where.not(score: score).take&.update!(score: score)
+        Jissaku.where(genron_sf_id: score.work.id).where.not(score: score.value).take&.update!(score: score.value)
       end
       Rails.cache.delete("score_table/#{subject.year}") if results.any?
     end
