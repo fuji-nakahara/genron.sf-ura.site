@@ -10,10 +10,7 @@ class KadaisController < ApplicationController
       format.html
 
       format.json do
-        render json: @term.kadais.as_json(
-          only: %i[year round title author kougai_deadline jissaku_deadline kougais_count jissakus_count],
-          methods: :genron_sf_url,
-        )
+        render json: @term.kadais.as_json
       end
     end
   end
@@ -21,27 +18,17 @@ class KadaisController < ApplicationController
   def show
     @kadai = Kadai.find_by!(year: params[:term_year], round: params[:round])
 
-    order = current_user&.preference_object&.works_order || 'default'
-    @jissakus = @kadai.jissakus.includes(:prize, :voters, :student).__send__("#{order}_order")
-    @kougais = @kadai.kougais.includes(:voters, :student).__send__("#{order}_order")
-
     respond_to do |format|
-      format.html
+      format.html do
+        order = current_user&.preference_object&.works_order || 'default'
+        @jissakus = @kadai.jissakus.includes(:prize, :voters, :student).__send__("#{order}_order")
+        @kougais = @kadai.kougais.includes(:voters, :student).__send__("#{order}_order")
+      end
 
       format.json do
-        work_options = {
-          only: %i[genron_sf_id title url selected score],
-          include: {
-            student: { only: %i[id genron_sf_id name] },
-            voters: { only: :twitter_screen_name },
-          },
-        }
-        render json: @kadai.as_json(
-          only: %i[year round title author kougai_deadline jissaku_deadline],
-          methods: :genron_sf_url,
-        ).merge(
-          jissakus: @jissakus.as_json(work_options),
-          kougais: @kougais.as_json(work_options),
+        render json: @kadai.as_json.merge(
+          jissakus: @kadai.jissakus.includes(:student, :voters).order(:id).as_json(include: %i[student voters]),
+          kougais: @kadai.kougais.includes(:student, :voters).order(:id).as_json(include: %i[student voters]),
         )
       end
     end

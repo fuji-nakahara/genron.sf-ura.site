@@ -38,6 +38,11 @@ class Student < ApplicationRecord
     genron_sf_id || id.to_s
   end
 
+  def serializable_hash(options = nil)
+    default_options = { only: %i[id genron_sf_id name url description] }
+    super(default_options.merge(options.to_h))
+  end
+
   def url_host
     URI.parse(url).host
   end

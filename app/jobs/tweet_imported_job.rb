@@ -37,7 +37,7 @@ class TweetImportedJob < ApplicationJob
     lines << "梗概締切: #{I18n.l(kadai.kougai_deadline, format: :long)}" if kadai.kougai_deadline
     lines << "実作締切: #{I18n.l(kadai.jissaku_deadline, format: :long)}" if kadai.jissaku_deadline
     lines << '#SF創作講座 #裏SF創作講座'
-    lines << kadai.genron_sf_url
+    lines << kadai.url
     lines << "https://genron-sf-fun.herokuapp.com/#{kadai.year}/#{kadai.round}"
     lines.join("\n")
   end

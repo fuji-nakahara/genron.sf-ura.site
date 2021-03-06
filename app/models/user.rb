@@ -6,6 +6,11 @@ class User < ApplicationRecord
   has_many :votes, dependent: :delete_all
   has_many :links, dependent: :nullify
 
+  def serializable_hash(options = nil)
+    default_options = { only: %i[twitter_id twitter_screen_name] }
+    super(default_options.merge(options.to_h))
+  end
+
   def save_auth_hash!(auth_hash)
     transaction do
       if new_record?

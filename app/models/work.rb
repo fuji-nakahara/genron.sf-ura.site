@@ -13,6 +13,11 @@ class Work < ApplicationRecord
 
   scope :default_order, -> { order(votes_count: :desc, created_at: :asc) }
 
+  def serializable_hash(options = nil)
+    default_options = { only: %i[id genron_sf_id title url selected score votes_count] }
+    super(default_options.merge(options.to_h))
+  end
+
   def url_host
     URI.parse(url).host
   end

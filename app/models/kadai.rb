@@ -28,6 +28,14 @@ class Kadai < ApplicationRecord
     round.to_s
   end
 
+  def serializable_hash(options = nil)
+    default_options = {
+      only: %i[year round title author kougai_deadline jissaku_deadline kougais_count jissakus_count],
+      methods: :url,
+    }
+    super(default_options.merge(options.to_h))
+  end
+
   def kougai_deadline_time
     kougai_deadline&.in_time_zone&.end_of_day
   end
@@ -52,7 +60,7 @@ class Kadai < ApplicationRecord
     self.class.where('(year = ? and round > ?) or year > ?', year, round, year).newest_order.last
   end
 
-  def genron_sf_url
+  def url
     GenronSF::Subject.build_url(year: year, number: round)
   end
 
