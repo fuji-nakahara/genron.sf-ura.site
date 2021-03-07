@@ -10,7 +10,7 @@ class KadaisController < ApplicationController
       format.html
 
       format.json do
-        render json: @term.kadais.as_json
+        render json: @term.kadais.reverse_order.as_json
       end
     end
   end
