@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: bundler
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "08:00"
+      timezone: Asia/Tokyo
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "08:00"
+      timezone: Asia/Tokyo
+    ignore:
+      - dependency-name: chart.js
+        versions:
+          - ">= 3.a, < 4"
