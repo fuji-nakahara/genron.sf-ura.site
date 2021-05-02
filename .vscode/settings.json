@@ -1,0 +1,10 @@
+{
+  "cSpell.words": ["genron"],
+  "ruby.useBundler": true,
+  "ruby.lint": {
+    "rubocop": {
+      "useBundler": true
+    }
+  },
+  "ruby.format": "rubocop"
+}
