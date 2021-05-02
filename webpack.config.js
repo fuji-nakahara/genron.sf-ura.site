@@ -12,16 +12,29 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "public/packs"),
-    publicPath: "/packs/",
+    publicPath:
+      process.env.USE_WEBPACK_DEV_SERVER === "1"
+        ? "//localhost:8081/packs/"
+        : "/packs/",
     filename: isProd ? "[name]-[hash].js" : "[name].js",
   },
   resolve: {
     extensions: [".js"],
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, "public"),
+    publicPath: "/packs/",
+    host: "localhost",
+    port: 8081,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
   plugins: [
     new WebpackAssetsManifest({
       publicPath: true,
       output: "manifest.json",
+      writeToDisk: true,
     }),
   ],
 };

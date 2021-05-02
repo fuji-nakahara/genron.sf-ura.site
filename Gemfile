@@ -56,6 +56,7 @@ group :development do
 
   gem 'bullet'
   gem 'dotenv-rails'
+  gem 'foreman'
   gem 'rails_real_favicon'
 end
 
