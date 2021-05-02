@@ -61,6 +61,9 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn install
 
+      - name: Build javascript
+        run: yarn run build
+
       - name: Setup database
         run: |
           bin/rake db:create

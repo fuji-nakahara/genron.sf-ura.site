@@ -4,6 +4,6 @@
 // that code so it'll be compiled.
 import Rails from '@rails/ujs'
 import 'bootstrap'
-import 'controllers'
+import './controllers'
 
 Rails.start()
