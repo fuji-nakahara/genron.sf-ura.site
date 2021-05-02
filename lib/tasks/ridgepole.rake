@@ -8,7 +8,7 @@ def ridgepole_apply(env = Rails.env, dry_run: false)
       '--apply',
     ]
     args << '--dry-run' if dry_run
-    system('ridgepole', *args) || abort
+    sh 'ridgepole', *args
   end
 end
 
