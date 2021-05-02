@@ -1,14 +1,13 @@
 const path = require("path");
 const WebpackAssetsManifest = require("webpack-assets-manifest");
 
-const { NODE_ENV } = process.env;
-const isProd = NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   mode: isProd ? "production" : "development",
   devtool: "source-map",
   entry: {
-    application: path.resolve(__dirname, "app/javascript/application.js"),
+    application: path.resolve(__dirname, "app/javascript/packs/application.ts"),
   },
   output: {
     path: path.resolve(__dirname, "public/packs"),
@@ -19,7 +18,18 @@ module.exports = {
     filename: isProd ? "[name]-[hash].js" : "[name].js",
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".ts", ".tsx"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        options: {
+          transpileOnly: true,
+        },
+      },
+    ],
   },
   devServer: {
     contentBase: path.resolve(__dirname, "public"),

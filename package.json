@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "eslint": "eslint *.config.js .*.js app/javascript",
+    "lint": "eslint *.config.js .*.js app/javascript && tsc app/javascript/**/*.ts --noEmit",
     "serve": "USE_WEBPACK_DEV_SERVER=1 webpack serve"
   },
   "dependencies": {
@@ -15,10 +15,13 @@
     "stimulus": "^2.0.0"
   },
   "devDependencies": {
+    "@types/rails__ujs": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.2.1",
+    "ts-loader": "^9.1.1",
+    "typescript": "^4.2.4",
     "webpack": "^5.36.2",
     "webpack-assets-manifest": "^5.0.6",
     "webpack-cli": "^4.6.0",
