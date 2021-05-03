@@ -1,11 +1,12 @@
 {
+  // Visit https://aka.ms/tsconfig.json to read more about this file
   "compilerOptions": {
-    // Visit https://aka.ms/tsconfig.json to read more about this file
     "target": "ES2015",
     "jsx": "react-jsx",
     "sourceMap": true,
     "noEmit": true,
     "strict": true,
+    "baseUrl": "./app/javascript",
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "skipLibCheck": true,

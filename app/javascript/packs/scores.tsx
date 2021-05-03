@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ScoreChart from '../components/ScoreChart';
+import ScoreChart from 'ScoreChart';
 
 document.addEventListener('DOMContentLoaded', () => {
   const scoreChart = document.getElementById('score-chart');

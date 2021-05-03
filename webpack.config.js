@@ -1,5 +1,6 @@
 const glob = require('glob');
 const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const entry = {};
@@ -30,6 +31,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx'],
+    plugins: [new TsconfigPathsPlugin()],
   },
   optimization: {
     splitChunks: {
