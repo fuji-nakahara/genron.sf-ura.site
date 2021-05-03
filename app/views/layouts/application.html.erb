@@ -29,6 +29,8 @@
         'user_id': '<%= current_user&.id %>'
       })
     </script>
+
+    <%= content_for(:head) %>
   </head>
   <body>
     <%= render 'layouts/navbar' %>

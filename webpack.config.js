@@ -2,8 +2,6 @@ const glob = require("glob");
 const path = require("path");
 const WebpackAssetsManifest = require("webpack-assets-manifest");
 
-const isProd = process.env.NODE_ENV === "production";
-
 const entry = {};
 glob
   .sync(path.resolve(__dirname, "app/javascript/packs/*.{js,ts,tsx}"))
@@ -11,10 +9,11 @@ glob
     entry[path.basename(p, path.extname(p))] = p;
   });
 
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
-  mode: isProd ? "production" : "development",
-  devtool: "source-map",
   entry: entry,
+  mode: isProd ? "production" : "development",
   output: {
     path: path.resolve(__dirname, "public/packs"),
     publicPath:
@@ -22,15 +21,6 @@ module.exports = {
         ? "//localhost:8081/packs/"
         : "/packs/",
     filename: isProd ? "[name]-[hash].js" : "[name].js",
-  },
-  resolve: {
-    extensions: [".js", ".ts", ".tsx"],
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "initial",
-      name: "vendor",
-    },
   },
   module: {
     rules: [
@@ -43,13 +33,13 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    contentBase: path.resolve(__dirname, "public"),
-    publicPath: "/packs/",
-    host: "localhost",
-    port: 8081,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
+  resolve: {
+    extensions: [".js", ".ts", ".jsx", ".tsx"],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "initial",
+      name: "vendor",
     },
   },
   plugins: [
@@ -59,4 +49,14 @@ module.exports = {
       writeToDisk: true,
     }),
   ],
+  devServer: {
+    contentBase: path.resolve(__dirname, "public"),
+    publicPath: "/packs/",
+    host: "localhost",
+    port: 8081,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
+  devtool: "source-map",
 };

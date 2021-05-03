@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "lint": "eslint *.config.js .*.js app/javascript && tsc app/javascript/**/*.ts --noEmit",
+    "lint": "eslint *.config.js .*.js app/javascript && tsc --noEmit",
     "serve": "USE_WEBPACK_DEV_SERVER=1 webpack serve"
   },
   "dependencies": {
@@ -12,10 +12,14 @@
     "chart.js": "^2.9.4",
     "google-palette": "^1.1.0",
     "popper.js": "^1.16.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "stimulus": "^2.0.0"
   },
   "devDependencies": {
     "@types/rails__ujs": "^6.0.0",
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
