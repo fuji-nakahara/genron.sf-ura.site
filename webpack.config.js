@@ -1,14 +1,20 @@
+const glob = require("glob");
 const path = require("path");
 const WebpackAssetsManifest = require("webpack-assets-manifest");
 
 const isProd = process.env.NODE_ENV === "production";
 
+const entry = {};
+glob
+  .sync(path.resolve(__dirname, "app/javascript/packs/*.{js,ts,tsx}"))
+  .forEach((p) => {
+    entry[path.basename(p, path.extname(p))] = p;
+  });
+
 module.exports = {
   mode: isProd ? "production" : "development",
   devtool: "source-map",
-  entry: {
-    application: path.resolve(__dirname, "app/javascript/packs/application.ts"),
-  },
+  entry: entry,
   output: {
     path: path.resolve(__dirname, "public/packs"),
     publicPath:
@@ -19,6 +25,12 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "initial",
+      name: "vendor",
+    },
   },
   module: {
     rules: [
