@@ -1,2 +1,2 @@
 web: bin/rails server
-webpack: yarn run serve
+webpack: yarn serve

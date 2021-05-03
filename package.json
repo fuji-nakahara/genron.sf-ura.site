@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "lint": "eslint *.config.js .*.js app/javascript && tsc --noEmit",
+    "format": "prettier '**/*.{json,js,ts,jsx,tsx}' --ignore-path .gitignore --write && eslint . --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore --fix",
+    "lint": "prettier '**/*.{json,js,ts,jsx,tsx}' --ignore-path .gitignore --check && eslint . --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore && tsc",
     "serve": "USE_WEBPACK_DEV_SERVER=1 webpack serve"
   },
   "dependencies": {
@@ -22,9 +23,12 @@
     "@types/rails__ujs": "^6.0.0",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
-    "babel-eslint": "^10.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.1",
     "ts-loader": "^9.1.1",
     "typescript": "^4.2.4",

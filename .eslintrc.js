@@ -1,14 +1,36 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true,
-    node: true
+    es2021: true,
+    node: true,
   },
-  extends: ['eslint:recommended', 'prettier'],
-  parser: 'babel-eslint',
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 11,
-    sourceType: 'module'
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
   },
-  rules: {}
-}
+  plugins: ['@typescript-eslint'],
+  rules: {},
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  overrides: [
+    {
+      files: ['webpack.config.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
+};

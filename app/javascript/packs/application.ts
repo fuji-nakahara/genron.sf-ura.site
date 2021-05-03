@@ -1,5 +1,5 @@
-import * as Rails from "@rails/ujs";
-import "bootstrap";
-import "../controllers";
+import Rails from '@rails/ujs';
+import 'bootstrap';
+import '../controllers';
 
 Rails.start();
