@@ -10,6 +10,5 @@
 </aside>
 
 <section class="mb-3">
-  <canvas data-controller="score-chart" data-score-chart-endpoint="<%= term_scores_path(@term.year, format: :json) %>"></canvas>
-  <div id="score-chart">
+  <div id="score-chart" data-url="<%= term_scores_path(@term.year, format: :json) %>">
 </section>
