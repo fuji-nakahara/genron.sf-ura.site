@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "rake",
+      "task": "spec",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "label": "rake: spec"
+    },
+    {
+      "label": "app: start",
+      "dependsOn": ["npm: serve", "rails: server"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "serve",
+      "problemMatcher": [],
+      "label": "npm: serve",
+      "detail": "USE_WEBPACK_DEV_SERVER=1 webpack serve"
+    },
+    {
+      "label": "rails: server",
+      "type": "shell",
+      "command": "bin/rails server",
+      "problemMatcher": []
+    },
+    {
+      "label": "rails: console",
+      "type": "shell",
+      "command": "bin/rails console",
+      "problemMatcher": []
+    }
+  ]
+}
