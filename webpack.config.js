@@ -3,19 +3,20 @@ const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
+const isProd = process.env.NODE_ENV === 'production';
+const devServerPort = process.env.PORT || 3035;
+
 const entry = {};
 for (const p of glob.sync(path.resolve(__dirname, 'app/javascript/packs/*'))) {
   entry[path.basename(p, path.extname(p))] = p;
 }
-
-const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: entry,
   mode: isProd ? 'production' : 'development',
   output: {
     path: path.resolve(__dirname, 'public/packs'),
-    publicPath: process.env.USE_WEBPACK_DEV_SERVER === '1' ? '//localhost:8081/packs/' : '/packs/',
+    publicPath: process.env.USE_WEBPACK_DEV_SERVER === '1' ? `//localhost:${devServerPort}/packs/` : '/packs/',
     filename: isProd ? '[name]-[hash].js' : '[name].js',
   },
   module: {
@@ -49,8 +50,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     publicPath: '/packs/',
-    host: 'localhost',
-    port: 8081,
+    port: devServerPort,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
