@@ -10,14 +10,20 @@ Rails.application.routes.draw do
 
   resources :terms, only: [], path: '', param: :year, constraints: { year: /\d+/ } do
     resources :kadais, only: %i[index show], path: '', param: :round, constraints: { round: /\d+/ } do
-      resources :kougais, only: %i[new create]
+      resources :kougais, only: %i[index new create]
 
-      resources :jissakus, only: %i[new create]
+      resources :jissakus, only: %i[index new create]
 
       resources :links, only: %i[create destroy], shallow: true
     end
 
-    resources :students, only: %i[index show], shallow: true
+    resources :students, only: %i[index show], shallow: true do
+      scope module: :students do
+        resources :kougais, only: :index
+
+        resources :jissakus, only: :index
+      end
+    end
 
     resources :scores, only: :index
   end
@@ -58,13 +64,5 @@ Rails.application.routes.draw do
 
   direct :twitter_profile do |screen_name|
     "https://twitter.com/#{screen_name}"
-  end
-
-  direct :twitter_search do |options|
-    "https://twitter.com/search?#{options.compact.to_param}"
-  end
-
-  direct :twitter_tweet do |options|
-    "https://twitter.com/intent/tweet?#{options.compact.to_param}"
   end
 end

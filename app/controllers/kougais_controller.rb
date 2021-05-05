@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class KougaisController < ApplicationController
-  before_action :require_current_user
+  before_action :require_current_user, only: %i[new create]
+
+  def index
+    kadai = Kadai.find_by!(year: params[:term_year], round: params[:kadai_round])
+    render json: kadai.kougais.includes(:student, :voters).as_json(include: %i[student voters])
+  end
 
   def new
     kadai = Kadai.where('kougai_deadline >= ?', Time.zone.today)

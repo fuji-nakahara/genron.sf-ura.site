@@ -1,5 +1,8 @@
 <% provide :title, @student.name %>
 <% provide :description, @student.description %>
+<% content_for :head do %>
+  <%= javascript_pack_tag 'students-show' %>
+<% end %>
 
 <header class="card mb-3">
   <div class="card-body">
@@ -21,47 +24,26 @@
   </div>
 </header>
 
-<% @votes_sum_by_year.each do |year, votes_sum| %>
-  <section class="mb-3" id="<%= year %>">
-    <header class="text-center mb-3">
-      <h2>
-        <%= year %>
-        <span class="badge rounded-pill bg-primary">
-          <%= icon('fas', 'thumbs-up', votes_sum) %>
-        </span>
-      </h2>
+<% if @student.jissakus.exists? %>
+  <section class="mb-3" id="jissaku">
+    <header class="border-bottom mb-3">
+      <h3>
+        実作
+        <span class="badge rounded-pill bg-success"><%= @student.jissakus.count %> 編</span>
+      </h3>
     </header>
+    <div id="jissaku-list" data-jissakus-path="<%= student_jissakus_path(@student) %>"></div>
+  </section>
+<% end %>
 
-    <% if (jissakus = @jissakus_by_year[year]).present? %>
-      <section class="mb-3" id="<%= year %>-jissaku">
-        <header class="border-bottom mb-3">
-          <h3>
-            実作
-            <span class="badge rounded-pill bg-success">
-              <%= jissakus.size %> 編
-            </span>
-          </h3>
-        </header>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-          <%= render jissakus, header: :kadai %>
-        </div>
-      </section>
-    <% end %>
-
-    <% if (kougais = @kougais_by_year[year]).present? %>
-      <section class="mb-3" id="<%= year %>-kougai">
-        <header class="border-bottom mb-3">
-          <h3>
-            梗概
-            <span class="badge rounded-pill bg-info">
-              <%= kougais.size %> 編
-            </span>
-          </h3>
-        </header>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-          <%= render kougais, header: :kadai %>
-        </div>
-      </section>
-    <% end %>
+<% if @student.kougais.exists? %>
+  <section class="mb-3" id="kougai">
+    <header class="border-bottom mb-3">
+      <h3>
+        梗概
+        <span class="badge rounded-pill bg-info"><%= @student.kougais.count %> 編</span>
+      </h3>
+    </header>
+    <div id="kougai-list" data-kougais-path="<%= student_kougais_path(@student) %>"></div>
   </section>
 <% end %>

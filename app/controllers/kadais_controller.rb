@@ -19,17 +19,10 @@ class KadaisController < ApplicationController
     @kadai = Kadai.find_by!(year: params[:term_year], round: params[:round])
 
     respond_to do |format|
-      format.html do
-        order = current_user&.preference_object&.works_order || 'default'
-        @jissakus = @kadai.jissakus.includes(:prize, :voters, :student).__send__("#{order}_order")
-        @kougais = @kadai.kougais.includes(:voters, :student).__send__("#{order}_order")
-      end
+      format.html
 
       format.json do
-        render json: @kadai.as_json.merge(
-          jissakus: @kadai.jissakus.includes(:student, :voters).order(:id).as_json(include: %i[student voters]),
-          kougais: @kadai.kougais.includes(:student, :voters).order(:id).as_json(include: %i[student voters]),
-        )
+        render json: @kadai.as_json
       end
     end
   end

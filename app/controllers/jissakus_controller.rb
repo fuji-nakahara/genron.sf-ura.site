@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class JissakusController < ApplicationController
-  before_action :require_current_user
+  before_action :require_current_user, only: %i[new create]
+
+  def index
+    kadai = Kadai.find_by!(year: params[:term_year], round: params[:kadai_round])
+    render json: kadai.jissakus.includes(:prize, :student, :voters).as_json(include: %i[prize student voters])
+  end
 
   def new
     kadai = Kadai.where('jissaku_deadline >= ?', Time.zone.today)

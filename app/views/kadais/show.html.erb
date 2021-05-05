@@ -1,10 +1,15 @@
 <%
   provide :title, "#{@kadai.human_year_round}「#{@kadai.title}」"
+
   description = []
   description << "課題提示：#{@kadai.author}" if @kadai.author.present?
   description << "梗概締切：#{localize @kadai.kougai_deadline, format: :long}" if @kadai.kougai_deadline
   description << "実作締切：#{localize @kadai.jissaku_deadline, format: :long}" if @kadai.jissaku_deadline
   provide :description, description.join('、')
+
+  content_for :head do
+    javascript_pack_tag 'kadais-show'
+  end
 %>
 
 <header class="card mb-3">
@@ -66,9 +71,7 @@
       <h2>
         実作
         <% if @kadai.jissakus_count > 0 %>
-          <span class="badge rounded-pill bg-success">
-            <%= @kadai.jissakus_count %> 編
-          </span>
+          <span class="badge rounded-pill bg-success"> <%= @kadai.jissakus_count %> 編 </span>
         <% end %>
       </h2>
     </header>
@@ -79,9 +82,13 @@
       </div>
     <% end %>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @jissakus, header: :student %>
-    </div>
+    <% if @kadai.jissakus.exists? %>
+      <div
+        id="jissaku-list"
+        data-jissakus-path="<%= term_kadai_jissakus_path(@kadai.year, @kadai) %>"
+        data-sort="<%= current_user&.preference_object&.works_order %>"
+      ></div>
+    <% end %>
   </section>
 <% end %>
 
@@ -91,9 +98,7 @@
       <h2>
         梗概
         <% if @kadai.kougais_count > 0 %>
-          <span class="badge rounded-pill bg-info">
-            <%= @kadai.kougais_count %> 編
-          </span>
+          <span class="badge rounded-pill bg-info"><%= @kadai.kougais_count %> 編</span>
         <% end %>
       </h2>
     </header>
@@ -104,9 +109,13 @@
       </div>
     <% end %>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <%= render @kougais, header: :student %>
-    </div>
+    <% if @kadai.kougais.exists? %>
+      <div
+        id="kougai-list"
+        data-kougais-path="<%= term_kadai_kougais_path(@kadai.year, @kadai) %>"
+        data-sort="<%= current_user&.preference_object&.works_order %>"
+      ></div>
+    <% end %>
   </section>
 <% end %>
 

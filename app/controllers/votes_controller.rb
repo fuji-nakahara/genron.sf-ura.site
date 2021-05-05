@@ -8,15 +8,16 @@ class VotesController < ApplicationController
     vote = work.votes.build(user: current_user)
 
     if vote.save
-      head :created
+      render json: work.voters.as_json
     else
       render status: :bad_request, json: { errors: vote.errors.full_messages }
     end
   end
 
   def destroy
-    vote = Vote.find_by!(work_id: params[:work_id], user_id: current_user.id)
+    work = Work.find(params[:work_id])
+    vote = work.votes.find_by!(user_id: current_user.id)
     vote.destroy!
-    head :no_content
+    render json: work.voters.as_json
   end
 end

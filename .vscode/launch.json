@@ -12,13 +12,6 @@
       "args": ["server"]
     },
     {
-      "name": "RSpec - all",
-      "type": "Ruby",
-      "request": "launch",
-      "program": "${workspaceRoot}/bin/rake",
-      "args": ["spec"]
-    },
-    {
       "name": "RSpec - active spec file only",
       "type": "Ruby",
       "request": "launch",

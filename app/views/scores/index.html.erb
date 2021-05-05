@@ -1,4 +1,7 @@
 <% provide :title, "#{@term.year} 得点チャート" %>
+<% content_for :head do %>
+  <%= javascript_pack_tag 'scores-index' %>
+<% end %>
 
 <%= render 'terms/nav', term: @term %>
 
@@ -7,5 +10,5 @@
 </aside>
 
 <section class="mb-3">
-  <canvas data-controller="score-chart" data-score-chart-endpoint="<%= term_scores_path(@term.year, format: :json) %>"></canvas>
+  <div id="score-chart" data-scores-path="<%= term_scores_path(@term.year, format: :json) %>"></div>
 </section>

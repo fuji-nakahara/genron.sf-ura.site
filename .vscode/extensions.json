@@ -1,3 +1,3 @@
 {
-  "recommendations": ["rebornix.ruby"]
+  "recommendations": ["rebornix.ruby", "esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
 }

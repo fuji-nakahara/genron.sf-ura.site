@@ -3,6 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe 'KougaisController:', type: :request do
+  describe 'GET /:term_year/:kadai_round/kougais' do
+    let(:kadai) { create(:kadai) }
+
+    before do
+      create_list(:kougai, 3, kadai: kadai)
+    end
+
+    it 'responds OK' do
+      get term_kadai_kougais_path(kadai.year, kadai)
+
+      expect(response).to have_http_status :ok
+    end
+  end
+
   describe 'GET /:term_year/:kadai_round/kougais/new' do
     let(:user) { create(:user) }
     let(:kadai) { create(:kadai, kougai_deadline: 1.day.from_now.to_date) }
