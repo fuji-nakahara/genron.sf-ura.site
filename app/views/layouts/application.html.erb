@@ -37,9 +37,6 @@
     <div class="container">
       <%= render 'layouts/flash' %>
 
-      <%= render 'modal_error' %>
-      <%= render 'modal_require_login' unless current_user %>
-
       <main id="main">
         <%= yield %>
       </main>
