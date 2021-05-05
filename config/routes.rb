@@ -17,7 +17,13 @@ Rails.application.routes.draw do
       resources :links, only: %i[create destroy], shallow: true
     end
 
-    resources :students, only: %i[index show], shallow: true
+    resources :students, only: %i[index show], shallow: true do
+      scope module: :students do
+        resources :kougais, only: :index
+
+        resources :jissakus, only: :index
+      end
+    end
 
     resources :scores, only: :index
   end
