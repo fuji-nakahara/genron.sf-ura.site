@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   resources :terms, only: [], path: '', param: :year, constraints: { year: /\d+/ } do
     resources :kadais, only: %i[index show], path: '', param: :round, constraints: { round: /\d+/ } do
-      resources :kougais, only: %i[new create]
+      resources :kougais, only: %i[index new create]
 
-      resources :jissakus, only: %i[new create]
+      resources :jissakus, only: %i[index new create]
 
       resources :links, only: %i[create destroy], shallow: true
     end

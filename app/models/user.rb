@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :links, dependent: :nullify
 
   def serializable_hash(options = nil)
-    default_options = { only: %i[twitter_id twitter_screen_name] }
+    default_options = { only: %i[twitter_id twitter_screen_name image_url] }
     super(default_options.merge(options.to_h))
   end
 

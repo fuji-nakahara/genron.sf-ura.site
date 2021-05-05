@@ -18,4 +18,9 @@ class Kougai < Work
       end
     end
   end
+
+  def serializable_hash(options = nil)
+    default_options = { only: %i[id url genron_sf_id title selected] }
+    super(default_options.merge(options.to_h))
+  end
 end
