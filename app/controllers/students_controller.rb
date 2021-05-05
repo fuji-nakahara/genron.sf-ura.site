@@ -23,20 +23,10 @@ class StudentsController < ApplicationController
     @student = Student.where(id: params[:id]).or(Student.where(genron_sf_id: params[:id])).take!
 
     respond_to do |format|
-      format.html do
-        @votes_sum_by_year = @student.works.joins(:kadai).order('kadais.year': :desc)
-                                     .group(:'kadais.year').sum(:votes_count)
-        @jissakus_by_year = @student.jissakus.includes(:prize, :kadai, :voters).reverse_order
-                                    .group_by { |jissaku| jissaku.kadai.year }
-        @kougais_by_year = @student.kougais.includes(:kadai, :voters).reverse_order
-                                   .group_by { |kougai| kougai.kadai.year }
-      end
+      format.html
 
       format.json do
-        render json: @student.as_json.merge(
-          jissakus: @student.jissakus.includes(:kadai, :voters).order(:id).as_json(include: %i[kadai voters]),
-          kougais: @student.kougais.includes(:kadai, :voters).order(:id).as_json(include: %i[kadai voters]),
-        )
+        render json: @student.as_json
       end
     end
   end
