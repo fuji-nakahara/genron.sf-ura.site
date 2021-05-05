@@ -2,45 +2,31 @@
 // @ts-ignore
 import * as palette from 'google-palette';
 import React, { useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
 import ChartComponent from 'react-chartjs-2';
+import LoadingSpinner from 'LoadingSpinner';
+import { ScoreTable } from 'types';
 
 type Props = {
   jsonUrl: string;
 };
 
-type ScoreTable = {
-  student: string;
-  scores: number[];
-}[];
-
-async function getScoreTable(url: string): Promise<ScoreTable> {
-  const response = await fetch(url);
-  if (response.ok) {
-    return await response.json();
-  } else {
-    throw new Error(`Failed to get score table from ${url} (${response.status} ${response.statusText})`);
-  }
-}
-
-const ScoreChart: React.FC<Props> = (props: Props) => {
+const ScoreChart: React.FC<Props> = ({ jsonUrl }: Props) => {
   const [scoreTable, setScoreTable] = useState<ScoreTable | null>(null);
 
   useEffect(() => {
     (async () => {
-      const scoreTable = await getScoreTable(props.jsonUrl);
-      setScoreTable(scoreTable);
+      const response = await fetch(jsonUrl);
+      if (response.ok) {
+        const scoreTable = await response.json();
+        setScoreTable(scoreTable);
+      } else {
+        throw new Error(`Failed to get data from ${jsonUrl} (${response.status} ${response.statusText})`);
+      }
     })();
-  }, [props.jsonUrl]);
+  }, [jsonUrl]);
 
   if (scoreTable === null) {
-    return (
-      <div className="d-flex justify-content-center">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   const colors = palette('tol-rainbow', scoreTable.length);

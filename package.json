@@ -8,6 +8,10 @@
     "serve": "USE_WEBPACK_DEV_SERVER=1 webpack serve"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@rails/ujs": "^6.1.3",
     "bootstrap": "^5.0.0-alpha3",
     "chart.js": "^3.2.1",

@@ -30,7 +30,7 @@ class Kadai < ApplicationRecord
 
   def serializable_hash(options = nil)
     default_options = {
-      only: %i[year round title author kougai_deadline jissaku_deadline kougais_count jissakus_count],
+      only: %i[id year round title author kougai_deadline jissaku_deadline],
       methods: :url,
     }
     super(default_options.merge(options.to_h))
