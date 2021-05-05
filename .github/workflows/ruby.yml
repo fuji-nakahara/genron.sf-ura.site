@@ -1,12 +1,12 @@
-name: Test
+name: Ruby
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 jobs:
-  RSpec:
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -20,7 +20,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports: [ '5432:5432' ]
+        ports: ['5432:5432']
 
     env:
       RAILS_ENV: test
@@ -62,7 +62,7 @@ jobs:
           yarn install
 
       - name: Build javascript
-        run: yarn build
+        run: yarn run build
 
       - name: Setup database
         run: |
@@ -71,3 +71,15 @@ jobs:
 
       - name: Run tests
         run: bin/rake spec
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - run: bin/rubocop

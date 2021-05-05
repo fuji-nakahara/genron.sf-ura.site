@@ -1,4 +1,4 @@
-name: Lint
+name: JavaScript
 
 on:
   push:
@@ -6,19 +6,7 @@ on:
   pull_request:
 
 jobs:
-  RuboCop:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - run: bin/rubocop
-
-  ESLint:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,4 +30,4 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - run: yarn lint
+      - run: yarn run lint
