@@ -13,10 +13,6 @@ class Work < ApplicationRecord
 
   scope :default_order, -> { order(votes_count: :desc, created_at: :asc) }
 
-  def url_host
-    URI.parse(url).host
-  end
-
   private
 
   def unable_to_destroy_imported_work
