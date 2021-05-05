@@ -35,6 +35,7 @@ export type Jissaku = {
   kadai?: Kadai;
   prize?: {
     title: string;
+    position: number;
   };
 };
 

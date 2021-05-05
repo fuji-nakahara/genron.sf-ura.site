@@ -11,8 +11,6 @@ class Work < ApplicationRecord
   validates :title, presence: true
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
 
-  scope :default_order, -> { order(votes_count: :desc, created_at: :asc) }
-
   private
 
   def unable_to_destroy_imported_work

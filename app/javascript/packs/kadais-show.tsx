@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const jissakuList = document.getElementById('jissaku-list');
   if (jissakuList && jissakuList.dataset.jissakusPath) {
     ReactDOM.render(
-      <WorkCardList jsonUrl={jissakuList.dataset.jissakusPath} currentUser={currentUser}></WorkCardList>,
+      <WorkCardList
+        jsonUrl={jissakuList.dataset.jissakusPath}
+        currentUser={currentUser}
+        sortByGenronSf={jissakuList.dataset.sort === 'genron_sf'}
+      ></WorkCardList>,
       jissakuList
     );
   }
@@ -16,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const kougaiList = document.getElementById('kougai-list');
   if (kougaiList && kougaiList.dataset.kougaisPath) {
     ReactDOM.render(
-      <WorkCardList jsonUrl={kougaiList.dataset.kougaisPath} currentUser={currentUser}></WorkCardList>,
+      <WorkCardList
+        jsonUrl={kougaiList.dataset.kougaisPath}
+        currentUser={currentUser}
+        sortByGenronSf={kougaiList.dataset.sort === 'genron_sf'}
+      ></WorkCardList>,
       kougaiList
     );
   }

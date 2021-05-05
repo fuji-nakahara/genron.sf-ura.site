@@ -7,9 +7,10 @@ import { User, Work } from 'types';
 type Props = {
   jsonUrl: string;
   currentUser?: User;
+  sortByGenronSf?: boolean;
 };
 
-const WorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) => {
+const WorkCardList: React.FC<Props> = ({ jsonUrl, currentUser, sortByGenronSf }: Props) => {
   const [works, setWorks] = useState<Work[] | null>(null);
 
   useEffect(() => {
@@ -28,6 +29,14 @@ const WorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) => {
     return <LoadingSpinner />;
   }
 
+  if (works[0]?.kadai) {
+    works.sort(compareByKadai);
+  } else if (sortByGenronSf) {
+    works.sort(compareByGenronSf);
+  } else {
+    works.sort(compareByVoteCount);
+  }
+
   return (
     <Row xs={1} md={2} xl={3}>
       {works.map((work) => (
@@ -38,5 +47,84 @@ const WorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) => {
     </Row>
   );
 };
+
+function compareByKadai(a: Work, b: Work): number {
+  if (!a.kadai || !b.kadai) {
+    throw Error('Unexpected status: work does not have kadai');
+  }
+
+  if (a.kadai.year > b.kadai.year) {
+    return -1;
+  } else if (a.kadai.year < b.kadai.year) {
+    return 1;
+  }
+
+  if (a.kadai.round > b.kadai.round) {
+    return -1;
+  } else if (a.kadai.round < b.kadai.round) {
+    return 1;
+  }
+
+  if (a.id > b.id) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function compareByVoteCount(a: Work, b: Work): number {
+  if (a.voters.length > b.voters.length) {
+    return -1;
+  } else if (a.voters.length < b.voters.length) {
+    return 1;
+  }
+
+  if (a.id < b.id) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function compareByGenronSf(a: Work, b: Work): number {
+  if (a.genron_sf_id && !b.genron_sf_id) {
+    return -1;
+  } else if (!a.genron_sf_id && b.genron_sf_id) {
+    return 1;
+  } else if (a.genron_sf_id && b.genron_sf_id) {
+    if ('score' in a && 'score' in b) {
+      if (a.prize && !b.prize) {
+        return -1;
+      } else if (!a.prize && b.prize) {
+        return 1;
+      } else if (a.prize && b.prize) {
+        if (a.prize.position < b.prize.position) {
+          return -1;
+        } else if (a.prize.position > b.prize.position) {
+          return 1;
+        }
+      }
+
+      if (a.score > b.score) {
+        return -1;
+      } else if (a.score < b.score) {
+        return 1;
+      }
+    }
+
+    if (a.selected && !b.selected) {
+      return -1;
+    } else if (!a.selected && b.selected) {
+      return 1;
+    }
+
+    if (a.genron_sf_id < b.genron_sf_id) {
+      return -1;
+    } else if (a.genron_sf_id > b.genron_sf_id) {
+      return 1;
+    }
+  }
+  return 0;
+}
 
 export default WorkCardList;

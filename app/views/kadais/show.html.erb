@@ -83,7 +83,11 @@
     <% end %>
 
     <% if @kadai.jissakus.exists? %>
-      <div id="jissaku-list" data-jissakus-path="<%= term_kadai_jissakus_path(@kadai.year, @kadai) %>"></div>
+      <div
+        id="jissaku-list"
+        data-jissakus-path="<%= term_kadai_jissakus_path(@kadai.year, @kadai) %>"
+        data-sort="<%= current_user&.preference_object&.works_order %>"
+      ></div>
     <% end %>
   </section>
 <% end %>
@@ -106,7 +110,11 @@
     <% end %>
 
     <% if @kadai.kougais.exists? %>
-      <div id="kougai-list" data-kougais-path="<%= term_kadai_kougais_path(@kadai.year, @kadai) %>"></div>
+      <div
+        id="kougai-list"
+        data-kougais-path="<%= term_kadai_kougais_path(@kadai.year, @kadai) %>"
+        data-sort="<%= current_user&.preference_object&.works_order %>"
+      ></div>
     <% end %>
   </section>
 <% end %>
