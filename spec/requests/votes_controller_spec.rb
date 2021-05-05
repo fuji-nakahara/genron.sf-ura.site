@@ -12,11 +12,11 @@ RSpec.describe 'VotesController:', type: :request do
       log_in user
     end
 
-    it 'creates a vote and responds Created' do
+    it 'creates a vote and responds OK' do
       expect { post work_vote_path(kougai) }
         .to change { kougai.votes.count }.by(1)
 
-      expect(response).to have_http_status :created
+      expect(response).to have_http_status :ok
     end
 
     context 'when user have already voted for other 3 works' do
@@ -44,11 +44,11 @@ RSpec.describe 'VotesController:', type: :request do
       log_in user
     end
 
-    it 'destroys the vote and responds No Content' do
+    it 'destroys the vote and responds OK' do
       expect { delete work_vote_path(vote.work) }
         .to change(Vote, :count).by(-1)
 
-      expect(response).to have_http_status :no_content
+      expect(response).to have_http_status :ok
     end
   end
 end
