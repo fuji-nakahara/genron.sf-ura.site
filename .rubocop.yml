@@ -25,6 +25,10 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
 
+Rails/EnvironmentVariableAccess:
+  Exclude:
+    - lib/*/**
+
 RSpec/ExampleLength:
   Enabled: false
 
