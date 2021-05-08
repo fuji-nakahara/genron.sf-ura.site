@@ -7,6 +7,7 @@ updates:
       day: saturday
       time: "08:00"
       timezone: Asia/Tokyo
+    open-pull-requests-limit: 10
 
   - package-ecosystem: npm
     directory: "/"
@@ -15,7 +16,4 @@ updates:
       day: saturday
       time: "08:00"
       timezone: Asia/Tokyo
-    ignore:
-      - dependency-name: chart.js
-        versions:
-          - ">= 3.a, < 4"
+    open-pull-requests-limit: 10
