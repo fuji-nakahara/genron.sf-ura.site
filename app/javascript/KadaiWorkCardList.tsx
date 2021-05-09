@@ -43,7 +43,7 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, defaultSortingMethod = 'd
   return (
     <Flipper flipKey={works.map((work) => work.id).join()}>
       <Row className="mb-3">
-        <Col xs="auto" className="ms-auto">
+        <Col md="auto" className="ms-md-auto">
           <KadaiWorkCardListSortingMethodSelect
             sortingMethod={sortingMethod}
             handleSortingMethodUpdated={setSortingMethod}
