@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import WorkCardList from 'WorkCardList';
+import KadaiWorkCardList from 'KadaiWorkCardList';
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = document.body.dataset.currentUser ? JSON.parse(document.body.dataset.currentUser) : undefined;
@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const jissakuList = document.getElementById('jissaku-list');
   if (jissakuList && jissakuList.dataset.jissakusPath) {
     ReactDOM.render(
-      <WorkCardList
+      <KadaiWorkCardList
         jsonUrl={jissakuList.dataset.jissakusPath}
         currentUser={currentUser}
         sortByGenronSf={jissakuList.dataset.sort === 'genron_sf'}
-      ></WorkCardList>,
+      ></KadaiWorkCardList>,
       jissakuList
     );
   }
@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const kougaiList = document.getElementById('kougai-list');
   if (kougaiList && kougaiList.dataset.kougaisPath) {
     ReactDOM.render(
-      <WorkCardList
+      <KadaiWorkCardList
         jsonUrl={kougaiList.dataset.kougaisPath}
         currentUser={currentUser}
         sortByGenronSf={kougaiList.dataset.sort === 'genron_sf'}
-      ></WorkCardList>,
+      ></KadaiWorkCardList>,
       kougaiList
     );
   }
