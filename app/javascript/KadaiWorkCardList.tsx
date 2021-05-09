@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import React, { FormEventHandler, useEffect, useState } from 'react';
+import { Col, FormSelect, Row } from 'react-bootstrap';
+import { Flipper, Flipped } from 'react-flip-toolkit';
 import WorkCard from 'WorkCard';
 import LoadingSpinner from 'LoadingSpinner';
 import { User, Work } from 'types';
 
 type Props = {
   jsonUrl: string;
+  sortingMethod: string;
   currentUser?: User;
-  sortByGenronSf?: boolean;
 };
 
-const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, currentUser, sortByGenronSf }: Props) => {
+const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, sortingMethod = 'default', currentUser }: Props) => {
+  const [sortingMethodName, setSortingMethodName] = useState<string>(sortingMethod);
   const [works, setWorks] = useState<Work[] | null>(null);
 
   useEffect(() => {
@@ -29,24 +31,44 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, currentUser, sortByGenron
     return <LoadingSpinner />;
   }
 
-  if (sortByGenronSf) {
+  if (sortingMethodName === 'genron_sf') {
     works.sort(compareByGenronSf);
   } else {
-    works.sort(compareByVoteCount);
+    works.sort(compareByVotesCount);
   }
 
+  const handleOnChange: FormEventHandler<HTMLSelectElement> = (event) => {
+    setSortingMethodName(event.currentTarget.value);
+  };
+
   return (
-    <Row xs={1} md={2} xl={3}>
-      {works.map((work) => (
-        <Col key={work.id}>
-          <WorkCard work={work} currentUser={currentUser} />
+    <Flipper flipKey={works.map((work) => work.id).join()}>
+      <Row className="mb-3">
+        <Col xs="auto" className="ms-auto">
+          <FormSelect size="sm" onChange={handleOnChange}>
+            <option value="default" selected={sortingMethod === 'default'}>
+              裏SF創作講座順
+            </option>
+            <option value="genron_sf" selected={sortingMethod === 'genron_sf'}>
+              超・SF作家育成サイト順
+            </option>
+          </FormSelect>
         </Col>
-      ))}
-    </Row>
+      </Row>
+      <Row xs={1} md={2} xl={3}>
+        {works.map((work) => (
+          <Flipped key={work.id} flipId={work.id}>
+            <Col>
+              <WorkCard work={work} currentUser={currentUser} />
+            </Col>
+          </Flipped>
+        ))}
+      </Row>
+    </Flipper>
   );
 };
 
-function compareByVoteCount(a: Work, b: Work): number {
+function compareByVotesCount(a: Work, b: Work): number {
   if (a.voters.length > b.voters.length) {
     return -1;
   } else if (a.voters.length < b.voters.length) {
