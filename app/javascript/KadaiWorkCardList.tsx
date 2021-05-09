@@ -33,6 +33,8 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, sortingMethod = 'default'
 
   if (sortingMethodName === 'genron_sf') {
     works.sort(compareByGenronSf);
+  } else if (sortingMethodName === 'genron_sf_student') {
+    works.sort(compareByGenronSfStudent);
   } else {
     works.sort(compareByVotesCount);
   }
@@ -51,6 +53,9 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, sortingMethod = 'default'
             </option>
             <option value="genron_sf" selected={sortingMethod === 'genron_sf'}>
               超・SF作家育成サイト順
+            </option>
+            <option value="genron_sf_student" selected={sortingMethod === 'genron_sf_student'}>
+              超・SF作家育成サイト受講生順
             </option>
           </FormSelect>
         </Col>
@@ -118,14 +123,42 @@ function compareByGenronSf(a: Work, b: Work): number {
       return 1;
     }
 
-    if (a.genron_sf_id < b.genron_sf_id) {
+    if (a.student.genron_sf_id && b.student.genron_sf_id) {
+      if (a.student.genron_sf_id < b.student.genron_sf_id) {
+        return -1;
+      } else if (a.student.genron_sf_id > b.student.genron_sf_id) {
+        return 1;
+      }
+    }
+  }
+
+  if (a.id < b.id) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function compareByGenronSfStudent(a: Work, b: Work): number {
+  if (a.genron_sf_id && !b.genron_sf_id) {
+    return -1;
+  } else if (!a.genron_sf_id && b.genron_sf_id) {
+    return 1;
+  }
+
+  if (a.genron_sf_id && b.genron_sf_id && a.student.genron_sf_id && b.student.genron_sf_id) {
+    if (a.student.genron_sf_id < b.student.genron_sf_id) {
       return -1;
-    } else if (a.genron_sf_id > b.genron_sf_id) {
+    } else if (a.student.genron_sf_id > b.student.genron_sf_id) {
       return 1;
     }
   }
 
-  return 0;
+  if (a.id < b.id) {
+    return -1;
+  } else {
+    return 1;
+  }
 }
 
 export default KadaiWorkCardList;
