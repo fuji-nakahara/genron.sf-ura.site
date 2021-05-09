@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
       <KadaiWorkCardList
         jsonUrl={jissakuList.dataset.jissakusPath}
-        sortingMethod={jissakuList.dataset.sort || 'default'}
+        defaultSortingMethod={jissakuList.dataset.sort || 'default'}
         currentUser={currentUser}
       ></KadaiWorkCardList>,
       jissakuList
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
       <KadaiWorkCardList
         jsonUrl={kougaiList.dataset.kougaisPath}
-        sortingMethod={kougaiList.dataset.sort || 'default'}
+        defaultSortingMethod={kougaiList.dataset.sort || 'default'}
         currentUser={currentUser}
       ></KadaiWorkCardList>,
       kougaiList
