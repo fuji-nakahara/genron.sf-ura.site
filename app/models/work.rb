@@ -11,6 +11,18 @@ class Work < ApplicationRecord
   validates :title, presence: true
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
 
+  scope :stats_by_year, lambda {
+    joins(:kadai)
+      .select(
+        :'kadais.year',
+        "count(case when works.type = 'Kougai' then 1 else null end) as kougais_count",
+        "count(case when works.type = 'Jissaku' then 1 else null end) as jissakus_count",
+        'sum(works.votes_count) as votes_sum',
+      )
+      .group(:'kadais.year')
+      .order(:'kadais.year')
+  }
+
   private
 
   def unable_to_destroy_imported_work

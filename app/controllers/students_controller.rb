@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
     @term = Term.find(params[:term_year])
     @students = Student.joins(works: :kadai)
                        .merge(Kadai.where(year: @term.year))
-                       .with_votes_sum
+                       .with_works_stats
                        .order(votes_sum: :desc, genron_sf_id: :asc)
 
     respond_to do |format|
@@ -23,7 +23,9 @@ class StudentsController < ApplicationController
     @student = Student.where(id: params[:id]).or(Student.where(genron_sf_id: params[:id])).take!
 
     respond_to do |format|
-      format.html
+      format.html do
+        @stats = @student.works.stats_by_year.reverse_order
+      end
 
       format.json do
         render json: @student.as_json

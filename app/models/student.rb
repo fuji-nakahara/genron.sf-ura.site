@@ -12,7 +12,7 @@ class Student < ApplicationRecord
   validates :url, presence: true, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }
   validates :description, length: { maximum: 160 }, on: :update
 
-  scope :with_votes_sum, lambda {
+  scope :with_works_stats, lambda {
     joins(:works)
       .select(
         'students.*',

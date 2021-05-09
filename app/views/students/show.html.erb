@@ -22,15 +22,20 @@
       <%= link_to icon('fas', 'edit', 'プロフィールを編集する'), profile_path, class: 'btn btn-sm btn-outline-primary' %>
     <% end %>
   </div>
+
+  <ul class="list-group list-group-flush">
+    <% @stats.each do |stats| %>
+      <li class="list-group-item">
+        <%= render 'stats', stats: stats %>
+      </li>
+    <% end %>
+  </ul>
 </header>
 
 <% if @student.jissakus.exists? %>
   <section class="mb-3" id="jissaku">
     <header class="border-bottom mb-3">
-      <h3>
-        実作
-        <span class="badge rounded-pill bg-success"><%= @student.jissakus.count %> 編</span>
-      </h3>
+      <h3>実作</h3>
     </header>
     <div id="jissaku-list" data-jissakus-path="<%= student_jissakus_path(@student) %>"></div>
   </section>
@@ -39,10 +44,7 @@
 <% if @student.kougais.exists? %>
   <section class="mb-3" id="kougai">
     <header class="border-bottom mb-3">
-      <h3>
-        梗概
-        <span class="badge rounded-pill bg-info"><%= @student.kougais.count %> 編</span>
-      </h3>
+      <h3>梗概</h3>
     </header>
     <div id="kougai-list" data-kougais-path="<%= student_kougais_path(@student) %>"></div>
   </section>

@@ -1,0 +1,22 @@
+<ul class="list-inline">
+  <% if stats.respond_to?(:year) %>
+    <li class="list-inline-item">
+      <b><%= stats.year %></b>
+    </li>
+  <% end %>
+  <% if stats.jissakus_count > 0 %>
+    <li class="list-inline-item">
+      <span class="badge bg-success">実作 <%= stats.jissakus_count %></span>
+    </li>
+  <% end %>
+  <% if stats.kougais_count > 0 %>
+    <li class="list-inline-item">
+      <span class="badge bg-info">梗概 <%= stats.kougais_count %></span>
+    </li>
+  <% end %>
+  <% if stats.votes_sum > 0 %>
+    <li class="list-inline-item">
+      <span class="badge rounded-pill bg-primary"><%= icon('fas', 'thumbs-up', stats.votes_sum) %></span>
+    </li>
+  <% end %>
+</ul>
