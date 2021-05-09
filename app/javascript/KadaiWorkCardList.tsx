@@ -1,3 +1,4 @@
+import Rails from '@rails/ujs';
 import React, { FormEventHandler, useEffect, useState } from 'react';
 import { Col, FormSelect, Row } from 'react-bootstrap';
 import { Flipper, Flipped } from 'react-flip-toolkit';
@@ -22,7 +23,7 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, sortingMethod = 'default'
         const works = await response.json();
         setWorks(works);
       } else {
-        throw new Error(`Failed to get data from ${jsonUrl} (${response.status} ${response.statusText})`);
+        throw new Error(`Failed to request GET ${jsonUrl} (${response.status} ${response.statusText})`);
       }
     })();
   }, [jsonUrl]);
@@ -39,22 +40,45 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, sortingMethod = 'default'
     works.sort(compareByVotesCount);
   }
 
-  const handleOnChange: FormEventHandler<HTMLSelectElement> = (event) => {
-    setSortingMethodName(event.currentTarget.value);
+  const handleOnChange: FormEventHandler<HTMLSelectElement> = async (event) => {
+    const newSortingMethodName = event.currentTarget.value;
+    setSortingMethodName(newSortingMethodName);
+
+    if (!currentUser) {
+      return;
+    }
+
+    const headers = new Headers({ 'X-Requested-With': 'XMLHttpRequest' });
+    const token = Rails.csrfToken();
+    if (token) {
+      headers.append('X-CSRF-Token', token);
+    }
+    const body = new FormData();
+    body.append('works_order', newSortingMethodName);
+
+    const response = await fetch('/preference', {
+      method: 'PATCH',
+      credentials: 'same-origin',
+      headers: headers,
+      body: body,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to request PATCH /preference (${response.status} ${response.statusText})`);
+    }
   };
 
   return (
     <Flipper flipKey={works.map((work) => work.id).join()}>
       <Row className="mb-3">
         <Col xs="auto" className="ms-auto">
-          <FormSelect size="sm" onChange={handleOnChange}>
-            <option value="default" selected={sortingMethod === 'default'}>
+          <FormSelect size="sm" onChange={handleOnChange} defaultValue={sortingMethod}>
+            <option value="default">
               裏SF創作講座順
             </option>
-            <option value="genron_sf" selected={sortingMethod === 'genron_sf'}>
+            <option value="genron_sf">
               超・SF作家育成サイト順
             </option>
-            <option value="genron_sf_student" selected={sortingMethod === 'genron_sf_student'}>
+            <option value="genron_sf_student">
               超・SF作家育成サイト受講生順
             </option>
           </FormSelect>

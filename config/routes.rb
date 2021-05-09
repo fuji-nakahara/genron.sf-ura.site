@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   resource :profile, only: %i[show update]
 
-  resource :preference, only: %i[show update]
+  resource :preference, only: :update
 
   resources :kadais, only: :show # For backward compatibility
 

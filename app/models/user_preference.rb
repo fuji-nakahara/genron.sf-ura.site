@@ -7,7 +7,7 @@ class UserPreference
 
   attribute :works_order, :string, default: 'default'
 
-  validates :works_order, inclusion: { in: %w[default genron_sf] }
+  validates :works_order, inclusion: { in: %w[default genron_sf genron_sf_student] }
 
   def persisted?
     true

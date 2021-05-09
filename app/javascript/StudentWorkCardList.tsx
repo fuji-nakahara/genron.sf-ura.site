@@ -19,7 +19,7 @@ const StudentWorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) =
         const works = await response.json();
         setWorks(works);
       } else {
-        throw new Error(`Failed to get data from ${jsonUrl} (${response.status} ${response.statusText})`);
+        throw new Error(`Failed to request GET ${jsonUrl} (${response.status} ${response.statusText})`);
       }
     })();
   }, [jsonUrl]);

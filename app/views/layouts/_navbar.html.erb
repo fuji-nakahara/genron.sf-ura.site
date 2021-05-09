@@ -28,7 +28,7 @@
               <% if current_user.student.genron_sf_id %>
                 <li><%= link_to '電子書籍の作成', ebooks_path, class: 'dropdown-item' %></li>
               <% end %>
-              <li><%= link_to '設定', preference_path, class: 'dropdown-item' %></li>
+              <li><%= link_to '設定', profile_path, class: 'dropdown-item' %></li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to 'ログアウト', logout_path, method: :post, class: 'dropdown-item' %></li>
             </ul>
