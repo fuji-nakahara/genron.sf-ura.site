@@ -42,15 +42,17 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, defaultSortingMethod = 'd
 
   return (
     <Flipper flipKey={works.map((work) => work.id).join()}>
-      <Row className="mb-3">
-        <Col md="auto" className="ms-md-auto">
-          <KadaiWorkCardListSortingMethodSelect
-            sortingMethod={sortingMethod}
-            handleSortingMethodUpdated={setSortingMethod}
-            isLoggedIn={!!currentUser}
-          />
-        </Col>
-      </Row>
+      {works.length > 1 && (
+        <Row className="mb-3">
+          <Col md="auto" className="ms-md-auto">
+            <KadaiWorkCardListSortingMethodSelect
+              sortingMethod={sortingMethod}
+              handleSortingMethodUpdated={setSortingMethod}
+              isLoggedIn={!!currentUser}
+            />
+          </Col>
+        </Row>
+      )}
       <Row xs={1} md={2} xl={3}>
         {works.map((work) => (
           <Flipped key={work.id} flipId={work.id}>
