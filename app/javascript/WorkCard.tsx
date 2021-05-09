@@ -19,6 +19,7 @@ const WorkCard: React.FC<Props> = ({ work, currentUser }: Props) => {
   const [voters, setVoters] = useState<User[]>(work.voters);
 
   function handleVotersUpdated(voters: User[]) {
+    work.voters = voters;
     setVoters(voters);
   }
 
