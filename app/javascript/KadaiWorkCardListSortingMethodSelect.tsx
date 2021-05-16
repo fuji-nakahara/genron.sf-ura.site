@@ -13,7 +13,7 @@ const KadaiWorkCardListSortingMethodSelect: React.FC<Props> = ({
   handleSortingMethodUpdated,
   isLoggedIn,
 }: Props) => {
-  const handleOnChange: FormEventHandler<HTMLSelectElement> = (event) => {
+  const handleOnChange: FormEventHandler<HTMLSelectElement> = async (event) => {
     const newSortingMethodName = event.currentTarget.value;
     handleSortingMethodUpdated(newSortingMethodName);
 
@@ -29,12 +29,15 @@ const KadaiWorkCardListSortingMethodSelect: React.FC<Props> = ({
     const body = new FormData();
     body.append('works_order', newSortingMethodName);
 
-    fetch('/preference', {
+    const response = await fetch('/preference', {
       method: 'PATCH',
       credentials: 'same-origin',
       headers: headers,
       body: body,
     });
+    if (!response.ok) {
+      throw new Error(`Failed PATCH /preference ${response.status} (${response.statusText})`);
+    }
   };
 
   return (
