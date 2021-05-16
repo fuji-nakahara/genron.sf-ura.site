@@ -55,7 +55,7 @@ const WorkVoteButton: React.FC<Props> = ({
         const error = await response.json();
         setErrorMessage(error.errors.join('<br>'));
       } else {
-        throw new Error(`Failed to request ${method} ${endpoint} (${response.status} ${response.statusText})`);
+        throw new Error(`Failed ${method} ${endpoint} ${response.status} (${response.statusText})`);
       }
     } finally {
       setIsLoading(false);

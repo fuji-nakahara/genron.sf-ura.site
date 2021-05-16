@@ -23,7 +23,7 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, defaultSortingMethod = 'd
         const works = await response.json();
         setWorks(works);
       } else {
-        throw new Error(`Failed to request GET ${jsonUrl} (${response.status} ${response.statusText})`);
+        throw new Error(`Failed GET ${jsonUrl} ${response.status} (${response.statusText})`);
       }
     })();
   }, [jsonUrl]);

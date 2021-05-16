@@ -20,7 +20,7 @@ const ScoreChart: React.FC<Props> = ({ jsonUrl }: Props) => {
         const scoreTable = await response.json();
         setScoreTable(scoreTable);
       } else {
-        throw new Error(`Failed to request GET ${jsonUrl} (${response.status} ${response.statusText})`);
+        throw new Error(`Failed GET ${jsonUrl} ${response.status} (${response.statusText})`);
       }
     })();
   }, [jsonUrl]);
