@@ -264,10 +264,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
-"@types/rails__ujs@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@types/rails__ujs/-/rails__ujs-6.0.0.tgz#0c8b72740c83c1d2f4672ff437c04ced049092aa"
-  integrity sha512-VxanK0HnPbU9ks2clU0JL3Q/4obZSEkuoVmIvMBxjtXEOSGjV3qCkJNhmBBwIs6ocY76r/SlXtzVYpPxq9Wc4w==
+"@types/rails__ujs@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@types/rails__ujs/-/rails__ujs-6.0.1.tgz#83c5aa1dad88ca869de05a9523eff58041ab307a"
+  integrity sha512-CVwNOdzTQ9qn6X6HPwx6ikH1T9ueJTdfjwFlXFhGvzXsQuESUksibfSosgxs1D/Q1kVEpjxeXD2RzqJv0Ma5Gw==
 
 "@types/react-dom@^17.0.8":
   version "17.0.8"
