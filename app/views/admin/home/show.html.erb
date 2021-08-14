@@ -91,7 +91,7 @@
       <% @links.includes(:kadai, :user).each do |link| %>
         <tr>
           <td><%= localize link.created_at %></td>
-          <td><%= link_to link.kadai.human_year_round, link.kadai %></td>
+          <td><%= link_to link.kadai.human_year_round, term_kadai_path(link.kadai.year, link.kadai) %></td>
           <td><%= link_to link.title, link.url, target: '_blank' %></td>
           <td><%= link_to link.url_host, link.url, target: '_blank' %></td>
           <td>
