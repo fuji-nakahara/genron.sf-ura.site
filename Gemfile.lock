@@ -250,7 +250,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.1.1)
     rexml (3.2.5)
-    ridgepole (0.9.5)
+    ridgepole (0.9.6)
       activerecord (>= 5.1, < 6.2)
       diffy
     rspec-core (3.10.1)
