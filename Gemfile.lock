@@ -128,7 +128,7 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    ffi (1.15.3)
+    ffi (1.15.4)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -155,7 +155,7 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     json (2.5.1)
-    listen (3.6.0)
+    listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.12.0)
@@ -386,7 +386,7 @@ DEPENDENCIES
   factory_bot_rails
   font-awesome-sass
   genron_sf!
-  listen (~> 3.6)
+  listen (~> 3.7)
   omniauth
   omniauth-rails_csrf_protection
   omniauth-twitter
