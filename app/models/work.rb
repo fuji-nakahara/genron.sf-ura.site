@@ -6,7 +6,8 @@ class Work < ApplicationRecord
   belongs_to :kadai
   belongs_to :student
   has_many :votes, dependent: :delete_all
-  has_many :voters, through: :votes, source: :user
+  has_many :ordered_votes, -> { order(:created_at) }, class_name: 'Vote', inverse_of: :work
+  has_many :voters, through: :ordered_votes, source: :user
 
   validates :title, presence: true
   validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
