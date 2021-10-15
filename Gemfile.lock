@@ -191,7 +191,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    open_graph_reader (0.7.1)
+    open_graph_reader (0.7.2)
       faraday (>= 0.9.0)
       nokogiri (~> 1.6)
     parallel (1.21.0)
