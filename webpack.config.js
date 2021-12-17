@@ -48,12 +48,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
-    publicPath: '/packs/',
     port: devServerPort,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
   },
   devtool: 'source-map',
 };
