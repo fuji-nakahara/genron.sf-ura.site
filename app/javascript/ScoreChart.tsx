@@ -1,10 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as palette from 'google-palette';
-import React, { useEffect, useState } from 'react';
-import ChartComponent from 'react-chartjs-2';
+import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
 import LoadingSpinner from 'LoadingSpinner';
+import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
 import { ScoreTable } from 'types';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 type Props = {
   jsonUrl: string;
@@ -51,7 +54,7 @@ const ScoreChart: React.FC<Props> = ({ jsonUrl }: Props) => {
     }),
   };
 
-  return <ChartComponent type="line" data={data} />;
+  return <Line data={data} />;
 };
 
 export default ScoreChart;
