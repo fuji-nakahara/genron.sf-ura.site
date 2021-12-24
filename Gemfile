@@ -29,6 +29,7 @@ gem 'scout_apm'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simpacker'
+gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'twitter'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', require: 'genron_sf/ebook'

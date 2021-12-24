@@ -413,6 +413,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   simpacker
+  sprockets-rails
   twitter
   web-console (>= 4.1.0)
   webdrivers
