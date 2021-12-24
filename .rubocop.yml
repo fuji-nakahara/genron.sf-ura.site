@@ -13,8 +13,19 @@ Metrics:
 Style/Documentation:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - config/{application,boot,environment}.rb
+    - config/environments/*.rb
+    - config/initializers/*.rb
+
 Style/GuardClause:
   Enabled: false
+
+Style/StringLiterals:
+  Exclude:
+    - config/{application,boot,environment}.rb
+    - config/environments/*.rb
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
