@@ -16,12 +16,12 @@ RSpec.describe TweetVoteResultsJob, type: :job do
 
       before do
         student = create(:student, name: 'フジ・ナカハラ')
-        create(:kougai, kadai: kadai, student: student, title: '式年遷皇', votes_count: 2)
-        create(:kougai, kadai: kadai)
+        create(:kougai, kadai:, student:, title: '式年遷皇', votes_count: 2)
+        create(:kougai, kadai:)
       end
 
       it 'tweets vote results for kougai' do
-        described_class.perform_now(kadai, type: type)
+        described_class.perform_now(kadai, type:)
 
         expect(twitter_client).to have_received(:update).with(<<~TWEET.chomp)
           現時点での第1回梗概の最高得票作は
@@ -38,13 +38,13 @@ RSpec.describe TweetVoteResultsJob, type: :job do
 
       before do
         student = create(:student, name: 'フジ・ナカハラ')
-        create(:jissaku, kadai: kadai, student: student, title: 'サイボーグ・クラスメイト', votes_count: 2)
-        create(:jissaku, kadai: kadai, student: student, title: '透明な血のつながり', votes_count: 2)
-        create(:jissaku, kadai: kadai)
+        create(:jissaku, kadai:, student:, title: 'サイボーグ・クラスメイト', votes_count: 2)
+        create(:jissaku, kadai:, student:, title: '透明な血のつながり', votes_count: 2)
+        create(:jissaku, kadai:)
       end
 
       it 'tweets vote results for jissaku' do
-        described_class.perform_now(kadai, type: type)
+        described_class.perform_now(kadai, type:)
 
         expect(twitter_client).to have_received(:update).with(<<~TWEET.chomp)
           現時点での第1回実作の最高得票作は

@@ -7,7 +7,7 @@ RSpec.describe 'StudentsController:', type: :request do
     let(:term) { create(:term) }
 
     before do
-      kadais = create_pair(:kadai, term: term)
+      kadais = create_pair(:kadai, term:)
       create_list(:kougai, 3, kadai: kadais.sample)
       create_list(:jissaku, 3, kadai: kadais.sample)
     end

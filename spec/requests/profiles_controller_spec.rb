@@ -22,9 +22,9 @@ RSpec.describe 'ProfilesController:', type: :request do
     let(:params) do
       {
         student: {
-          name: name,
+          name:,
           url: 'https://example.com/new_profile',
-          description: description,
+          description:,
         },
       }
     end

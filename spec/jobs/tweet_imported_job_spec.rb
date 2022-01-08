@@ -19,8 +19,8 @@ RSpec.describe TweetImportedJob, type: :job do
     let!(:kougai) do
       create(
         :kougai,
-        kadai: kadai,
-        student: student,
+        kadai:,
+        student:,
         title: 'コウガイ',
         url: 'http://example.com/k',
         genron_sf_id: 1,
@@ -30,8 +30,8 @@ RSpec.describe TweetImportedJob, type: :job do
     let!(:jissaku) do
       create(
         :jissaku,
-        kadai: kadai,
-        student: student,
+        kadai:,
+        student:,
         title: 'ジッサク',
         url: 'http://example.com/j',
         genron_sf_id: 2,

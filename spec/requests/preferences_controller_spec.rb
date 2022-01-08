@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'PreferencesController:', type: :request do
   describe 'PATCH /preference' do
     let(:user) { create(:user) }
-    let(:params) { { works_order: works_order } }
+    let(:params) { { works_order: } }
     let(:works_order) { 'genron_sf' }
 
     before do

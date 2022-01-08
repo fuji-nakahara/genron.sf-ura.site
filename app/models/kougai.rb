@@ -7,7 +7,7 @@ class Kougai < Work
     def import(work, kadai:)
       find_or_initialize_by(genron_sf_id: work.id).tap do |kougai|
         kougai.update!(
-          kadai: kadai,
+          kadai:,
           student: Student.import(work.student),
           title: work.summary_title.presence || '（タイトルなし）',
           url: work.url,

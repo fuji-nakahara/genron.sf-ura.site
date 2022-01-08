@@ -10,11 +10,11 @@ class ImportTwitterScreenNamesJob < ApplicationJob
         next unless (twitter_screen_name = student.twitter_screen_name)
 
         candidate = StudentTwitterCandidate.find_or_initialize_by(genron_sf_id: student.id)
-        candidate.update!(twitter_screen_name: twitter_screen_name)
+        candidate.update!(twitter_screen_name:)
         next if candidate.previous_changes.empty?
 
         user = User.joins(:student).merge(Student.where(genron_sf_id: nil))
-                   .find_by(twitter_screen_name: twitter_screen_name)
+                   .find_by(twitter_screen_name:)
         next if user.nil?
 
         Sentry.capture_message(

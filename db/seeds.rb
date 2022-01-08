@@ -19,10 +19,10 @@ puts "Target year: #{year}"
 Array(year).each { |y| Term.find_or_create_by!(year: y) }
 
 puts 'Importing kadais...'
-ImportKadaisJob.perform_now(year: year)
+ImportKadaisJob.perform_now(year:)
 
 puts 'Importing students...'
-ImportStudentsJob.perform_now(year: year)
+ImportStudentsJob.perform_now(year:)
 
 puts 'Importing works...'
 ImportWorksJob.perform_now(kadais: Kadai.all)

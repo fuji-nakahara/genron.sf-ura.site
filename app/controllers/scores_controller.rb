@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
           GenronSF::ScoreTable.get(year: @term.year).to_h
         end
 
-        render json: score_table.map { |student, scores| { student: student, scores: scores } }
+        render json: score_table.map { |student, scores| { student:, scores: } }
       end
     end
   end

@@ -7,7 +7,7 @@ RSpec.describe 'Students::JissakusController:', type: :request do
     let(:student) { create(:student) }
 
     before do
-      create_list(:jissaku, 3, student: student)
+      create_list(:jissaku, 3, student:)
     end
 
     it 'responds OK' do
