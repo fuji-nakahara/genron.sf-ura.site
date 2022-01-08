@@ -9,7 +9,7 @@ RSpec.describe 'LinksController:', type: :request do
     let(:params) do
       {
         link: {
-          url: url,
+          url:,
         },
       }
     end
@@ -21,13 +21,13 @@ RSpec.describe 'LinksController:', type: :request do
       allow(OpenGraphReader).to receive(:fetch!).and_return(
         double(
           :object,
-          og: instance_double(OpenGraphReader::Og, url: url, title: 'タイトル'),
+          og: instance_double(OpenGraphReader::Og, url:, title: 'タイトル'),
         ),
       )
     end
 
     it 'creates a link and redirects to /:term_year/:round' do
-      expect { post term_kadai_links_path(kadai.year, kadai), params: params }
+      expect { post term_kadai_links_path(kadai.year, kadai), params: }
         .to change { kadai.links.count }.by(1)
 
       expect(response).to redirect_to term_kadai_path(kadai.year, kadai)
@@ -39,7 +39,7 @@ RSpec.describe 'LinksController:', type: :request do
       end
 
       it 'redirects to /:term_year/:round' do
-        expect { post term_kadai_links_path(kadai.year, kadai), params: params }
+        expect { post term_kadai_links_path(kadai.year, kadai), params: }
           .not_to(change { kadai.links.count })
 
         expect(response).to redirect_to term_kadai_path(kadai.year, kadai)
@@ -49,7 +49,7 @@ RSpec.describe 'LinksController:', type: :request do
 
   describe 'DELETE /links/:id' do
     let(:user) { create(:user) }
-    let(:link) { create(:link, user: user) }
+    let(:link) { create(:link, user:) }
 
     before do
       log_in user

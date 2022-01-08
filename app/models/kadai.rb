@@ -61,10 +61,10 @@ class Kadai < ApplicationRecord
   end
 
   def url
-    GenronSF::Subject.build_url(year: year, number: round)
+    GenronSF::Subject.build_url(year:, number: round)
   end
 
   def fetch_genron_sf_subject
-    GenronSF::Subject.get(year: year, number: round)
+    GenronSF::Subject.get(year:, number: round)
   end
 end

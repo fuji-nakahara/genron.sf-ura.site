@@ -8,7 +8,7 @@ class Jissaku < Work
     def import(work, kadai:)
       find_or_initialize_by(genron_sf_id: work.id).tap do |jissaku|
         jissaku.update!(
-          kadai: kadai,
+          kadai:,
           student: Student.import(work.student),
           title: work.title,
           url: work.url,

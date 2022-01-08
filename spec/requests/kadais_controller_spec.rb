@@ -7,7 +7,7 @@ RSpec.describe 'KadaisController:', type: :request do
     let(:term) { create(:term) }
 
     before do
-      create_list(:kadai, 3, term: term)
+      create_list(:kadai, 3, term:)
     end
 
     it 'responds OK' do
@@ -29,8 +29,8 @@ RSpec.describe 'KadaisController:', type: :request do
     let(:kadai) { create(:kadai) }
 
     before do
-      create_pair(:jissaku, kadai: kadai)
-      create_pair(:kougai, kadai: kadai)
+      create_pair(:jissaku, kadai:)
+      create_pair(:kougai, kadai:)
     end
 
     it 'responds OK' do

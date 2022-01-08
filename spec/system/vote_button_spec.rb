@@ -9,7 +9,7 @@ RSpec.describe 'Vote button', type: :system do
 
   it 'enables to vote for a work' do
     kadai = create(:kadai)
-    kougai = create(:kougai, kadai: kadai)
+    kougai = create(:kougai, kadai:)
 
     log_in create(:user), from: term_kadai_path(kadai.year, kadai)
     click_button '投票する'

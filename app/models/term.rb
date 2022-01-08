@@ -13,14 +13,14 @@ class Term < ApplicationRecord
   end
 
   def genron_sf_subjects_url
-    GenronSF::SubjectList.build_url(year: year)
+    GenronSF::SubjectList.build_url(year:)
   end
 
   def genron_sf_students_url
-    GenronSF::StudentList.build_url(year: year)
+    GenronSF::StudentList.build_url(year:)
   end
 
   def genron_sf_scores_url
-    GenronSF::ScoreTable.build_url(year: year)
+    GenronSF::ScoreTable.build_url(year:)
   end
 end

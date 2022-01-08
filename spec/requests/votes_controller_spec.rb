@@ -22,7 +22,7 @@ RSpec.describe 'VotesController:', type: :request do
     context 'when user have already voted for other 3 works' do
       before do
         3.times do # rubocop:disable RSpec/FactoryBot/CreateList
-          create(:vote, user: user, work: create(:kougai, kadai: kougai.kadai))
+          create(:vote, user:, work: create(:kougai, kadai: kougai.kadai))
         end
       end
 
@@ -38,7 +38,7 @@ RSpec.describe 'VotesController:', type: :request do
   describe 'DELETE /works/:work_id/vote' do
     let(:user) { create(:user) }
 
-    let!(:vote) { create(:vote, user: user) }
+    let!(:vote) { create(:vote, user:) }
 
     before do
       log_in user
