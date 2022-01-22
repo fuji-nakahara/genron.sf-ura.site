@@ -6,7 +6,7 @@ class Work < ApplicationRecord
   belongs_to :kadai
   belongs_to :student
   has_many :votes, dependent: :delete_all
-  has_many :ordered_votes, -> { order(:created_at) }, class_name: 'Vote', inverse_of: :work
+  has_many :ordered_votes, -> { order(:created_at) }, class_name: 'Vote', inverse_of: :work # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :voters, through: :ordered_votes, source: :user
 
   validates :title, presence: true
