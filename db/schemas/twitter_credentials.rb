@@ -6,5 +6,5 @@ create_table :twitter_credentials, force: :cascade do |t|
   t.string :token, null: false
   t.string :secret, null: false
 
-  t.timestamps
+  t.timestamps precision: 6
 end

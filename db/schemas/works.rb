@@ -14,7 +14,7 @@ create_table :works, force: :cascade do |t|
 
   t.integer :votes_count, null: false, default: 0, limit: 2
 
-  t.timestamps
+  t.timestamps precision: 6
 
   t.index %i[kadai_id type]
   t.index %i[student_id type]

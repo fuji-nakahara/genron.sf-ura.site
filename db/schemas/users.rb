@@ -8,9 +8,9 @@ create_table :users, force: :cascade do |t|
   t.string :twitter_screen_name, null: false
   t.jsonb :preference, null: false, default: {}
   t.boolean :admin, null: false, default: false
-  t.datetime :last_logged_in_at, null: false
+  t.datetime :last_logged_in_at, null: false, precision: 6
 
-  t.timestamps
+  t.timestamps precision: 6
 
   t.index :twitter_id, unique: true
   t.index :twitter_screen_name, unique: true

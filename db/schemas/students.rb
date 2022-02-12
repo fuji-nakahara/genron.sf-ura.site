@@ -6,7 +6,7 @@ create_table :students, force: :cascade do |t|
   t.string :url, null: false
   t.string :description
 
-  t.timestamps
+  t.timestamps precision: 6
 
   t.index :genron_sf_id, unique: true
 end

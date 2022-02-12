@@ -12,7 +12,7 @@ create_table :kadais, force: :cascade do |t|
   t.integer :kougais_count, null: false, default: 0, limit: 2
   t.integer :jissakus_count, null: false, default: 0, limit: 2
 
-  t.timestamps
+  t.timestamps precision: 6
 
   t.index %i[year round], unique: true
   t.index :kougai_deadline

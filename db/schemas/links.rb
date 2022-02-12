@@ -7,5 +7,5 @@ create_table :links, force: :cascade do |t|
   t.string :url, null: false
   t.string :title, null: false
 
-  t.timestamps
+  t.timestamps precision: 6
 end
