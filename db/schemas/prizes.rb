@@ -6,5 +6,5 @@ create_table :prizes, force: :cascade do |t|
   t.string :title, null: false
   t.integer :position, null: false, default: 0, limit: 2
 
-  t.timestamps precision: 6
+  t.timestamps
 end
