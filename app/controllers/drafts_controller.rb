@@ -20,6 +20,7 @@ class DraftsController < ApplicationController
 
   def destroy
     @draft = current_user.student.drafts.find(params[:id])
+    GenronSFFun::TwitterClient.instance.destroy_tweet(@draft.tweet_url) if @draft.tweet_url.present?
     @draft.destroy!
     redirect_to root_path, notice: '削除しました'
   end
