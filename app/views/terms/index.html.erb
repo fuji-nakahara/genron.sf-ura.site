@@ -30,6 +30,10 @@
   <div class="d-grid gap-1 d-md-block mb-3">
     <%= link_to icon('fas', 'pen-nib', '下書きを投稿する'), new_draft_path, class: 'btn btn-outline-primary' %>
   </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+    <%= render @drafts %>
+  </div>
 </section>
 
 <div class="row row-cols-1 row-cols-md-2 mb-3">
