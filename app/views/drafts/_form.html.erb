@@ -25,5 +25,16 @@
     </div>
   </div>
 
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :kind, :kougai, class: 'form-check-input', checked: true %>
+      <%= form.label :kind_kougai, '梗概', class: 'form-check-label' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :kind, :jissaku, class: 'form-check-input' %>
+      <%= form.label :kind_jissaku, '実作', class: 'form-check-label' %>
+    </div>
+  </div>
+
   <%= form.submit class: 'btn btn-primary' %>
 <% end %>
