@@ -10,7 +10,7 @@
         <% end %>
       </div>
       <h5 class="card-title">
-        <%= draft.title %>
+        <%= link_to draft.title, draft.url, class: 'link-dark text-decoration-none', target: '_blank', rel: 'noreferrer' %>
       </h5>
       <p class="card-text">
         <%= link_to draft.url, class: 'link-secondary', target: '_blank', rel: 'noreferrer' do %>
