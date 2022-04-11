@@ -14,7 +14,7 @@ class DraftsController < ApplicationController
       TweetDraftSubmittedJob.perform_later(@draft)
       redirect_to root_path, notice: '投稿しました'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
