@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resource :vote, only: %i[create destroy]
   end
 
+  resources :drafts, only: %i[new create]
+
   resources :ebooks, only: %i[index create]
 
   resource :profile, only: %i[show update]
