@@ -17,6 +17,7 @@ class DraftsController < ApplicationController
     )
 
     if @draft.save
+      TweetDraftSubmittedJob.perform_later(@dfart)
       redirect_to root_path, notice: '投稿しました'
     else
       render :new
