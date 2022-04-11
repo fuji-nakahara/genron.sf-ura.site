@@ -8,25 +8,19 @@ class DraftsController < ApplicationController
   end
 
   def create
-    @draft = Draft.new(
-      draft_params.merge( # TODO: 課題と種類をユーザが選択できるようにする
-        kadai: Kadai.newest_order.first,
-        student: current_user.student,
-        kind: :kougai,
-      ),
-    )
+    @draft = Draft.new(draft_params.merge(student: current_user.student))
 
     if @draft.save
       TweetDraftSubmittedJob.perform_later(@draft)
       redirect_to root_path, notice: '投稿しました'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
   def draft_params
-    params.require(:draft).permit(:title, :url, :comment)
+    params.require(:draft).permit(:title, :url, :comment, :kind)
   end
 end
