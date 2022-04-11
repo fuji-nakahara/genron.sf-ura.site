@@ -50,4 +50,19 @@ RSpec.describe DraftsController, type: :request do
       end
     end
   end
+
+  describe 'DELETE /drafts/:id' do
+    let(:draft) { create(:draft) }
+
+    before do
+      log_in create(:user, student: draft.student)
+    end
+
+    it 'destroys the draft and redirects to /' do
+      delete draft_path(draft)
+
+      expect { draft.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(response).to redirect_to root_path
+    end
+  end
 end

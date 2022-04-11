@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DraftsController < ApplicationController
-  before_action :require_current_user, only: %i[new create]
+  before_action :require_current_user
 
   def new
     @draft = Draft.new
@@ -16,6 +16,12 @@ class DraftsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @draft = current_user.student.drafts.find(params[:id])
+    @draft.destroy!
+    redirect_to root_path, notice: '削除しました'
   end
 
   private
