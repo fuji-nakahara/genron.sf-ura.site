@@ -50,4 +50,24 @@ RSpec.describe DraftsController, type: :request do
       end
     end
   end
+
+  describe 'DELETE /drafts/:id' do
+    let(:draft) { create(:draft) }
+    let(:twitter_client) { instance_double(GenronSFFun::TwitterClient) }
+
+    before do
+      log_in create(:user, student: draft.student)
+
+      allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
+      allow(twitter_client).to receive(:destroy_tweet).with(draft.tweet_url)
+    end
+
+    it 'destroys the draft and its tweet, and redirects to /' do
+      delete draft_path(draft)
+
+      expect(twitter_client).to have_received(:destroy_tweet).with(draft.tweet_url)
+      expect { draft.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(response).to redirect_to root_path
+    end
+  end
 end
