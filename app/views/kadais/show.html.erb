@@ -129,7 +129,7 @@
       <div class="list-group mb-3">
         <% @kadai.links.each do |link| %>
           <%= link_to link.url, class: 'list-group-item list-group-item-action', target: '_blank' do %>
-            <%= link.title %>
+            <%= link.title.presence || link.url %>
             <small class="text-muted"><%= icon('fas', 'external-link-alt', link.url_host) %></small>
           <% end %>
         <% end %>
