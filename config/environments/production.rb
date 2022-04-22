@@ -50,10 +50,10 @@ Rails.application.configure do
   # Use a different cache store in production.
   config.cache_store = [
     :mem_cache_store,
-    ENV['MEMCACHIER_SERVERS']&.split(','),
+    ENV.fetch('MEMCACHIER_SERVERS').split(','),
     {
-      username: ENV['MEMCACHIER_USERNAME'],
-      password: ENV['MEMCACHIER_PASSWORD'],
+      username: ENV.fetch('MEMCACHIER_USERNAME'),
+      password: ENV.fetch('MEMCACHIER_PASSWORD'),
       failover: true,
       socket_timeout: 1.5,
       socket_failure_delay: 0.2,
@@ -72,8 +72,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'genron-sf-fun.herokuapp.com',
-    user_name: ENV['GMAIL_USER_NAME'],
-    password: ENV['GMAIL_PASSWORD'],
+    user_name: ENV.fetch('GMAIL_USER_NAME'),
+    password: ENV.fetch('GMAIL_PASSWORD'),
     authentication: :plain,
     enable_starttls_auto: true,
   }
