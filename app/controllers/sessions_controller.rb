@@ -22,6 +22,14 @@ class SessionsController < ApplicationController
           },
         )
         user.student_merge_candidates.build(student:)
+      else
+        Sentry.capture_message(
+          '新規ユーザがログインしました',
+          level: :info,
+          extra: {
+            twitter_url: auth_hash.info.urls['Twitter'],
+          },
+        )
       end
     end
 
