@@ -56,6 +56,8 @@ Rails.application.routes.draw do
         post :merge
       end
     end
+
+    resources :users, only: :index
   end
 
   direct :genron_sf do

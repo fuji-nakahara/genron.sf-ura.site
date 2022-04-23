@@ -1,0 +1,33 @@
+<% provide :title, 'ユーザー一覧' %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>作成日時</th>
+      <th>最終ログイン日時</th>
+      <th>Twitter</th>
+      <th>名前</th>
+      <th>URL</th>
+      <th>自己紹介</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= localize user.created_at %></td>
+        <td><%= localize user.last_logged_in_at %></td>
+        <td>
+          <%= link_to twitter_profile_url(user.twitter_screen_name), target: '_blank' do %>
+            <%= image_tag user.image_url, size: '24x24', class: 'border rounded-circle' %>
+            <%= user.twitter_screen_name %>
+          <% end %>
+        </td>
+        <td><%= link_to user.student.name, user.student %></td>
+        <td><%= link_to user.student.url_host, user.student.url, target: '_blank' %></td>
+        <td>
+          <%= truncate user.student.description %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
