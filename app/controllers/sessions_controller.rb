@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
             twitter_url: auth_hash.info.urls['Twitter'],
           },
         )
+        user.student_merge_candidates.build(student:)
       end
     end
 

@@ -4,6 +4,38 @@
   <header>
     <h2>受講生マージ</h2>
   </header>
+  
+  <% unless @student_merge_candidates.empty? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>作成日時</th>
+          <th>受講生</th>
+          <th>Twitter</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @student_merge_candidates.each do |candidate| %>
+          <tr>
+            <td><%= localize candidate.created_at %></td>
+            <td>
+              <%= link_to candidate.student.name, candidate.student.url, target: '_blank' %>
+              <%= candidate.student.genron_sf_id %>
+            </td>
+            <td>
+              <%= link_to twitter_profile_url(candidate.user.twitter_screen_name), target: '_blank' do %>
+                <%= image_tag candidate.user.image_url, size: '24x24', class: 'border rounded-circle' %>
+              <% end %>
+              <%= candidate.user.twitter_screen_name %>
+            </td>
+            <td><%= link_to '削除', admin_student_merge_candidate_path(candidate), method: :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
   <%= form_with url: merge_admin_students_path do |form| %>
     <div class="mb-3">
       <%= form.label :genron_sf_id, 'genron_sf_student_id', class: 'form-label' %>
@@ -88,7 +120,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @links.includes(:kadai, :user).each do |link| %>
+      <% @links.each do |link| %>
         <tr>
           <td><%= localize link.created_at %></td>
           <td><%= link_to link.kadai.human_year_round, term_kadai_path(link.kadai.year, link.kadai) %></td>

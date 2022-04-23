@@ -49,6 +49,8 @@ Rails.application.routes.draw do
 
     resources :prizes, only: :create
 
+    resources :student_merge_candidates, only: :destroy
+
     resources :students, only: [] do
       collection do
         post :merge

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_one :twitter_credential, dependent: :destroy
   has_many :votes, dependent: :delete_all
   has_many :links, dependent: :nullify
+  has_many :student_merge_candidates, dependent: :delete_all
 
   def serializable_hash(options = nil)
     default_options = { only: %i[twitter_id twitter_screen_name image_url] }
