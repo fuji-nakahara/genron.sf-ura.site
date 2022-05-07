@@ -32,7 +32,7 @@ gem 'simpacker'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'twitter'
 
-gem 'genron_sf', github: 'fuji-nakahara/genron_sf', require: 'genron_sf/ebook'
+gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
