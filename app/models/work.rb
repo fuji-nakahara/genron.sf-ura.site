@@ -10,7 +10,8 @@ class Work < ApplicationRecord
   has_many :voters, through: :ordered_votes, source: :user
 
   validates :title, presence: true
-  validates :url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
+  validates :url, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }
+  validate :url_is_not_kakuyomu_workspace
 
   scope :stats_by_year, lambda {
     joins(:kadai)
@@ -31,5 +32,9 @@ class Work < ApplicationRecord
 
     errors.add(:base, '超・SF作家育成サイトからインポートした作品は削除できません')
     throw :abort
+  end
+
+  def url_is_not_kakuyomu_workspace
+    errors.add(:url, 'がカクヨムの編集用URLになっています。公開用URLを入力してください') if url.start_with?('https://kakuyomu.jp/my')
   end
 end
