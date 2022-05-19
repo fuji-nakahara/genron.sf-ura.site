@@ -43,7 +43,7 @@ RSpec.describe 'KougaisController:', type: :request do
         },
       }
     end
-    let(:url) { 'https://kakuyomu.jp/my/works/1177354054885765919/episodes/1177354054888143256' }
+    let(:url) { 'https://kakuyomu.jp/works/1177354054885765919/episodes/1177354054888143256' }
 
     before do
       log_in user

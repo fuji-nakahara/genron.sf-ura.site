@@ -43,7 +43,7 @@ RSpec.describe 'JissakusController:', type: :request do
         },
       }
     end
-    let(:url) { 'https://kakuyomu.jp/my/works/1177354054885765919/episodes/1177354054887464835' }
+    let(:url) { 'https://kakuyomu.jp/works/1177354054885765919/episodes/1177354054887464835' }
 
     before do
       log_in user
