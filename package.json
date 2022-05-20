@@ -22,7 +22,7 @@
     "react-bootstrap": "2.3.1",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",
-    "react-flip-toolkit": "^7.0.13"
+    "react-flip-toolkit": "^7.0.14"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^1.6.1",
