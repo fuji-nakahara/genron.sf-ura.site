@@ -40,6 +40,9 @@ Rails/EnvironmentVariableAccess:
   Exclude:
     - lib/*/**
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: false
 
