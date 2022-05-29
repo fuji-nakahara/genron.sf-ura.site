@@ -19,9 +19,9 @@
       </p>
       <%= simple_format draft.comment, class: 'card-text' %>
       <% if draft.student == current_user&.student %>
-        <%= link_to icon('fas', 'trash', '削除する'), draft_path(draft), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: '本当に削除しますか？' } %>
+        <%= link_to '削除する', draft_path(draft), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: '本当に削除しますか？' } %>
       <% else %>
-        <%= link_to icon('fas', 'book-open', '下書きを読む'), draft.url, class: 'btn btn-sm btn-outline-primary stretched-link', target: '_blank' %>
+        <%= link_to '下書きを読む', draft.url, class: 'btn btn-sm btn-outline-primary stretched-link', target: '_blank' %>
       <% end %>
     </div>
   </section>
