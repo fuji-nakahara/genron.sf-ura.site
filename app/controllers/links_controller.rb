@@ -17,6 +17,8 @@ class LinksController < ApplicationController
 
   def destroy
     link = Link.find(params[:id])
+    redirect_back fallback_location: link.kadai, alert: '権限がありません' if !current_user.admin? && current_user != link.user
+
     link.destroy!
     redirect_back fallback_location: link.kadai
   end
