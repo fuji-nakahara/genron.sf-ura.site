@@ -17,7 +17,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public/packs'),
     publicPath: process.env.USE_WEBPACK_DEV_SERVER === '1' ? `//localhost:${devServerPort}/packs/` : '/packs/',
-    filename: isProd ? '[name]-[hash].js' : '[name].js',
+    filename: isProd ? '[name]-[chunkhash].js' : '[name].js',
   },
   module: {
     rules: [
