@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :scores, only: :index
+    resources :scores, only: :index, defaults: { format: 'json' }
   end
 
   resources :works, only: [] do

@@ -6,23 +6,15 @@ RSpec.describe 'ScoresController:', type: :request do
   describe 'GET /:term_year/scores' do
     let(:term) { create(:term) }
 
-    it 'responds OK' do
-      get term_scores_path(term)
-
-      expect(response).to have_http_status :ok
+    before do
+      allow(GenronSF::ScoreTable).to receive(:get).and_return({ 'フジ・ナカハラ' => [1, 2] })
     end
 
-    context 'with .json format' do
-      before do
-        allow(GenronSF::ScoreTable).to receive(:get).and_return({ 'フジ・ナカハラ' => [1, 2] })
-      end
+    it 'responds OK' do
+      get term_scores_path(term, format: :json)
 
-      it 'responds OK' do
-        get term_scores_path(term, format: :json)
-
-        expect(GenronSF::ScoreTable).to have_received(:get).with(year: term.year)
-        expect(response).to have_http_status :ok
-      end
+      expect(GenronSF::ScoreTable).to have_received(:get).with(year: term.year)
+      expect(response).to have_http_status :ok
     end
   end
 end

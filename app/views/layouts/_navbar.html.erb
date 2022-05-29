@@ -10,9 +10,12 @@
 
     <div class="collapse navbar-collapse" id="navbar-content">
       <ul class="navbar-nav me-auto">
-        <% Term.order(year: :desc).pluck(:year).each do |year| %>
+        <% if (current_year = Term.order(year: :desc).pick(:year)) %>
           <li class="nav-item">
-            <%= link_to year, term_kadais_path(year), class: "nav-link#{params[:term_year]&.to_i == year ? ' active' : ''}" %>
+            <%= link_to '課題', term_kadais_path(current_year), class: "nav-link#{params[:controller] == 'kadais' ? ' active' : ''}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '投稿者', term_students_path(current_year), class: "nav-link#{params[:controller] == 'students' ? ' active' : ''}" %>
           </li>
         <% end %>
       </ul>

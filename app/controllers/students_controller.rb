@@ -9,7 +9,9 @@ class StudentsController < ApplicationController
                        .order(votes_sum: :desc, genron_sf_id: :asc)
 
     respond_to do |format|
-      format.html
+      format.html do
+        @years = Term.order(year: :desc).pluck(:year)
+      end
 
       format.json do
         render json: @students.as_json(

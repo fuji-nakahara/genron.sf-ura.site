@@ -1,6 +1,10 @@
 <% provide :title, "#{@term.year} 投稿者一覧" %>
 
-<%= render 'terms/nav', term: @term %>
+<nav class="nav nav-pills mb-3">
+  <% @years.uniq.each do |year| %>
+    <%= link_to year, term_students_path(year), class: "nav-link#{current_page?(term_students_path(year)) ? ' active' : ''}" %>
+  <% end %>
+</nav>
 
 <aside class="mb-3">
   <%= link_to_genron_sf @term.genron_sf_students_url %>

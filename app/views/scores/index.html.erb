@@ -5,9 +5,7 @@
 
 <%= render 'terms/nav', term: @term %>
 
-<aside class="mb-3">
-  <%= link_to_genron_sf @term.genron_sf_scores_url %>
-</aside>
+
 
 <section class="mb-3">
   <div id="score-chart" data-scores-path="<%= term_scores_path(@term.year, format: :json) %>"></div>

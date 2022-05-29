@@ -1,6 +1,13 @@
 <% provide :title, "#{@term.year} 課題一覧" %>
+<% content_for :head do %>
+  <%= javascript_pack_tag 'kadais-index' %>
+<% end %>
 
-<%= render 'terms/nav', term: @term %>
+<nav class="nav nav-pills mb-3">
+  <% @years.uniq.each do |year| %>
+    <%= link_to year, term_kadais_path(year), class: "nav-link#{current_page?(term_kadais_path(year)) ? ' active' : ''}" %>
+  <% end %>
+</nav>
 
 <aside class="mb-3">
   <%= link_to_genron_sf @term.genron_sf_subjects_url %>
@@ -8,4 +15,16 @@
 
 <section class="row row-cols-1 row-cols-md-2 row-cols-xl-3 mb-3">
   <%= render @term.kadais %>
+</section>
+
+<section class="d-none d-lg-block mb-3">
+  <header class="border-bottom mb-3">
+    <h2>得点チャート</h2>
+  </header>
+
+  <aside class="mb-3">
+    <%= link_to_genron_sf @term.genron_sf_scores_url %>
+  </aside>
+  
+  <div id="score-chart" data-scores-path="<%= term_scores_path(@term.year) %>"></div>
 </section>

@@ -1,5 +1,0 @@
-<nav class="nav nav-pills mb-3">
-  <%= link_to '課題一覧', term_kadais_path(term), class: "nav-link#{current_page?(term_kadais_path(term)) ? ' active' : ''}" %>
-  <%= link_to '投稿者一覧', term_students_path(term), class: "nav-link#{current_page?(term_students_path(term)) ? ' active' : ''}" %>
-  <%= link_to '得点チャート', term_scores_path(term), class: "d-none d-lg-block nav-link#{current_page?(term_scores_path(term)) ? ' active' : ''}" %>
-</nav>

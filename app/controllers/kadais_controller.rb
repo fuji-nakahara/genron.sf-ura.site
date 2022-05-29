@@ -7,7 +7,9 @@ class KadaisController < ApplicationController
     @term = Term.find(params[:term_year])
 
     respond_to do |format|
-      format.html
+      format.html do
+        @years = Term.order(year: :desc).pluck(:year)
+      end
 
       format.json do
         render json: @term.kadais.reverse_order.as_json
