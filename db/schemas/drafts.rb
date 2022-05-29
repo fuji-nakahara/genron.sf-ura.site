@@ -7,7 +7,6 @@ create_table :drafts, force: :cascade do |t|
   t.string :title, null: false
   t.string :url, null: false
   t.text :comment
-  t.date :expires_on
   t.string :tweet_url
 
   t.timestamps
