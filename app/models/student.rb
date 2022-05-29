@@ -6,7 +6,6 @@ class Student < ApplicationRecord
   has_many :kougais, dependent: :destroy
   has_many :jissakus, dependent: :destroy
   has_many :works, dependent: :delete_all
-  has_many :drafts, dependent: :delete_all
   has_one :user, dependent: :restrict_with_exception
 
   validates :name, presence: true, length: { maximum: 50 }
