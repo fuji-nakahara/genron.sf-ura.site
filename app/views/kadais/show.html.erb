@@ -119,7 +119,7 @@
   </section>
 <% end %>
 
-<% if !@kadai.links.empty? || current_user&.student&.genron_sf_id %>
+<% if !@kadai.links.empty? || current_user %>
   <section class="mb-3" id="link">
     <header class="border-bottom mb-3">
       <h2>関連リンク</h2>
@@ -136,7 +136,7 @@
       </div>
     <% end %>
 
-    <% if current_user&.student&.genron_sf_id %>
+    <% if current_user %>
       <section class="mb-3">
         <%= form_with model: @kadai.links.build, url: term_kadai_links_path(@kadai.year, @kadai) do |form| %>
           <div class="input-group">
