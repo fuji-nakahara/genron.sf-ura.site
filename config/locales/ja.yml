@@ -53,8 +53,6 @@ ja:
     attributes:
       student:
         description: 自己紹介
-      draft:
-        comment: コメント
   attributes:
     name: 名前
     position: 位置
