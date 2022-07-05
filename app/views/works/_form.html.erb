@@ -9,7 +9,10 @@
   <div class="mb-3">
     <%= form.label :url, class: 'form-label' %>
     <%= form.url_field :url, class: 'form-control', required: true %>
-    <div class="form-text"><%= yield %></div>
+    <div class="form-text">
+      <a href="https://note.com/" target="_blank" rel="noopener">note</a> や<a href="https://kakuyomu.jp/" target="_blank" rel="noopener">カクヨム</a>など、<%= work.class.model_name.human%>を公開している外部サービスの URL を入力してください。<br>
+      文量は基本<%= volume_note %>ですが、詳細は<%= link_to '超・SF作家育成サイト', work.kadai.url, target: '_blank', rel: 'noopener' %>を確認してください。
+    </div>
   </div>
 
   <%= form.submit "#{work.class.model_name.human}を投稿する", class: "btn btn-#{work_color(work)}" %>

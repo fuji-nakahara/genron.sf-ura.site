@@ -2,6 +2,4 @@
 
 <%= render @kougai.kadai %>
 
-<%= render 'works/form', work: @kougai do %>
-  本文1,200字以内、内容に関するアピール400字以内
-<% end %>
+<%= render 'works/form', work: @kougai, volume_note: '本文1,200字以内、内容に関するアピール400字以内' %>
