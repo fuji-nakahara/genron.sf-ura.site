@@ -4,7 +4,7 @@ class ScoresController < ApplicationController
   def index
     @term = Term.find(params[:term_year])
 
-    score_table = Rails.cache.fetch("score_table/#{@term.year}") do
+    score_table = Rails.cache.fetch("score_table/#{@term.year}", expires_in: 6.hours) do
       GenronSF::ScoreTable.get(year: @term.year).to_h
     end
 
