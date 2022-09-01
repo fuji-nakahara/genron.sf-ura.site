@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  constraints host: 'genron-sf-fun.herokuapp.com' do
+    get '/(*path)', to: redirect { |params,| "https://genron.sf-ura.site/#{params[:path]}" }
+  end
+
   root 'terms#index'
 
   get '/auth/twitter/callback', to: 'sessions#create'
