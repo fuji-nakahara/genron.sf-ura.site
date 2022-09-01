@@ -29,7 +29,7 @@ RSpec.describe TweetWorkSubmittedJob, type: :job do
       expect(twitter_client).to have_received(:update).with(<<~TWEET)
         【梗概】@fuji_nakahara『小説つばる「新人SF作家特集号」の依頼』
         #裏SF創作講座
-        https://genron-sf-fun.herokuapp.com/2020/2
+        https://genron.sf-ura.site/2020/2
         https://kakuyomu.jp/works/1177354054935195606/episodes/1177354054935195646
       TWEET
       expect(work.reload.tweet_url).not_to be_nil

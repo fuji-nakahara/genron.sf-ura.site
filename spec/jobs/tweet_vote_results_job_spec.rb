@@ -28,7 +28,7 @@ RSpec.describe TweetVoteResultsJob, type: :job do
           フジ・ナカハラ『式年遷皇』
           で2票です！
           #裏SF創作講座
-          https://genron-sf-fun.herokuapp.com/2020/1
+          https://genron.sf-ura.site/2020/1
         TWEET
       end
     end
@@ -52,7 +52,7 @@ RSpec.describe TweetVoteResultsJob, type: :job do
           フジ・ナカハラ『透明な血のつながり』
           で2票です！
           #裏SF創作講座
-          https://genron-sf-fun.herokuapp.com/2020/1
+          https://genron.sf-ura.site/2020/1
         TWEET
       end
     end

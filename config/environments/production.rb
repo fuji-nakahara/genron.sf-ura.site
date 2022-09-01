@@ -67,11 +67,11 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { protocol: :https, host: 'genron-sf-fun.herokuapp.com' }
+  config.action_mailer.default_url_options = { protocol: :https, host: 'genron.sf-ura.site' }
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain: 'genron-sf-fun.herokuapp.com',
+    domain: 'genron.sf-ura.site',
     user_name: ENV.fetch('GMAIL_USER_NAME'),
     password: ENV.fetch('GMAIL_PASSWORD'),
     authentication: :plain,

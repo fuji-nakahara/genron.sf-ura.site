@@ -59,7 +59,7 @@ RSpec.describe TweetImportedJob, type: :job do
         実作締切: 2019年7月11日(木)
         #SF創作講座 #裏SF創作講座
         https://school.genron.co.jp/works/sf/2019/subjects/1/
-        https://genron-sf-fun.herokuapp.com/2019/1
+        https://genron.sf-ura.site/2019/1
       KADAI_TWEEET
       expect(twitter_client).to have_received(:update).with(<<~KOUGAI_TWEEET.chomp)
         【梗概】フジ・ナカハラ『コウガイ』
