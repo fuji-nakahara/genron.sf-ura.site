@@ -1,7 +1,7 @@
 # genron-sf-fun
 
 A Ruby on Rails application for [ゲンロン 大森望 SF創作講座](https://school.genron.co.jp/sf/) community.  
-https://genron-sf-fun.herokuapp.com/
+https://genron.sf-ura.site/
 
 ## System dependencies
 
