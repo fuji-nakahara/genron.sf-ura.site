@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   root 'terms#index'
 
-  get '/auth/twitter/callback', to: 'sessions#create'
   get '/auth/twitter2/callback', to: 'sessions#create'
   post '/auth/twitter_dev/callback', to: 'sessions#create' if Rails.env.development?
   get '/auth/failure', to: 'sessions#failure'

@@ -188,7 +188,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
-    oauth (0.5.5)
     oauth2 (2.0.8)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
@@ -200,18 +199,12 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-oauth (1.2.0)
-      oauth
-      omniauth (>= 1.0, < 3)
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
-    omniauth-twitter (1.4.0)
-      omniauth-oauth (~> 1.1)
-      rack
     omniauth-twitter2 (0.1.0)
       omniauth
       omniauth-oauth2 (~> 1.0)
@@ -417,7 +410,6 @@ DEPENDENCIES
   listen (~> 3.7)
   omniauth
   omniauth-rails_csrf_protection
-  omniauth-twitter
   omniauth-twitter2
   open_graph_reader
   pg (~> 1.4)

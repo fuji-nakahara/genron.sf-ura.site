@@ -27,14 +27,7 @@ class User < ApplicationRecord
         twitter_screen_name: auth_hash.info.nickname,
         last_logged_in_at: Time.zone.now,
       )
-      case auth_hash.provider
-      when 'twitter'
-        build_twitter_credential if twitter_credential.nil?
-        twitter_credential.update!(
-          token: auth_hash.credentials.token,
-          secret: auth_hash.credentials.secret,
-        )
-      when 'twitter2'
+      if auth_hash.provider == 'twitter2'
         build_twitter2_credential if twitter2_credential.nil?
         twitter2_credential.update!(
           token: auth_hash.credentials.token,
