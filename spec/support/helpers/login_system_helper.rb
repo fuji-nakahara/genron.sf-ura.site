@@ -3,7 +3,7 @@
 module LoginSystemHelper
   def log_in(user, from: root_path)
     OmniAuth.config.add_mock(
-      :twitter,
+      :twitter2,
       {
         uid: user.twitter_id,
         info: {
@@ -18,7 +18,7 @@ module LoginSystemHelper
         },
         credentials: {
           token: 'token',
-          secret: 'secret',
+          expires_at: Time.zone.now.to_i,
         },
       },
     )

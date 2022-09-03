@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   belongs_to :student
   has_one :twitter_credential, dependent: :destroy
+  has_one :twitter2_credential, dependent: :destroy
   has_many :votes, dependent: :delete_all
   has_many :links, dependent: :nullify
   has_many :student_merge_candidates, dependent: :delete_all
@@ -17,7 +18,7 @@ class User < ApplicationRecord
       if new_record?
         build_student(
           name: auth_hash.info.name,
-          url: auth_hash.info.urls['Website'] || auth_hash.info.urls['Twitter'],
+          url: auth_hash.info.urls['Twitter'],
           description: auth_hash.info.description,
         )
       end
@@ -26,11 +27,18 @@ class User < ApplicationRecord
         twitter_screen_name: auth_hash.info.nickname,
         last_logged_in_at: Time.zone.now,
       )
-      if auth_hash.provider == 'twitter'
+      case auth_hash.provider
+      when 'twitter'
         build_twitter_credential if twitter_credential.nil?
         twitter_credential.update!(
           token: auth_hash.credentials.token,
           secret: auth_hash.credentials.secret,
+        )
+      when 'twitter2'
+        build_twitter2_credential if twitter2_credential.nil?
+        twitter2_credential.update!(
+          token: auth_hash.credentials.token,
+          expires_at: Time.zone.at(auth_hash.credentials.expires_at),
         )
       end
     end

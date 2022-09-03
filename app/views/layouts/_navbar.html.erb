@@ -41,7 +41,7 @@
         <% if Rails.env.development? %>
           <%= link_to icon('fas', 'code', '開発用ログイン'), "/auth/twitter_dev?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'me-2 btn btn-secondary' %>
         <% end %>
-        <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-primary' %>
+        <%= link_to icon('fab', 'twitter', 'Twitter でログイン'), "/auth/twitter2?#{{ origin: request.fullpath }.to_param}", method: :post, class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

@@ -8,6 +8,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     secure_image_url: true,
     image_size: 'bigger',
   }
+  provider :twitter2, ENV.fetch('TWITTER_CLIENT_ID', nil), ENV.fetch('TWITTER_CLIENT_SECRET', nil),
+           scope: 'tweet.read users.read'
 end
 
 OmniAuth.config.logger = Rails.logger
