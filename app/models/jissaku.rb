@@ -10,7 +10,7 @@ class Jissaku < Work
         jissaku.update!(
           kadai:,
           student: Student.import(work.student),
-          title: work.title,
+          title: work.title.presence || '（無題）',
           url: work.url,
         )
       end
