@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'barnes'
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -33,6 +35,11 @@ pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
 # processes).
 #
 workers ENV.fetch('WEB_CONCURRENCY', 2)
+
+# https://devcenter.heroku.com/articles/language-runtime-metrics-ruby#add-the-barnes-gem-to-your-application
+before_fork do
+  Barnes.start
+end
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
