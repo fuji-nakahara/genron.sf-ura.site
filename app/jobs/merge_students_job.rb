@@ -4,7 +4,7 @@ class MergeStudentsJob < ApplicationJob
   def perform(twitter_screen_name:, genron_sf_id:)
     source = Student.joins(:user).merge(User.where(twitter_screen_name:))
                     .where(genron_sf_id: nil).take!
-    target = Student.left_joins(:user).where(users: { id: nil })
+    target = Student.where.missing(:user)
                     .where(genron_sf_id:).take!
     user = source.user
 
