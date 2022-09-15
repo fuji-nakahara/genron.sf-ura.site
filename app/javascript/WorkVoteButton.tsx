@@ -88,7 +88,7 @@ const WorkVoteButton: React.FC<Props> = ({
         <Modal.Body>{errorMessage}</Modal.Body>
         {!isLoggedIn && (
           <Modal.Footer>
-            <Button href={`/auth/twitter?origin=${location.pathname}`} data-method="post">
+            <Button href={`/auth/twitter2?origin=${location.pathname}`} data-method="post">
               <FontAwesomeIcon icon={faTwitter} /> Twitter でログインする
             </Button>
           </Modal.Footer>
