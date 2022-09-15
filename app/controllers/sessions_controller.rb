@@ -40,6 +40,7 @@ class SessionsController < ApplicationController
 
   def failure
     flash.alert = "ログインに失敗しました: #{params[:message]}" if params[:message].present?
+    Sentry.capture_message("Login failed: #{params[:message]}", level: :info)
     redirect_to root_path
   end
 
