@@ -16,18 +16,13 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "ruby.useBundler": true,
-  "ruby.format": "rubocop",
-  "ruby.lint": {
-    "rubocop": {
-      "useBundler": true
-    }
   }
 }

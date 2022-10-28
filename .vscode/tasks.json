@@ -2,14 +2,13 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "rake",
-      "task": "spec",
+      "label": "rake",
+      "type": "shell",
+      "command": "bundle exec rake",
       "group": {
         "kind": "test",
         "isDefault": true
-      },
-      "problemMatcher": [],
-      "label": "rake: spec"
+      }
     },
     {
       "label": "app: start",

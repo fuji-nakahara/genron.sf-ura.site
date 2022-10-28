@@ -59,6 +59,7 @@ group :development do
   gem 'bullet'
   gem 'dotenv-rails'
   gem 'rails_real_favicon'
+  gem 'ruby-lsp'
 end
 
 group :test do
