@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TweetVoteResultsJob, type: :job do
+RSpec.describe TweetVoteResultsJob do
   describe '#perform' do
     let(:kadai) { create(:kadai, term: create(:term, year: 2020), round: 1) }
     let(:twitter_client) { instance_spy(GenronSFFun::TwitterClient) }

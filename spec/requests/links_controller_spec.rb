@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'LinksController:', type: :request do
+RSpec.describe 'LinksController:' do
   describe 'POST /:term_year/:kadai_round/links' do
     let(:user) { create(:user) }
     let(:kadai) { create(:kadai) }

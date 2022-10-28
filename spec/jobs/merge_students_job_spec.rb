@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MergeStudentsJob, type: :job do
+RSpec.describe MergeStudentsJob do
   describe '#perform' do
     let(:source_user) { create(:user, student: source_student) }
     let(:source_student) { create(:student, genron_sf_id: nil, description: '自己紹介') }

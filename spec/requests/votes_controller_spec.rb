@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'VotesController:', type: :request do
+RSpec.describe 'VotesController:' do
   describe 'POST /works/:work_id/vote' do
     let(:user) { create(:user) }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'PreferencesController:', type: :request do
+RSpec.describe 'PreferencesController:' do
   describe 'PATCH /preference' do
     let(:user) { create(:user) }
     let(:params) { { works_order: } }

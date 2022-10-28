@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'KougaisController:', type: :request do
+RSpec.describe 'KougaisController:' do
   describe 'GET /:term_year/:kadai_round/kougais' do
     let(:kadai) { create(:kadai) }
 

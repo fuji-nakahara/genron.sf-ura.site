@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'KadaisController:', type: :request do
+RSpec.describe 'KadaisController:' do
   describe 'GET /:term_year' do
     let(:term) { create(:term) }
 

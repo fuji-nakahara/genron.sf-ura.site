@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TweetImportedJob, type: :job do
+RSpec.describe TweetImportedJob do
   describe '#perform' do
     let(:kadai) do
       create(

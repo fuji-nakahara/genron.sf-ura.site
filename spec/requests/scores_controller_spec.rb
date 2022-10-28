@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'ScoresController:', type: :request do
+RSpec.describe 'ScoresController:' do
   describe 'GET /:term_year/scores' do
     let(:term) { create(:term) }
 
