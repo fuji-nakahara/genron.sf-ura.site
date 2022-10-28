@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TweetDeadlineExpiredJob, type: :job do
+RSpec.describe TweetDeadlineExpiredJob do
   describe '#perform' do
     let(:deadline) { 1.day.ago.to_date }
     let(:twitter_client) { instance_spy(GenronSFFun::TwitterClient) }

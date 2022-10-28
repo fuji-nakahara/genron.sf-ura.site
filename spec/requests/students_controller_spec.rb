@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'StudentsController:', type: :request do
+RSpec.describe 'StudentsController:' do
   describe 'GET /:term_year/students' do
     let(:term) { create(:term) }
 

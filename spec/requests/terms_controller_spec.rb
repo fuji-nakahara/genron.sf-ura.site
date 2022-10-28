@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'TermsController:', type: :request do
+RSpec.describe 'TermsController:' do
   describe 'GET /' do
     before do
       create_list(:kadai, 3)

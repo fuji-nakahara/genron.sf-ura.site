@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UpdateUserImagesJob, type: :job do
+RSpec.describe UpdateUserImagesJob do
   describe '#perform' do
     let(:image_updated_user) { create(:user) }
     let(:twitter_client) { instance_double(GenronSFFun::TwitterClient) }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'SessionsController:', type: :request do
+RSpec.describe 'SessionsController:' do
   describe 'GET /auth/twitter2/callback' do
     context 'with a new user' do
       before do

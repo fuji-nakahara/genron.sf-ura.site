@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Vote button', type: :system do
+RSpec.describe 'Vote button' do
   before do
     driven_by :selenium_chrome_headless
   end

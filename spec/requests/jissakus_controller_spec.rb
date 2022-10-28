@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'JissakusController:', type: :request do
+RSpec.describe 'JissakusController:' do
   describe 'GET /:term_year/:kadai_round/jissakus' do
     let(:kadai) { create(:kadai) }
 

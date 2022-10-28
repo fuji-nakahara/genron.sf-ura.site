@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TweetWorkSubmittedJob, type: :job do
+RSpec.describe TweetWorkSubmittedJob do
   describe '#perform' do
     let(:work) do
       create(

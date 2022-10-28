@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Students::KougaisController:', type: :request do
+RSpec.describe 'Students::KougaisController:' do
   describe 'GET /students/:student_id/kougais' do
     let(:student) { create(:student) }
 
