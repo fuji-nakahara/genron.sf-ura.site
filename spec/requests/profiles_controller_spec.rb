@@ -36,7 +36,7 @@ RSpec.describe 'ProfilesController:' do
     end
 
     it "updates current_user's profile and redirects to /profile" do
-      patch profile_path, params: params
+      patch(profile_path, params:)
 
       expect(user.student.reload.name).to eq '新しい名前'
       expect(user.student.description).to eq '新しい自己紹介'
@@ -47,7 +47,7 @@ RSpec.describe 'ProfilesController:' do
       let(:name) { '' }
 
       it 'renders error' do
-        patch profile_path, params: params
+        patch(profile_path, params:)
 
         expect(user.student.reload.name).not_to eq ''
         expect(response).to have_http_status :ok
@@ -58,7 +58,7 @@ RSpec.describe 'ProfilesController:' do
       let(:user) { create(:user, student: create(:student)) }
 
       it 'updates their description but does not update name' do
-        patch profile_path, params: params
+        patch(profile_path, params:)
 
         expect(user.student.reload.name).not_to eq '新しい名前'
         expect(user.student.description).to eq '新しい自己紹介'

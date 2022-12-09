@@ -13,7 +13,7 @@ RSpec.describe 'PreferencesController:' do
     end
 
     it "updates current_user's preference and redirects to /preference" do
-      patch preference_path, params: params
+      patch(preference_path, params:)
 
       expect(user.reload.preference['works_order']).to eq 'genron_sf'
       expect(response).to have_http_status :no_content
@@ -23,7 +23,7 @@ RSpec.describe 'PreferencesController:' do
       let(:works_order) { 'INVALID' }
 
       it 'renders error' do
-        patch preference_path, params: params
+        patch(preference_path, params:)
 
         expect(user.reload.preference['works_order']).not_to eq 'genron_sf'
         expect(response).to have_http_status :bad_request
