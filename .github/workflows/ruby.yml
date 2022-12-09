@@ -40,8 +40,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-20201205-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-20201205
+          key: ${{ runner.os }}-gems-20221209-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-20221209
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
