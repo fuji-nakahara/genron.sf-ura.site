@@ -1,4 +1,4 @@
-# genron-sf-fun
+# genron.sf-ura.site
 
 A Ruby on Rails application for [ゲンロン 大森望 SF創作講座](https://school.genron.co.jp/sf/) community.  
 https://genron.sf-ura.site/
