@@ -15,7 +15,7 @@
     "@rails/ujs": "^7.0.4",
     "@sentry/browser": "^7.26.0",
     "bootstrap": "^5.2.3",
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.1.1",
     "google-palette": "^1.1.0",
     "popper.js": "^1.16.1",
     "react": "^18.2.0",
