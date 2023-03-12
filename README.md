@@ -8,9 +8,9 @@ https://genron.sf-ura.site/
 - Ruby
 - PostgreSQL
 
-## Setup development environment
+## Development environment
 
-    $ bin/setup
+Using [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers.)
 
 ## Run the test suite
 
