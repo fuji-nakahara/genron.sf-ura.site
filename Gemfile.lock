@@ -329,7 +329,7 @@ GEM
       rubocop-capybara (~> 2.17)
     rubocop-rubycw (0.1.6)
       rubocop (~> 1.0)
-    ruby-lsp (0.4.4)
+    ruby-lsp (0.4.5)
       language_server-protocol (~> 3.17.0)
       sorbet-runtime
       syntax_tree (>= 6.1.1, < 7)
@@ -379,7 +379,7 @@ GEM
       thor (~> 1.0)
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
-    sorbet-runtime (0.5.10780)
+    sorbet-runtime (0.5.10796)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
