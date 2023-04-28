@@ -226,7 +226,7 @@ GEM
     parallel (1.23.0)
     parser (3.2.2.0)
       ast (~> 2.4.1)
-    pg (1.4.6)
+    pg (1.5.2)
     prettier_print (1.2.1)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -456,7 +456,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   omniauth-twitter2
   open_graph_reader
-  pg (~> 1.4)
+  pg (~> 1.5)
   puma (~> 5.6)
   rack-mini-profiler (~> 3.1)
   rack-timeout
