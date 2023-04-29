@@ -59,7 +59,6 @@ group :development do
   gem 'bullet'
   gem 'dotenv-rails'
   gem 'rails_real_favicon'
-  gem 'ruby-lsp'
   gem 'solargraph'
 end
 
