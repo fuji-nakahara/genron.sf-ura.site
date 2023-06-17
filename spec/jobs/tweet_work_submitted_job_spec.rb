@@ -19,7 +19,7 @@ RSpec.describe TweetWorkSubmittedJob do
       create(:user, student: work.student, twitter_screen_name: 'fuji_nakahara')
       allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
       allow(twitter_client).to receive(:update).and_return(
-        instance_double(Twitter::Tweet, url: 'https://twitter.com/genron_sf_fun/status/1321798802072915980'),
+        instance_double(Twitter::Tweet, url: 'https://twitter.com/genron_sf_ura/status/1321798802072915980'),
       )
     end
 

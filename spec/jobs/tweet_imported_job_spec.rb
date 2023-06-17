@@ -45,7 +45,7 @@ RSpec.describe TweetImportedJob do
     before do
       allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
       allow(twitter_client).to receive(:update).and_return(
-        instance_double(Twitter::Tweet, url: 'https://twitter.com/genron_sf_fun/status/1234567890123456789'),
+        instance_double(Twitter::Tweet, url: 'https://twitter.com/genron_sf_ura/status/1234567890123456789'),
       )
     end
 
