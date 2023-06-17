@@ -11,7 +11,7 @@
     <%= form.url_field :url, class: 'form-control', required: true %>
     <div class="form-text">
       <a href="https://note.com/" target="_blank" rel="noopener">note</a> や<a href="https://kakuyomu.jp/" target="_blank" rel="noopener">カクヨム</a>など、<%= work.class.model_name.human%>を公開している外部サービスの URL を入力してください。<br>
-      文量は基本<%= volume_note %>ですが、詳細は<%= link_to '超・SF作家育成サイト', work.kadai.url, target: '_blank', rel: 'noopener' %>を確認してください。
+      文量は原則<%= volume_note %>ですが、詳細は<%= link_to '超・SF作家育成サイト', work.kadai.url, target: '_blank', rel: 'noopener' %>を確認してください。
     </div>
   </div>
 
