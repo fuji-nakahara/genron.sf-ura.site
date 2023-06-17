@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fuji-nakahara/genron_sf.git
-  revision: d7619b319a8d8f4be7c6719b4ed7573d3a95cc05
+  revision: 1f1ba799b984538323c778014a1064efdbdb749c
   branch: main
   specs:
     genron_sf (0.2.1)
@@ -483,4 +483,4 @@ RUBY VERSION
    ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.6
+   2.4.14
