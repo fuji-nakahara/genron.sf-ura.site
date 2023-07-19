@@ -404,6 +404,8 @@ GEM
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
+    twitter-rest-v2-tweet (1.1.0)
+      twitter (>= 7.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -478,6 +480,7 @@ DEPENDENCIES
   solargraph
   sprockets-rails
   twitter
+  twitter-rest-v2-tweet
   web-console (>= 4.1.0)
   webdrivers
   webmock

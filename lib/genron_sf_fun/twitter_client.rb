@@ -11,5 +11,9 @@ module GenronSFFun
       @access_token_secret = ENV.fetch('TWITTER_ACCESS_TOKEN_SECRET')
       super
     end
+
+    def update(*)
+      tweet_v2(*)
+    end
   end
 end
