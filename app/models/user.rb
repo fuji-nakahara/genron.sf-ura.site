@@ -30,6 +30,7 @@ class User < ApplicationRecord
       if auth_hash.provider == 'twitter2'
         build_twitter2_credential if twitter2_credential.nil?
         twitter2_credential.update!(
+          refresh_token: auth_hash.credentials.refresh_token,
           token: auth_hash.credentials.token,
           expires_at: Time.zone.at(auth_hash.credentials.expires_at),
         )
