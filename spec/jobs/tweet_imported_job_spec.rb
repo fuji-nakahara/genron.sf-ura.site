@@ -45,7 +45,7 @@ RSpec.describe TweetImportedJob do
     before do
       allow(Rails.configuration.x).to receive(:twitter_client).and_return(twitter_client)
       allow(twitter_client).to receive(:tweet).and_return(
-        { data: { id: '1234567890123456789' } },
+        { 'data' => { 'id' => '1234567890123456789' } },
       )
     end
 

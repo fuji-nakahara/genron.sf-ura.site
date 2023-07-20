@@ -19,7 +19,7 @@ RSpec.describe TweetWorkSubmittedJob do
       create(:user, student: work.student, twitter_screen_name: 'fuji_nakahara')
       allow(Rails.configuration.x).to receive(:twitter_client).and_return(twitter_client)
       allow(twitter_client).to receive(:tweet).and_return(
-        { data: { id: '1321798802072915980' } },
+        { 'data' => { 'id' => '1321798802072915980' } },
       )
     end
 

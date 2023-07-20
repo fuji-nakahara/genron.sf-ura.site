@@ -9,7 +9,7 @@ class TweetImportedJob < ApplicationJob
     Term.last.kadais.where(tweet_url: nil).each do |kadai|
       tweet = post_tweet(kadai_tweet_text(kadai))
       if tweet
-        kadai.update!(tweet_url: tweet.dig(:data, :id))
+        kadai.update!(tweet_id: tweet.fetch('data').fetch('id'))
       else
         failed[:kadai_ids] << kadai.id
       end
@@ -19,7 +19,7 @@ class TweetImportedJob < ApplicationJob
     works.includes(student: :user).each do |work|
       tweet = post_tweet(work_tweet_text(work))
       if tweet
-        work.update!(tweet_url: tweet.dig(:data, :id)) # FIXME: tweet_url を tweet_id にカラム変更する？
+        work.update!(tweet_id: tweet.fetch('data').fetch('id'))
       else
         failed[:work_ids] << work.id
       end

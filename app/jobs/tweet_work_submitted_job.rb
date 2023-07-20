@@ -9,6 +9,6 @@ class TweetWorkSubmittedJob < ApplicationJob
       #{work.url}
     TWEET
 
-    work.update!(tweet_url: tweet.dig(:data, :id))
+    work.update!(tweet_id: tweet.fetch('data').fetch('id'))
   end
 end
