@@ -10,7 +10,8 @@ create_table :works, force: :cascade do |t|
   t.string :url, null: false
   t.boolean :selected, null: false, default: false
   t.integer :score, null: false, default: 0, limit: 2
-  t.string :tweet_url
+  t.string :tweet_url # TODO: Remove
+  t.bigint :tweet_id
 
   t.integer :votes_count, null: false, default: 0, limit: 2
 
