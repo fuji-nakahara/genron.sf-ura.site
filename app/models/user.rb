@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  class NoRefreshTokenError < StandardError; end
+
   belongs_to :student
   has_one :twitter_credential, dependent: :destroy
   has_one :twitter2_credential, dependent: :destroy
@@ -42,7 +44,9 @@ class User < ApplicationRecord
   end
 
   def fetch_and_update!
-    token = twitter2_credential.fetch_valid_token!
+    token = twitter2_credential&.fetch_valid_token
+    raise NoRefreshTokenError if token.nil?
+
     client = TwitterClient.with_oauth2(bearer_token: token)
     response = client.me({ 'user.fields' => 'profile_image_url' })
     data = response.fetch('data')

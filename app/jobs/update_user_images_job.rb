@@ -2,7 +2,7 @@
 
 class UpdateUserImagesJob < ApplicationJob
   Error = Class.new(StandardError)
-  Result = Struct.new(:succeeded_count, :updated, :failed, :deleted)
+  Result = Struct.new(:succeeded_count, :updated, :failed, :deactivated)
 
   def perform(user_relation: User.all)
     result = Result.new(0, [], [], [])
@@ -21,9 +21,10 @@ class UpdateUserImagesJob < ApplicationJob
           user.fetch_and_update!
           logger.info "Updated: #{user.previous_changes}"
           result.updated << user.twitter_screen_name
-        rescue Twitter2Credential::Error
+        rescue User::NoRefreshTokenError
           user.deactivate
-          result.failed << user.twitter_screen_name
+          logger.info "No refresh token: #{user.id}"
+          result.deactivated << user.twitter_screen_name
         rescue TwitterClient::Error => e
           Sentry.capture_exception(e, extra: user.as_json, hint: { background: false })
 

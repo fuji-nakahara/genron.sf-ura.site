@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class Twitter2Credential < ApplicationRecord
-  class Error < StandardError; end
-
   belongs_to :user
 
-  def fetch_valid_token!
+  def fetch_valid_token
     if expired?
-      raise Error, 'No refresh token' if refresh_token.blank?
+      return nil if refresh_token.blank?
 
       refresh!
     end
