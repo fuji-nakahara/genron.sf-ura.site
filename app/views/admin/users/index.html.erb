@@ -13,9 +13,12 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr>
+      <tr class="<%= user.deactivated_at ? 'table-danger' : nil %>">
         <td><%= localize user.created_at %></td>
-        <td><%= localize user.last_logged_in_at %></td>
+        <td>
+          <%= localize user.last_logged_in_at %>
+          <%= user.twitter2_credential&.refresh_token ? '✓' : nil %>
+        </td>
         <td>
           <%= link_to twitter_profile_url(user.twitter_screen_name), target: '_blank' do %>
             <%= image_tag user.image_url, size: '24x24', class: 'border rounded-circle' %>
