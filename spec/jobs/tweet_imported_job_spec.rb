@@ -13,7 +13,7 @@ RSpec.describe TweetImportedJob do
         author: '大森望',
         kougai_deadline: '2019-06-13'.to_date,
         jissaku_deadline: '2019-07-11'.to_date,
-        tweet_url: nil,
+        tweet_id: nil,
       )
     end
     let!(:kougai) do
@@ -24,7 +24,7 @@ RSpec.describe TweetImportedJob do
         title: 'コウガイ',
         url: 'http://example.com/k',
         genron_sf_id: 1,
-        tweet_url: nil,
+        tweet_id: nil,
       )
     end
     let!(:jissaku) do
@@ -35,7 +35,7 @@ RSpec.describe TweetImportedJob do
         title: 'ジッサク',
         url: 'http://example.com/j',
         genron_sf_id: 2,
-        tweet_url: nil,
+        tweet_id: nil,
       )
     end
     let(:student) { create(:student, name: 'フジ・ナカハラ') }
@@ -71,9 +71,9 @@ RSpec.describe TweetImportedJob do
         #SF創作講座
         http://example.com/j
       JISSAKU_TWEEET
-      expect(kadai.reload.tweet_url).not_to be_nil
-      expect(kougai.reload.tweet_url).not_to be_nil
-      expect(jissaku.reload.tweet_url).not_to be_nil
+      expect(kadai.reload.tweet_id).not_to be_nil
+      expect(kougai.reload.tweet_id).not_to be_nil
+      expect(jissaku.reload.tweet_id).not_to be_nil
     end
   end
 end
