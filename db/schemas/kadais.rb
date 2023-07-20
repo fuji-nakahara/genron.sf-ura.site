@@ -7,7 +7,8 @@ create_table :kadais, force: :cascade do |t|
   t.string :author
   t.date :kougai_deadline
   t.date :jissaku_deadline
-  t.string :tweet_url
+  t.string :tweet_url # TODO: Remove
+  t.bigint :tweet_id
 
   t.integer :kougais_count, null: false, default: 0, limit: 2
   t.integer :jissakus_count, null: false, default: 0, limit: 2
