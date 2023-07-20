@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe TweetVoteResultsJob do
   describe '#perform' do
     let(:kadai) { create(:kadai, term: create(:term, year: 2020), round: 1) }
-    let(:twitter_client) { instance_spy(GenronSFFun::TwitterClient) }
+    let(:twitter_client) { instance_spy(TwitterClient) }
 
     before do
-      allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
+      allow(Rails.configuration.x).to receive(:twitter_client).and_return(twitter_client)
     end
 
     context 'with Kougai type' do
@@ -23,7 +23,7 @@ RSpec.describe TweetVoteResultsJob do
       it 'tweets vote results for kougai' do
         described_class.perform_now(kadai, type:)
 
-        expect(twitter_client).to have_received(:update).with(<<~TWEET.chomp)
+        expect(twitter_client).to have_received(:tweet).with(<<~TWEET.chomp)
           現時点での第1回梗概の最高得票作は
           フジ・ナカハラ『式年遷皇』
           で2票です！
@@ -46,7 +46,7 @@ RSpec.describe TweetVoteResultsJob do
       it 'tweets vote results for jissaku' do
         described_class.perform_now(kadai, type:)
 
-        expect(twitter_client).to have_received(:update).with(<<~TWEET.chomp)
+        expect(twitter_client).to have_received(:tweet).with(<<~TWEET.chomp)
           現時点での第1回実作の最高得票作は
           フジ・ナカハラ『サイボーグ・クラスメイト』
           フジ・ナカハラ『透明な血のつながり』

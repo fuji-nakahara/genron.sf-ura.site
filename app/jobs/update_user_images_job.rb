@@ -18,15 +18,20 @@ class UpdateUserImagesJob < ApplicationJob
       case response
       when Net::HTTPForbidden, Net::HTTPNotFound
         begin
-          twitter_user = GenronSFFun::TwitterClient.instance.user(user.twitter_id)
-          user.update_by_twitter_user!(twitter_user)
+          user.fetch_and_update!
           logger.info "Updated: #{user.previous_changes}"
           result.updated << user.twitter_screen_name
-        rescue Twitter::Error::NotFound
-          user.destroy!
-          logger.info "Deleted: #{user.inspect}"
-          result.deleted << user.twitter_screen_name
-          Sentry.capture_message('Deleted a user', level: :info, extra: user.as_json, hint: { background: false })
+        rescue Twitter2Credential::Error
+          # TODO: リフレッシュトークンがない場合の対応を検討する
+          result.failed << user.twitter_screen_name
+        rescue TwitterClient::Error => e
+          Sentry.capture_exception(e, extra: user.as_json, hint: { background: false })
+
+          # TODO: トークンのリフレッシュ失敗やユーザ退会時の Twitter API v2 の挙動が確認できたら、ユーザ削除を再実装する
+          # user.destroy!
+          # logger.info "Deleted: #{user.inspect}"
+          # result.deleted << user.twitter_screen_name
+          # Sentry.capture_message('Deleted a user', level: :info, extra: user.as_json, hint: { background: false })
         end
       when Net::HTTPServiceUnavailable
         logger.warn "Failed: #{response.to_hash})"

@@ -13,12 +13,12 @@ RSpec.describe TweetWorkSubmittedJob do
         tweet_url: nil,
       )
     end
-    let(:twitter_client) { instance_double(GenronSFFun::TwitterClient) }
+    let(:twitter_client) { instance_double(TwitterClient) }
 
     before do
       create(:user, student: work.student, twitter_screen_name: 'fuji_nakahara')
-      allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
-      allow(twitter_client).to receive(:update).and_return(
+      allow(Rails.configuration.x).to receive(:twitter_client).and_return(twitter_client)
+      allow(twitter_client).to receive(:tweet).and_return(
         { data: { id: '1321798802072915980' } },
       )
     end
@@ -26,7 +26,7 @@ RSpec.describe TweetWorkSubmittedJob do
     it 'tweets and saves tweet_url on the given work' do
       described_class.perform_now(work)
 
-      expect(twitter_client).to have_received(:update).with(<<~TWEET)
+      expect(twitter_client).to have_received(:tweet).with(<<~TWEET)
         【梗概】@fuji_nakahara『小説つばる「新人SF作家特集号」の依頼』
         #裏SF創作講座
         https://genron.sf-ura.site/2020/2

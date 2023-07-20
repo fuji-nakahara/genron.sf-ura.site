@@ -2,7 +2,7 @@
 
 class TweetWorkSubmittedJob < ApplicationJob
   def perform(work)
-    tweet = GenronSFFun::TwitterClient.instance.update(<<~TWEET)
+    tweet = Rails.configuration.x.twitter_client.tweet(<<~TWEET)
       【#{work.class.model_name.human}】@#{work.student.user.twitter_screen_name}『#{work.title}』
       #裏SF創作講座
       https://genron.sf-ura.site/#{work.kadai.year}/#{work.kadai.round}

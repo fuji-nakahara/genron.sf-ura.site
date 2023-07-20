@@ -31,10 +31,12 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simpacker'
 gem 'sprockets-rails', require: 'sprockets/railtie'
-gem 'twitter'
-gem 'twitter-rest-v2-tweet'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
+
+# For TwitterClient
+gem 'faraday', '~> 2.0', require: false
+gem 'simple_oauth', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

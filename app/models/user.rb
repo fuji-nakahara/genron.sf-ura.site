@@ -38,11 +38,15 @@ class User < ApplicationRecord
     end
   end
 
-  def update_by_twitter_user!(twitter_user)
+  def fetch_and_update!
+    token = twitter2_credential.fetch_valid_token!
+    client = TwitterClient.with_oauth2(bearer_token: token)
+    response = client.me({ 'user.fields' => 'profile_image_url' })
+    data = response.fetch('data')
+
     update!(
-      image_url: twitter_user.profile_image_uri_https(:bigger),
-      twitter_screen_name: twitter_user.screen_name,
-      updated_at: Time.zone.now,
+      twitter_screen_name: data.fetch('name'),
+      image_url: data.fetch('profile_image_url'),
     )
   end
 

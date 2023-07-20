@@ -16,7 +16,7 @@ class TweetVoteResultsJob < ApplicationJob
 
     Sentry.with_scope do |scope|
       scope.set_extras(tweet_text: tweet)
-      GenronSFFun::TwitterClient.instance.update(tweet)
+      Rails.configuration.x.twitter_client.tweet(tweet)
     end
   end
 end

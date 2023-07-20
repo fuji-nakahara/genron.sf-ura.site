@@ -40,11 +40,11 @@ RSpec.describe TweetImportedJob do
     end
     let(:student) { create(:student, name: 'フジ・ナカハラ') }
 
-    let(:twitter_client) { instance_double(GenronSFFun::TwitterClient) }
+    let(:twitter_client) { instance_double(TwitterClient) }
 
     before do
-      allow(GenronSFFun::TwitterClient).to receive(:instance).and_return(twitter_client)
-      allow(twitter_client).to receive(:update).and_return(
+      allow(Rails.configuration.x).to receive(:twitter_client).and_return(twitter_client)
+      allow(twitter_client).to receive(:tweet).and_return(
         { data: { id: '1234567890123456789' } },
       )
     end
@@ -52,7 +52,7 @@ RSpec.describe TweetImportedJob do
     it 'tweets new kadais, kougais and jissakus' do
       described_class.perform_now
 
-      expect(twitter_client).to have_received(:update).with(<<~KADAI_TWEEET.chomp)
+      expect(twitter_client).to have_received(:tweet).with(<<~KADAI_TWEEET.chomp)
         【課題】 第1回「「100年後の未来」の物語を書いてください」
         課題提示: 大森望
         梗概締切: 2019年6月13日(木)
@@ -61,12 +61,12 @@ RSpec.describe TweetImportedJob do
         https://school.genron.co.jp/works/sf/2019/subjects/1/
         https://genron.sf-ura.site/2019/1
       KADAI_TWEEET
-      expect(twitter_client).to have_received(:update).with(<<~KOUGAI_TWEEET.chomp)
+      expect(twitter_client).to have_received(:tweet).with(<<~KOUGAI_TWEEET.chomp)
         【梗概】フジ・ナカハラ『コウガイ』
         #SF創作講座
         http://example.com/k
       KOUGAI_TWEEET
-      expect(twitter_client).to have_received(:update).with(<<~JISSAKU_TWEEET.chomp)
+      expect(twitter_client).to have_received(:tweet).with(<<~JISSAKU_TWEEET.chomp)
         【実作】フジ・ナカハラ『ジッサク』
         #SF創作講座
         http://example.com/j

@@ -55,8 +55,8 @@ class TweetImportedJob < ApplicationJob
   end
 
   def post_tweet(text)
-    GenronSFFun::TwitterClient.instance.update(text)
-  rescue Twitter::Error => e
+    Rails.configuration.x.twitter_client.tweet(text)
+  rescue TwitterClient::Error => e
     Sentry.capture_exception(e, extra: { tweet_text: text }, hint: { background: false })
     nil
   end
