@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :links, dependent: :nullify
   has_many :student_merge_candidates, dependent: :delete_all
 
+  scope :active, -> { where(deactivated_at: nil) }
+
   def serializable_hash(options = nil)
     default_options = { only: %i[twitter_id twitter_screen_name image_url] }
     super(default_options.merge(options.to_h))
@@ -25,6 +27,7 @@ class User < ApplicationRecord
       update!(
         image_url: auth_hash.info.image,
         twitter_screen_name: auth_hash.info.nickname,
+        deactivated_at: nil,
         last_logged_in_at: Time.zone.now,
       )
       if auth_hash.provider == 'twitter2'
@@ -48,6 +51,10 @@ class User < ApplicationRecord
       twitter_screen_name: data.fetch('username'),
       image_url: data.fetch('profile_image_url'),
     )
+  end
+
+  def deactivate
+    touch(:deactivated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def preference_object

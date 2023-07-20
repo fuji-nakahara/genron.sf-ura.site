@@ -22,7 +22,7 @@ class UpdateUserImagesJob < ApplicationJob
           logger.info "Updated: #{user.previous_changes}"
           result.updated << user.twitter_screen_name
         rescue Twitter2Credential::Error
-          # TODO: リフレッシュトークンがない場合の対応を検討する
+          user.deactivate
           result.failed << user.twitter_screen_name
         rescue TwitterClient::Error => e
           Sentry.capture_exception(e, extra: user.as_json, hint: { background: false })
