@@ -11,7 +11,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14.7
+        image: postgres:14.8
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -29,9 +29,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install libpq-dev
-        run: sudo apt-get install libpq-dev
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -54,18 +51,5 @@ jobs:
           bin/rake db:create
           bin/rake ridgepole:apply
 
-      - name: Run tests
-        run: bin/rake spec
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-          bundler-cache: true
-
-      - run: bin/rubocop
+      - name: Run the default task
+        run: bin/rake

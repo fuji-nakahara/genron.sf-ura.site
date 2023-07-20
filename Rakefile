@@ -5,4 +5,13 @@
 
 require_relative 'config/application'
 
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+
+  task default: %i[rubocop spec]
+rescue LoadError
+  # do nothing
+end
+
 Rails.application.load_tasks
