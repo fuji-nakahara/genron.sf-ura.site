@@ -45,7 +45,7 @@ class User < ApplicationRecord
     data = response.fetch('data')
 
     update!(
-      twitter_screen_name: data.fetch('name'),
+      twitter_screen_name: data.fetch('username'),
       image_url: data.fetch('profile_image_url'),
     )
   end
