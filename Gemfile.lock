@@ -119,10 +119,10 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faraday (2.1.0)
-      faraday-net_http (~> 2.0)
+    faraday (2.7.10)
+      faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
-    faraday-net_http (2.0.1)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     font-awesome-sass (6.4.0)
       sassc (~> 2.0)
@@ -406,7 +406,7 @@ DEPENDENCIES
   dalli
   dotenv-rails
   factory_bot_rails
-  faraday (~> 2.0)
+  faraday (~> 2.7)
   font-awesome-sass
   genron_sf!
   listen (~> 3.8)
