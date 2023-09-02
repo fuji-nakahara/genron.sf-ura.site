@@ -29,6 +29,8 @@ class UpdateUserImagesJob < ApplicationJob
           Sentry.capture_exception(e, extra: user.as_json, hint: { background: false })
 
           # TODO: トークンのリフレッシュ失敗やユーザ退会時の Twitter API v2 の挙動が確認できたら、ユーザ削除を再実装する
+          # ただし、status: 403, reason: client-not-enrolled の場合は、開発者ポータルの設定の問題なので、Sentry 通知を送るのみにする
+          #
           # user.destroy!
           # logger.info "Deleted: #{user.inspect}"
           # result.deleted << user.twitter_screen_name
