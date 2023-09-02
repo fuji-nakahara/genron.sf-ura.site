@@ -7,8 +7,8 @@ class TwitterClient
     def initialize(env)
       @status = env.status
       begin
-        @body = JSON.parse(env.body, simbolized_keys: true)
-        super("#{env.status} #{@body[:title]}: #{@body[:detail]}")
+        @body = JSON.parse(env.body)
+        super("#{env.status} #{@body['title']}: #{@body['detail']}")
       rescue JSON::ParserError
         super("#{env.status}: #{env.body}")
       end
