@@ -24,6 +24,6 @@ module LoginSystemHelper
     )
 
     visit from
-    click_link 'Twitter でログイン', match: :first
+    click_on 'Twitter でログイン', match: :first
   end
 end
