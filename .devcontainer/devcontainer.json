@@ -19,7 +19,7 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["shopify.ruby-lsp", "castwide.solargraph", "KoichiSasada.vscode-rdbg", "esbenp.prettier-vscode"]
+      "extensions": ["KoichiSasada.vscode-rdbg", "esbenp.prettier-vscode"]
     }
   }
 

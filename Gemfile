@@ -63,7 +63,6 @@ group :development do
   gem 'bullet'
   gem 'dotenv-rails'
   gem 'rails_real_favicon'
-  gem 'solargraph'
 end
 
 group :test do
