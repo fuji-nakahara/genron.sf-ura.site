@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import KadaiWorkCardList from 'KadaiWorkCardList';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,25 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const jissakuList = document.getElementById('jissaku-list');
   if (jissakuList && jissakuList.dataset.jissakusPath) {
-    ReactDOM.render(
+    const root = createRoot(jissakuList);
+    root.render(
       <KadaiWorkCardList
         jsonUrl={jissakuList.dataset.jissakusPath}
         defaultSortingMethod={jissakuList.dataset.sort || 'default'}
         currentUser={currentUser}
-      ></KadaiWorkCardList>,
-      jissakuList
+      ></KadaiWorkCardList>
     );
   }
 
   const kougaiList = document.getElementById('kougai-list');
   if (kougaiList && kougaiList.dataset.kougaisPath) {
-    ReactDOM.render(
+    const root = createRoot(kougaiList);
+    root.render(
       <KadaiWorkCardList
         jsonUrl={kougaiList.dataset.kougaisPath}
         defaultSortingMethod={kougaiList.dataset.sort || 'default'}
         currentUser={currentUser}
-      ></KadaiWorkCardList>,
-      kougaiList
+      ></KadaiWorkCardList>
     );
   }
 });
