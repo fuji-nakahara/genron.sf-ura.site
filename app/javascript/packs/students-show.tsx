@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import StudentWorkCardList from 'StudentWorkCardList';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const jissakuList = document.getElementById('jissaku-list');
   if (jissakuList && jissakuList.dataset.jissakusPath) {
-    ReactDOM.render(
-      <StudentWorkCardList jsonUrl={jissakuList.dataset.jissakusPath} currentUser={currentUser}></StudentWorkCardList>,
-      jissakuList
+    const root = createRoot(jissakuList);
+    root.render(
+      <StudentWorkCardList jsonUrl={jissakuList.dataset.jissakusPath} currentUser={currentUser}></StudentWorkCardList>
     );
   }
 
   const kougaiList = document.getElementById('kougai-list');
   if (kougaiList && kougaiList.dataset.kougaisPath) {
-    ReactDOM.render(
-      <StudentWorkCardList jsonUrl={kougaiList.dataset.kougaisPath} currentUser={currentUser}></StudentWorkCardList>,
-      kougaiList
+    const root = createRoot(kougaiList);
+    root.render(
+      <StudentWorkCardList jsonUrl={kougaiList.dataset.kougaisPath} currentUser={currentUser}></StudentWorkCardList>
     );
   }
 });
