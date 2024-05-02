@@ -6,7 +6,7 @@ class TweetImportedJob < ApplicationJob
   def perform
     failed = { kadai_ids: [], work_ids: [] }
 
-    Term.last.kadais.where(tweet_id: nil).each do |kadai|
+    Term.last.kadais.where(tweet_id: nil).find_each do |kadai|
       tweet = post_tweet(kadai_tweet_text(kadai))
       if tweet
         kadai.update!(tweet_id: tweet.fetch('data').fetch('id'))
@@ -16,7 +16,7 @@ class TweetImportedJob < ApplicationJob
     end
 
     works = Work.where(kadai: Kadai.newest3, tweet_id: nil).where.not(genron_sf_id: nil).order(:id)
-    works.includes(student: :user).each do |work|
+    works.includes(student: :user).find_each do |work|
       tweet = post_tweet(work_tweet_text(work))
       if tweet
         work.update!(tweet_id: tweet.fetch('data').fetch('id'))

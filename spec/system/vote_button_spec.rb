@@ -12,7 +12,7 @@ RSpec.describe 'Vote button' do
     kougai = create(:kougai, kadai:)
 
     log_in create(:user), from: term_kadai_path(kadai.year, kadai)
-    click_button '投票する'
+    click_on '投票する'
 
     expect(page).to have_content '1'
     expect(kougai.reload.votes_count).to eq 1
