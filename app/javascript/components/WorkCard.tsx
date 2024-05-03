@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Badge, Card, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Jissaku, User, Work } from 'types';
-import WorkTweetButton from 'WorkTweetButton';
-import WorkVoteButton from 'WorkVoteButton';
+import React, { useState } from 'react';
+import { Badge, Card, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Jissaku, User, Work } from '../types';
+import WorkTweetButton from './WorkTweetButton';
+import WorkVoteButton from './WorkVoteButton';
 
 type Props = {
   work: Work;

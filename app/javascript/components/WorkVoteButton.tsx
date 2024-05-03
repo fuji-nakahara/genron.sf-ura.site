@@ -1,10 +1,10 @@
-import Rails from '@rails/ujs';
-import React, { useState } from 'react';
-import { Badge, Button, Modal } from 'react-bootstrap';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { User } from 'types';
+import Rails from '@rails/ujs';
+import React, { useState } from 'react';
+import { Badge, Button, Modal } from 'react-bootstrap';
+import { User } from '../types';
 
 type Props = {
   workId: number;

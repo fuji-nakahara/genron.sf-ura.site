@@ -1,8 +1,8 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Work } from 'types';
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import { Work } from '../types';
 
 type Props = {
   work: Work;

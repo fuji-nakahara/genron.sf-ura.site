@@ -1,6 +1,6 @@
 <% provide :title, "#{@term.year} 課題一覧" %>
 <% content_for :head do %>
-  <%= javascript_pack_tag 'kadais-index' %>
+  <%= javascript_include_tag 'kadais-index', type: 'module' %>
 <% end %>
 
 <nav class="nav nav-pills mb-3">

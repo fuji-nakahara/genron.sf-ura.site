@@ -8,7 +8,7 @@
   provide :description, description.join('、')
 
   content_for :head do
-    javascript_pack_tag 'kadais-show'
+    javascript_include_tag 'kadais-show', type: 'module'
   end
 %>
 

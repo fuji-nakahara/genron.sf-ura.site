@@ -1,6 +1,6 @@
 <% provide :title, "#{@term.year} 得点チャート" %>
 <% content_for :head do %>
-  <%= javascript_pack_tag 'scores-index' %>
+  <%= javascript_include_tag 'scores-index', type: 'module' %>
 <% end %>
 
 <%= render 'terms/nav', term: @term %>

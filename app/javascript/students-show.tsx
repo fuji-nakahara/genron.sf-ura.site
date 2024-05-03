@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import StudentWorkCardList from 'StudentWorkCardList';
+import StudentWorkCardList from './components/StudentWorkCardList';
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = document.body.dataset.currentUser ? JSON.parse(document.body.dataset.currentUser) : undefined;

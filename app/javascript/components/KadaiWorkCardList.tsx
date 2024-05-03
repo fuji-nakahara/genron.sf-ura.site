@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { Flipper, Flipped } from 'react-flip-toolkit';
-import KadaiWorkCardListSortingMethodSelect from 'KadaiWorkCardListSortingMethodSelect';
-import LoadingSpinner from 'LoadingSpinner';
-import WorkCard from 'WorkCard';
-import { User, Work } from 'types';
+import { Flipped, Flipper } from 'react-flip-toolkit';
+import { User, Work } from '../types';
+import KadaiWorkCardListSortingMethodSelect from './KadaiWorkCardListSortingMethodSelect';
+import LoadingSpinner from './LoadingSpinner';
+import WorkCard from './WorkCard';
 
 type Props = {
   jsonUrl: string;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import WorkCard from 'WorkCard';
-import LoadingSpinner from 'LoadingSpinner';
-import { User, Work } from 'types';
+import { User, Work } from '../types';
+import LoadingSpinner from './LoadingSpinner';
+import WorkCard from './WorkCard';
 
 type Props = {
   jsonUrl: string;

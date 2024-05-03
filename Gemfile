@@ -20,6 +20,9 @@ gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem 'jsbundling-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
@@ -36,7 +39,6 @@ gem 'ridgepole', require: false
 gem 'scout_apm'
 gem 'sentry-rails'
 gem 'sentry-ruby'
-gem 'simpacker'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
 

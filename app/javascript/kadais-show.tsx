@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import KadaiWorkCardList from 'KadaiWorkCardList';
+import KadaiWorkCardList from './components/KadaiWorkCardList';
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = document.body.dataset.currentUser ? JSON.parse(document.body.dataset.currentUser) : undefined;
