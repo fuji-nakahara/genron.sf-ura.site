@@ -17,18 +17,17 @@ gem 'pg', '~> 1.5'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma'
 
-# Use SCSS for stylesheets
-gem 'sass-rails'
-
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
 gem 'barnes'
 gem 'dalli'
-gem 'font-awesome-sass'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter2'
