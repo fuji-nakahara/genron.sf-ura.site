@@ -34,7 +34,7 @@ Update `TWITTER_*` values in `.env` with your Twitter app credentials.
 
 ## Deployment
 
-Every push to `main` will start CI, and after it passes, deployment to Heroku will happen automatically. 
+Every push to `main` will start CI, and after it passes, deployment to Heroku will happen automatically.
 
 ## Heroku add-ons
 

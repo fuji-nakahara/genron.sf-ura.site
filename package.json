@@ -1,14 +1,17 @@
 {
   "name": "genron_sf_fun",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css:compile": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
     "build:css": "yarn build:css:compile && yarn build:css:prefix",
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\"",
-    "format": "prettier '**/*.{json,js,ts,jsx,tsx}' --ignore-path .gitignore --write && eslint . --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore --fix",
-    "lint": "prettier '**/*.{json,js,ts,jsx,tsx}' --ignore-path .gitignore --check && eslint . --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore && tsc"
+    "fmt": "prettier . --write && eslint --fix",
+    "lint": "prettier . --check && eslint && tsc"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
@@ -35,19 +38,16 @@
     "sass": "^1.76.0"
   },
   "devDependencies": {
-    "@prettier/plugin-ruby": "^1.6.1",
     "@types/node": "^20.12.8",
     "@types/rails__ujs": "^6.0.4",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.10.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-erb": "^0.1.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.1.6"
   },
   "browserslist": [

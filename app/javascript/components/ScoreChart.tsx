@@ -1,12 +1,27 @@
-import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Tooltip,
+} from "chart.js";
 // @ts-expect-error google-palette has no type definitions
-import palette from 'google-palette';
-import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { ScoreTable } from '../types';
-import LoadingSpinner from './LoadingSpinner';
+import palette from "google-palette";
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import { ScoreTable } from "../types";
+import LoadingSpinner from "./LoadingSpinner";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+);
 
 type Props = {
   jsonUrl: string;
@@ -22,7 +37,9 @@ const ScoreChart: React.FC<Props> = ({ jsonUrl }: Props) => {
         const scoreTable = await response.json();
         setScoreTable(scoreTable);
       } else {
-        throw new Error(`Failed GET ${jsonUrl} ${response.status} (${response.statusText})`);
+        throw new Error(
+          `Failed GET ${jsonUrl} ${response.status} (${response.statusText})`,
+        );
       }
     })();
   }, [jsonUrl]);
@@ -31,9 +48,11 @@ const ScoreChart: React.FC<Props> = ({ jsonUrl }: Props) => {
     return <LoadingSpinner />;
   }
 
-  const colors = palette('tol-rainbow', scoreTable.length);
+  const colors = palette("tol-rainbow", scoreTable.length);
   const data = {
-    labels: [...Array(Math.max(...scoreTable.map((row) => row.scores.length))).keys()].map((i) => `第${i + 1}回`),
+    labels: [
+      ...Array(Math.max(...scoreTable.map((row) => row.scores.length))).keys(),
+    ].map((i) => `第${i + 1}回`),
     datasets: scoreTable.map((row, i) => {
       let sum = 0;
       const accumulatedScores = row.scores.map((score) => {

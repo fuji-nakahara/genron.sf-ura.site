@@ -20,7 +20,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports: ['5432:5432']
+        ports: ["5432:5432"]
 
     env:
       RAILS_ENV: test
@@ -32,12 +32,12 @@ jobs:
 
       - uses: ruby/setup-ruby@v1.175.1
         with:
-          ruby-version: '3.3'
+          ruby-version: "3.3"
           bundler-cache: true
 
       - uses: actions/setup-node@v4.0.2
         with:
-          node-version: '20'
+          node-version: "22"
           cache: yarn
 
       - name: Run yarn install

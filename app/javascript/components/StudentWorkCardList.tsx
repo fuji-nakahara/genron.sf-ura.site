@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { User, Work } from '../types';
-import LoadingSpinner from './LoadingSpinner';
-import WorkCard from './WorkCard';
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { User, Work } from "../types";
+import LoadingSpinner from "./LoadingSpinner";
+import WorkCard from "./WorkCard";
 
 type Props = {
   jsonUrl: string;
   currentUser?: User;
 };
 
-const StudentWorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) => {
+const StudentWorkCardList: React.FC<Props> = ({
+  jsonUrl,
+  currentUser,
+}: Props) => {
   const [works, setWorks] = useState<Work[] | null>(null);
 
   useEffect(() => {
@@ -19,7 +22,9 @@ const StudentWorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) =
         const works = await response.json();
         setWorks(works);
       } else {
-        throw new Error(`Failed GET ${jsonUrl} ${response.status} (${response.statusText})`);
+        throw new Error(
+          `Failed GET ${jsonUrl} ${response.status} (${response.statusText})`,
+        );
       }
     })();
   }, [jsonUrl]);
@@ -30,7 +35,7 @@ const StudentWorkCardList: React.FC<Props> = ({ jsonUrl, currentUser }: Props) =
 
   works.sort((a, b) => {
     if (!a.kadai || !b.kadai) {
-      throw Error('Unexpected status: work does not have kadai');
+      throw Error("Unexpected status: work does not have kadai");
     }
 
     if (a.kadai.year > b.kadai.year) {
