@@ -5,16 +5,23 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.3.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.3'
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.5'
-# Use Puma as the app server
-gem 'puma', '~> 5.6'
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma'
+
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem 'sass-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap', require: false
 
 gem 'barnes'
 gem 'dalli'
@@ -25,12 +32,11 @@ gem 'omniauth-twitter2'
 gem 'open_graph_reader'
 gem 'rack-timeout'
 gem 'rails-i18n'
-gem 'ridgepole', '>= 0.9', require: false
+gem 'ridgepole', require: false
 gem 'scout_apm'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simpacker'
-gem 'sprockets-rails', require: 'sprockets/railtie'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
 
@@ -39,8 +45,8 @@ gem 'faraday', '~> 2.7', require: false
 gem 'simple_oauth', require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri windows]
 
   gem 'factory_bot_rails'
   gem 'rspec-rails'
@@ -53,12 +59,11 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.8'
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 3.1'
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.1.0'
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'web-console'
+
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  gem 'rack-mini-profiler'
 
   gem 'bullet'
   gem 'dotenv-rails'
@@ -66,10 +71,9 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
 
   gem 'webmock'
 end
