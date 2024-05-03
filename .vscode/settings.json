@@ -1,6 +1,4 @@
 {
-  "editor.tabSize": 2,
-
   "[erb]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
