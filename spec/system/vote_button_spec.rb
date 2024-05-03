@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Vote button' do
   before do
-    driven_by :selenium_chrome_headless
+    options = ENV['SELENIUM_REMOTE'] ? { browser: :remote } : {}
+    driven_by :selenium, using: :headless_chrome, options:
   end
 
   it 'enables to vote for a work' do
