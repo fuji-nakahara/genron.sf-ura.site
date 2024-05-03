@@ -1,7 +1,7 @@
 <% provide :title, @student.name %>
 <% provide :description, @student.description %>
 <% content_for :head do %>
-  <%= javascript_pack_tag 'students-show' %>
+  <%= javascript_include_tag 'students-show', type: 'module' %>
 <% end %>
 
 <header class="card mb-3">

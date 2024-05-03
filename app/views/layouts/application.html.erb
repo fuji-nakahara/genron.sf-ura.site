@@ -14,8 +14,8 @@
 
     <%= render 'layouts/ogp' %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'vendor', 'application' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application', type: 'module' %>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQD93JBL02"></script>

@@ -43,9 +43,6 @@ jobs:
       - name: Run yarn install
         run: yarn install --frozen-lockfile
 
-      - name: Build javascript
-        run: yarn run build
-
       - name: Setup database
         run: |
           bin/rake db:create

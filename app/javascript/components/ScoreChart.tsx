@@ -1,11 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import * as palette from 'google-palette';
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from 'chart.js';
-import LoadingSpinner from 'LoadingSpinner';
+// @ts-expect-error google-palette has no type definitions
+import palette from 'google-palette';
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { ScoreTable } from 'types';
+import { ScoreTable } from '../types';
+import LoadingSpinner from './LoadingSpinner';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 

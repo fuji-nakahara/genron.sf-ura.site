@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import ScoreChart from 'ScoreChart';
+import ScoreChart from './components/ScoreChart';
 
 document.addEventListener('DOMContentLoaded', () => {
   const scoreChart = document.getElementById('score-chart');
