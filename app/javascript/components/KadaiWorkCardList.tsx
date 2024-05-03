@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { Flipped, Flipper } from 'react-flip-toolkit';
-import { User, Work } from '../types';
-import KadaiWorkCardListSortingMethodSelect from './KadaiWorkCardListSortingMethodSelect';
-import LoadingSpinner from './LoadingSpinner';
-import WorkCard from './WorkCard';
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { Flipped, Flipper } from "react-flip-toolkit";
+import { User, Work } from "../types";
+import KadaiWorkCardListSortingMethodSelect from "./KadaiWorkCardListSortingMethodSelect";
+import LoadingSpinner from "./LoadingSpinner";
+import WorkCard from "./WorkCard";
 
 type Props = {
   jsonUrl: string;
@@ -12,8 +12,13 @@ type Props = {
   currentUser?: User;
 };
 
-const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, defaultSortingMethod = 'default', currentUser }: Props) => {
-  const [sortingMethod, setSortingMethod] = useState<string>(defaultSortingMethod);
+const KadaiWorkCardList: React.FC<Props> = ({
+  jsonUrl,
+  defaultSortingMethod = "default",
+  currentUser,
+}: Props) => {
+  const [sortingMethod, setSortingMethod] =
+    useState<string>(defaultSortingMethod);
   const [works, setWorks] = useState<Work[] | null>(null);
 
   useEffect(() => {
@@ -23,7 +28,9 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, defaultSortingMethod = 'd
         const works = await response.json();
         setWorks(works);
       } else {
-        throw new Error(`Failed GET ${jsonUrl} ${response.status} (${response.statusText})`);
+        throw new Error(
+          `Failed GET ${jsonUrl} ${response.status} (${response.statusText})`,
+        );
       }
     })();
   }, [jsonUrl]);
@@ -32,9 +39,9 @@ const KadaiWorkCardList: React.FC<Props> = ({ jsonUrl, defaultSortingMethod = 'd
     return <LoadingSpinner />;
   }
 
-  if (sortingMethod === 'genron_sf') {
+  if (sortingMethod === "genron_sf") {
     works.sort(compareByGenronSf);
-  } else if (sortingMethod === 'genron_sf_student') {
+  } else if (sortingMethod === "genron_sf_student") {
     works.sort(compareByGenronSfStudent);
   } else {
     works.sort(compareByVotesCount);
@@ -88,7 +95,7 @@ function compareByGenronSf(a: Work, b: Work): number {
   }
 
   if (a.genron_sf_id && b.genron_sf_id) {
-    if ('score' in a && 'score' in b) {
+    if ("score" in a && "score" in b) {
       if (a.prize && !b.prize) {
         return -1;
       } else if (!a.prize && b.prize) {
@@ -139,7 +146,12 @@ function compareByGenronSfStudent(a: Work, b: Work): number {
     return 1;
   }
 
-  if (a.genron_sf_id && b.genron_sf_id && a.student.genron_sf_id && b.student.genron_sf_id) {
+  if (
+    a.genron_sf_id &&
+    b.genron_sf_id &&
+    a.student.genron_sf_id &&
+    b.student.genron_sf_id
+  ) {
     if (a.student.genron_sf_id < b.student.genron_sf_id) {
       return -1;
     } else if (a.student.genron_sf_id > b.student.genron_sf_id) {

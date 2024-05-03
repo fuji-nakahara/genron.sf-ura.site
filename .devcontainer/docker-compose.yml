@@ -7,10 +7,10 @@ services:
       - ../..:/workspaces:cached
     environment:
       POSTGRES_PASSWORD: postgres
-      SELENIUM_REMOTE: '1'
+      SELENIUM_REMOTE: "1"
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
-  
+
   db:
     image: postgres:latest
     restart: unless-stopped

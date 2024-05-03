@@ -1,16 +1,12 @@
 {
-  // Visit https://aka.ms/tsconfig.json to read more about this file
   "compilerOptions": {
-    "target": "ES2015",
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "target": "esnext",
     "jsx": "react-jsx",
-    "sourceMap": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noEmit": true,
-    "strict": true,
-    "baseUrl": "./app/javascript",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "strict": true
   },
-  "include": ["./app/javascript"]
+  "include": ["app/javascript/**/*"]
 }
