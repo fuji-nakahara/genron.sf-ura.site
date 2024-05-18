@@ -9,13 +9,13 @@ class JissakusController < ApplicationController
   end
 
   def new
-    kadai = Kadai.where('jissaku_deadline >= ?', Time.zone.today)
+    kadai = Kadai.where(jissaku_deadline: Time.zone.today..)
                  .find_by!(year: params[:term_year], round: params[:kadai_round])
     @jissaku = kadai.jissakus.build(student: current_user.student)
   end
 
   def create
-    kadai = Kadai.where('jissaku_deadline >= ?', Time.zone.today)
+    kadai = Kadai.where(jissaku_deadline: Time.zone.today..)
                  .find_by!(year: params[:term_year], round: params[:kadai_round])
     @jissaku = kadai.jissakus.build(jissaku_params.merge(student: current_user.student))
 
