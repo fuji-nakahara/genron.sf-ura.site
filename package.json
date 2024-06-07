@@ -38,7 +38,7 @@
     "sass": "^1.77.4"
   },
   "devDependencies": {
-    "@types/node": "^20.12.13",
+    "@types/node": "^20.14.2",
     "@types/rails__ujs": "^6.0.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.2.7",
