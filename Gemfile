@@ -42,7 +42,7 @@ gem 'sentry-ruby'
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
 
 # For TwitterClient
-gem 'faraday', '~> 2.7', require: false
+gem 'faraday', '~> 2.9', require: false
 gem 'simple_oauth', require: false
 
 group :development, :test do
