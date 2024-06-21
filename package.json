@@ -35,7 +35,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-flip-toolkit": "^7.1.0",
-    "sass": "^1.77.5"
+    "sass": "^1.77.6"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
