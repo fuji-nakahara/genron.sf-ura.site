@@ -1244,10 +1244,10 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.1.tgz#21db470729a6734d4997002f439cb308987f567a"
   integrity sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==
 
-flip-toolkit@7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/flip-toolkit/-/flip-toolkit-7.1.0.tgz#36b96058ea96a27bd8cf2dba2fab4cd59ff1d83c"
-  integrity sha512-tvids+uibr8gVFUp1xHMkNSIFvM4++Xr4jAJouUVsId2hv3YvhvC4Ht2FJzdxBZHhI4AeULPFAF6z9fhc20XWQ==
+flip-toolkit@7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/flip-toolkit/-/flip-toolkit-7.2.0.tgz#da38322b740d1fbfbee8ef2a9656aa32dad72f3a"
+  integrity sha512-Fq7Cz/5A/c4xDsYYRgSeeer7+6hpKJDX8Wbr0iVkptvWvKhe6aCZy0QVBXrWSCA0zXl/Yl+HaQtWHWPyGLv5rA==
   dependencies:
     rematrix "0.2.2"
 
@@ -2175,12 +2175,12 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
-react-flip-toolkit@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/react-flip-toolkit/-/react-flip-toolkit-7.1.0.tgz#11b990c8f27ee713ef90bdc0871bde8fec2e0aa6"
-  integrity sha512-KJ2IecKpYOJWgtXY9myyJzzC96FJaE9/8pFSAKgIoG54tiUAZ64ksDpmB+QmMofqFTa06RK7xWb9Rfavf8qz4Q==
+react-flip-toolkit@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/react-flip-toolkit/-/react-flip-toolkit-7.2.0.tgz#b7210f88ea57e42e9295d9b14c2d143dc50bb1e4"
+  integrity sha512-V4uSUDpy2AkZzVPAijFhXyX4ngRP5OW4jQAz8XLBQDvI8XNxtD88Vxz91niIZaSIi3N13N5wI+dUhlOItNdnow==
   dependencies:
-    flip-toolkit "7.1.0"
+    flip-toolkit "7.2.0"
     prop-types "^15.8.1"
 
 react-is@^16.13.1, react-is@^16.3.2:
