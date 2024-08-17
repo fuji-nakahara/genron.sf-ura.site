@@ -169,7 +169,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    minitest (5.24.1)
+    minitest (5.25.0)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.7.1)
@@ -286,8 +286,8 @@ GEM
       io-console (~> 0.5)
     rexml (3.3.4)
       strscan
-    ridgepole (2.0.3)
-      activerecord (>= 6.1, < 7.2)
+    ridgepole (2.1.0)
+      activerecord (>= 6.1, < 8.0)
       diffy
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
