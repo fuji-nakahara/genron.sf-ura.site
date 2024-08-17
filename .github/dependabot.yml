@@ -20,6 +20,9 @@ updates:
       typescript-eslint:
         patterns:
           - "@typescript-eslint/*"
+      fortawesome:
+        patterns:
+          - "@fortawesome/*"
 
   - package-ecosystem: github-actions
     directory: /
