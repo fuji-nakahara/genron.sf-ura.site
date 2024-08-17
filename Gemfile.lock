@@ -91,6 +91,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    brakeman (6.1.2)
+      racc
     builder (3.3.0)
     bullet (7.2.0)
       activesupport (>= 3.0.0)
@@ -185,6 +187,8 @@ GEM
     nio4r (2.7.3)
     nokogiri (1.16.7-aarch64-linux)
       racc (~> 1.4)
+    nokogiri (1.16.7-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
@@ -224,8 +228,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.7)
-    rack-mini-profiler (3.3.1)
-      rack (>= 1.2.0)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -389,12 +391,14 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  arm64-darwin-23
   x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
   barnes
   bootsnap
+  brakeman
   bullet
   capybara
   cssbundling-rails
@@ -411,7 +415,6 @@ DEPENDENCIES
   open_graph_reader
   pg (~> 1.5)
   puma
-  rack-mini-profiler
   rack-timeout
   rails (~> 7.2.0)
   rails-i18n
@@ -434,7 +437,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 3.3.1p55
+   ruby 3.3.4p94
 
 BUNDLED WITH
-   2.5.9
+   2.5.17

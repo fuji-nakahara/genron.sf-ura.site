@@ -1,0 +1,61 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "aa1584dcf96283df830ced3c28b25718edb0ee9f6c227093bd3cc3dabc30bfd1",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/controllers/admin/jobs_controller.rb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:job_class].camelize.constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Admin::JobsController",
+        "method": "create"
+      },
+      "user_input": "params[:job_class].camelize",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ]
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "e1555edc675d91ac4c3dc9a542b6b68411c50872376cfbeb8b92d1f072d5efe4",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/kadais/show.html.erb",
+      "line": 131,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.url, :class => \"list-group-item list-group-item-action\", :target => \"_blank\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "KadaisController",
+          "method": "show",
+          "line": 24,
+          "file": "app/controllers/kadais_controller.rb",
+          "rendered": {
+            "name": "kadais/show",
+            "file": "app/views/kadais/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "kadais/show"
+      },
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ]
+    }
+  ],
+  "updated": "2024-08-17 15:02:02 +0000",
+  "brakeman_version": "6.1.2"
+}
