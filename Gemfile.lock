@@ -189,8 +189,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.7-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
@@ -282,7 +280,7 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
-    rexml (3.3.5)
+    rexml (3.3.6)
       strscan
     ridgepole (2.1.0)
       activerecord (>= 6.1, < 8.0)
