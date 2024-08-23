@@ -22,7 +22,7 @@
     "@popperjs/core": "^2.11.8",
     "@rails/ujs": "^7.1.400",
     "@sentry/browser": "^8.26.0",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
     "esbuild": "^0.23.1",
