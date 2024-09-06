@@ -132,10 +132,10 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    faraday (2.10.1)
-      faraday-net_http (>= 2.0, < 3.2)
+    faraday (2.11.0)
+      faraday-net_http (>= 2.0, < 3.4)
       logger
-    faraday-net_http (3.1.1)
+    faraday-net_http (3.3.0)
       net-http
     gepub (1.0.16)
       nokogiri (>= 1.8.2, < 2.0)
@@ -156,7 +156,7 @@ GEM
     jwt (2.8.1)
       base64
     language_server-protocol (3.17.0.3)
-    logger (1.6.0)
+    logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -363,7 +363,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
-    uri (0.13.0)
+    uri (0.13.1)
     useragent (0.16.10)
     version_gem (1.1.4)
     web-console (4.2.1)
@@ -400,7 +400,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   factory_bot_rails
-  faraday (~> 2.10)
+  faraday (~> 2.11)
   genron_sf!
   jsbundling-rails
   omniauth
