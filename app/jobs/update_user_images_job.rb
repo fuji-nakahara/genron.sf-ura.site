@@ -25,8 +25,15 @@ class UpdateUserImagesJob < ApplicationJob
           user.deactivate
           logger.info "No refresh token: #{user.id}"
           result.deactivated << user.twitter_screen_name
+        rescue TwitterClient::BadRequestError => e
+          if e.body['error_description'] == 'Value passed for the token was invalid.'
+            user.deactivate
+            logger.info "Invalid refresh token: #{user.id}"
+            result.deactivated << user.twitter_screen_name
+          end
+          Sentry.capture_exception(e, extra: e.body.merge(user.as_json), hint: { background: false })
         rescue TwitterClient::Error => e
-          Sentry.capture_exception(e, extra: user.as_json, hint: { background: false })
+          Sentry.capture_exception(e, extra: e.body.merge(user.as_json), hint: { background: false })
 
           # TODO: トークンのリフレッシュ失敗やユーザ退会時の Twitter API v2 の挙動が確認できたら、ユーザ削除を再実装する
           # ただし、status: 403, reason: client-not-enrolled の場合は、開発者ポータルの設定の問題なので、Sentry 通知を送るのみにする

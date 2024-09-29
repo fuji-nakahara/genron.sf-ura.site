@@ -8,14 +8,17 @@ class TwitterClient
       @status = env.status
       begin
         @body = JSON.parse(env.body)
-        super("#{env.status} #{@body['title']}: #{@body['detail']}")
+        # The token endpoint returns `error` and `error_description``.
+        super("#{env.status} #{@body['title'] || @body['error']}: #{@body['detail'] || @body['error_description']}")
       rescue JSON::ParserError
+        @body = {}
         super("#{env.status}: #{env.body}")
       end
     end
   end
 
   class ClientError < Error; end
+  class BadRequestError < Error; end
   class UnauthorizedError < ClientError; end
   class ForbiddenError < ClientError; end
   class NotFoundError < ClientError; end
