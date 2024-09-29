@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.where(id: params[:id]).or(Student.where(genron_sf_id: params[:id])).take!
+    @student = Student.find_by(genron_sf_id: params[:id]) || Student.find(params[:id])
 
     respond_to do |format|
       format.html do
