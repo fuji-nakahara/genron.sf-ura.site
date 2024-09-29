@@ -4,7 +4,7 @@ class UpdateUserImagesJob < ApplicationJob
   Error = Class.new(StandardError)
   Result = Struct.new(:succeeded_count, :updated, :failed, :deactivated)
 
-  def perform(user_relation: User.all)
+  def perform(user_relation: User.active)
     result = Result.new(0, [], [], [])
 
     user_relation.find_each do |user|
