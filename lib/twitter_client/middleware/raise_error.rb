@@ -7,6 +7,8 @@ class TwitterClient
     class RaiseError < Faraday::Middleware
       def on_complete(env)
         case env.status
+        when 400
+          raise BadRequestError, env
         when 401
           raise UnauthorizedError, env
         when 403
