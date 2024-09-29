@@ -15,4 +15,5 @@ create_table :users, force: :cascade do |t|
 
   t.index :twitter_id, unique: true
   t.index :twitter_screen_name, unique: true
+  t.index :deactivated_at
 end
