@@ -82,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: genron_sf_fun_production
-  username: genron_sf_fun
-  password: <%= ENV["GENRON_SF_FUN_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
