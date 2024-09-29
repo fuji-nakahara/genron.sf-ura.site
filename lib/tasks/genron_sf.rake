@@ -19,6 +19,11 @@ namespace :genron_sf do
     UpdateUserImagesJob.perform_now
   end
 
+  desc 'Refresh old twitter tokens.'
+  task refresh_old_twitter_tokens: :environment do
+    RefreshOldTwitterTokensJob.perform_now
+  end
+
   desc 'Tweet deadline expired. (expected run at 00:00)'
   task tweet_deadline_expired: :environment do
     TweetDeadlineExpiredJob.perform_now(1.day.ago.to_date)
