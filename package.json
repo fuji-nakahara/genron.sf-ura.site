@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/node": "^22.7.3",
     "@types/rails__ujs": "^6.0.4",
-    "@types/react": "^18.3.9",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
