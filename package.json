@@ -21,7 +21,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@popperjs/core": "^2.11.8",
     "@rails/ujs": "^7.1.500",
-    "@sentry/browser": "^8.36.0",
+    "@sentry/browser": "^8.41.0",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.6",
