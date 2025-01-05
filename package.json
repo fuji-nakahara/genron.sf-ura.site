@@ -10,8 +10,8 @@
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
     "build:css": "yarn build:css:compile && yarn build:css:prefix",
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\"",
-    "fmt": "prettier . --write && eslint --fix",
-    "lint": "prettier . --check && eslint && tsc"
+    "fmt": "prettier . --write",
+    "lint": "prettier . --check && tsc"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -42,11 +42,6 @@
     "@types/rails__ujs": "^6.0.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.37.3",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2"
   },
