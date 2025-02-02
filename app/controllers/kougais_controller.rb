@@ -30,6 +30,6 @@ class KougaisController < ApplicationController
   private
 
   def kougai_params
-    params.require(:kougai).permit(:title, :url)
+    params.expect(kougai: %i[title url])
   end
 end

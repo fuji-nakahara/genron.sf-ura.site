@@ -30,6 +30,6 @@ class JissakusController < ApplicationController
   private
 
   def jissaku_params
-    params.require(:jissaku).permit(:title, :url)
+    params.expect(jissaku: %i[title url])
   end
 end
