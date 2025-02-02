@@ -21,9 +21,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     if current_user.student.genron_sf_id
-      params.require(:student).permit(:description)
+      params.expect(student: [:description])
     else
-      params.require(:student).permit(:name, :url, :description)
+      params.expect(student: %i[name url description])
     end
   end
 end

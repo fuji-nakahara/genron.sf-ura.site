@@ -15,7 +15,7 @@ module Admin
     private
 
     def prize_params
-      params.require(:prize).permit(:title, :position)
+      params.expect(prize: %i[title position])
     end
   end
 end

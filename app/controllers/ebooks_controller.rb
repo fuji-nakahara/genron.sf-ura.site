@@ -30,6 +30,6 @@ class EbooksController < ApplicationController
   end
 
   def ebook_params
-    params.require(:ebook_form).permit(:year, :email, :accept_generating_ebook)
+    params.expect(ebook_form: %i[year email accept_generating_ebook])
   end
 end
