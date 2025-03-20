@@ -49,6 +49,7 @@ class User < ApplicationRecord
 
     client = TwitterClient.with_oauth2(bearer_token: token)
     response = client.me({ 'user.fields' => 'profile_image_url' })
+    Rails.logger.info(response)
     data = response.fetch('data')
 
     update!(
