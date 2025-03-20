@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   class NoRefreshTokenError < StandardError; end
+  class EmptyUserInfoError < StandardError; end
 
   belongs_to :student
   has_one :twitter_credential, dependent: :destroy
@@ -49,9 +50,9 @@ class User < ApplicationRecord
 
     client = TwitterClient.with_oauth2(bearer_token: token)
     response = client.me({ 'user.fields' => 'profile_image_url' })
-    Rails.logger.info(response)
-    data = response.fetch('data')
+    raise EmptyUserInfoError if response.empty?
 
+    data = response.fetch('data')
     update!(
       twitter_screen_name: data.fetch('username'),
       image_url: data.fetch('profile_image_url'),
