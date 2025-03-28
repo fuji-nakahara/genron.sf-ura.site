@@ -66,5 +66,15 @@ class Kadai < ApplicationRecord
 
   def fetch_genron_sf_subject
     GenronSF::Subject.get(year:, number: round)
+  rescue GenronSF::HTTPError => e
+    # 2024年第8課題の URL が以下の従来と異なるフォーマットになっていることに対する一時的な対応
+    # https://school.genron.co.jp/works/sf/2024/subjects/辺境を描くsfを書いてください/
+    if e.message.include?('/2024/subjects/8')
+      subject = GenronSF::Subject.new(year: year, number: round)
+      subject.instance_variable_set(:@url, 'https://school.genron.co.jp/works/sf/2024/subjects/%e8%be%ba%e5%a2%83%e3%82%92%e6%8f%8f%e3%81%8fsf%e3%82%92%e6%9b%b8%e3%81%84%e3%81%a6%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84/')
+      subject.tap(&:doc)
+    else
+      raise
+    end
   end
 end
