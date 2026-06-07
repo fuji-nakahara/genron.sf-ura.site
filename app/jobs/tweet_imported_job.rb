@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class TweetImportedJob < ApplicationJob
+  include Twitter::TwitterText::Validation
+
+  MAX_TWEET_WEIGHTED_LENGTH = 270
   Error = Class.new(StandardError)
 
   def perform
@@ -16,12 +19,21 @@ class TweetImportedJob < ApplicationJob
     end
 
     works = Work.where(kadai: Kadai.newest3, tweet_id: nil).where.not(genron_sf_id: nil).order(:id)
-    works.includes(student: :user).find_each do |work|
-      tweet = post_tweet(work_tweet_text(work))
-      if tweet
-        work.update!(tweet_id: tweet.fetch('data').fetch('id'))
-      else
-        failed[:work_ids] << work.id
+    works.includes(:kadai, student: :user)
+         .group_by { |work| [work.kadai, work.type] }
+         .each do |(kadai, type), grouped_works|
+      if kadai.tweet_id.nil?
+        failed[:work_ids] += grouped_works.map(&:id)
+        next
+      end
+
+      work_tweet_chunks(type, grouped_works).each do |text, chunk_works|
+        tweet = post_tweet(text, reply_to: kadai.tweet_id)
+        if tweet
+          chunk_works.each { |work| work.update!(tweet_id: tweet.fetch('data').fetch('id')) }
+        else
+          failed[:work_ids] += chunk_works.map(&:id)
+        end
       end
     end
 
@@ -42,20 +54,47 @@ class TweetImportedJob < ApplicationJob
     lines.join("\n")
   end
 
-  def work_tweet_text(work)
+  def work_tweet_chunks(type, works)
+    chunks = []
     lines = []
-    lines << if work.student.user
-               "【#{work.class.model_name.human}】#{work.student.name} @#{work.student.user.twitter_screen_name}『#{work.title}』" # rubocop:disable Layout/LineLength
-             else
-               "【#{work.class.model_name.human}】#{work.student.name}『#{work.title}』"
-             end
-    lines << '#SF創作講座'
-    lines << work.url
-    lines.join("\n")
+    chunk_works = []
+
+    works.each do |work|
+      line = work_tweet_line(work)
+      next_text = work_tweet_text(type, lines + [line])
+      tweet_weighted_length = parse_tweet(next_text)[:weighted_length]
+      if lines.present? && tweet_weighted_length > MAX_TWEET_WEIGHTED_LENGTH
+        chunks << [work_tweet_text(type, lines), chunk_works]
+        lines = []
+        chunk_works = []
+      end
+
+      lines << line
+      chunk_works << work
+    end
+
+    chunks << [work_tweet_text(type, lines), chunk_works] if lines.present?
+    chunks
   end
 
-  def post_tweet(text)
-    Rails.configuration.x.twitter_client.tweet(text)
+  def work_tweet_line(work)
+    author = work.student.name
+    author = "#{author} @#{work.student.user.twitter_screen_name}" if work.student.user
+    "#{author}『#{work.title}』"
+  end
+
+  def work_tweet_text(type, lines)
+    header = "#{type.constantize.model_name.human}が投稿されました！"
+    footer = '#SF創作講座'
+    ([header] + lines + [footer]).join("\n")
+  end
+
+  def post_tweet(text, reply_to: nil)
+    if reply_to
+      Rails.configuration.x.twitter_client.tweet(text, reply_to:)
+    else
+      Rails.configuration.x.twitter_client.tweet(text)
+    end
   rescue TwitterClient::Error => e
     Sentry.capture_exception(e, extra: { tweet_text: text }, hint: { background: false })
     nil

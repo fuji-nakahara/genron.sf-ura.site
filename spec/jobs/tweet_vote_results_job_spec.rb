@@ -4,7 +4,14 @@ require 'rails_helper'
 
 RSpec.describe TweetVoteResultsJob do
   describe '#perform' do
-    let(:kadai) { create(:kadai, term: create(:term, year: 2020), round: 1) }
+    let(:kadai) do
+      create(
+        :kadai,
+        term: create(:term, year: 2020),
+        round: 1,
+        tweet_id: 987_654_321_098_765_432,
+      )
+    end
     let(:twitter_client) { instance_spy(TwitterClient) }
 
     before do
@@ -23,13 +30,16 @@ RSpec.describe TweetVoteResultsJob do
       it 'tweets vote results for kougai' do
         described_class.perform_now(kadai, type:)
 
-        expect(twitter_client).to have_received(:tweet).with(<<~TWEET.chomp)
+        expected_tweet = <<~TWEET.chomp
           現時点での第1回梗概の最高得票作は
           フジ・ナカハラ『式年遷皇』
           で2票です！
           #裏SF創作講座
-          https://genron.sf-ura.site/2020/1
         TWEET
+        expect(twitter_client).to have_received(:tweet).with(
+          expected_tweet,
+          reply_to: 987_654_321_098_765_432,
+        )
       end
     end
 
@@ -46,14 +56,17 @@ RSpec.describe TweetVoteResultsJob do
       it 'tweets vote results for jissaku' do
         described_class.perform_now(kadai, type:)
 
-        expect(twitter_client).to have_received(:tweet).with(<<~TWEET.chomp)
+        expected_tweet = <<~TWEET.chomp
           現時点での第1回実作の最高得票作は
           フジ・ナカハラ『サイボーグ・クラスメイト』
           フジ・ナカハラ『透明な血のつながり』
           で2票です！
           #裏SF創作講座
-          https://genron.sf-ura.site/2020/1
         TWEET
+        expect(twitter_client).to have_received(:tweet).with(
+          expected_tweet,
+          reply_to: 987_654_321_098_765_432,
+        )
       end
     end
   end

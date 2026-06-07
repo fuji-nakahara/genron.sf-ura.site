@@ -33,6 +33,7 @@ gem 'ridgepole', require: false
 gem 'scout_apm'
 gem 'sentry-rails'
 gem 'sentry-ruby'
+gem 'twitter-text'
 
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
 

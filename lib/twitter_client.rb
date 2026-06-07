@@ -39,8 +39,11 @@ class TwitterClient
     end
   end
 
-  def tweet(text)
-    response = @conn.post('/2/tweets', { text: })
+  def tweet(text, reply_to: nil)
+    body = { text: }
+    body[:reply] = { in_reply_to_tweet_id: reply_to.to_s } if reply_to
+
+    response = @conn.post('/2/tweets', body)
     response.body
   end
 

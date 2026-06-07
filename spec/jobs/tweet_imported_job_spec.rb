@@ -39,17 +39,17 @@ RSpec.describe TweetImportedJob do
       )
     end
     let(:student) { create(:student, name: 'フジ・ナカハラ') }
-
     let(:twitter_client) { instance_double(TwitterClient) }
 
     before do
+      create(:user, student:, twitter_screen_name: 'fuji_nakahara')
       allow(Rails.configuration.x).to receive(:twitter_client).and_return(twitter_client)
       allow(twitter_client).to receive(:tweet).and_return(
         { 'data' => { 'id' => '1234567890123456789' } },
       )
     end
 
-    it 'tweets new kadais, kougais and jissakus' do
+    it 'tweets new kadais and grouped works as replies' do
       described_class.perform_now
 
       expect(twitter_client).to have_received(:tweet).with(<<~KADAI_TWEEET.chomp)
@@ -61,19 +61,53 @@ RSpec.describe TweetImportedJob do
         https://school.genron.co.jp/works/sf/2019/subjects/1/
         https://genron.sf-ura.site/2019/1
       KADAI_TWEEET
-      expect(twitter_client).to have_received(:tweet).with(<<~KOUGAI_TWEEET.chomp)
-        【梗概】フジ・ナカハラ『コウガイ』
+      expected_kougai_tweet = <<~KOUGAI_TWEEET.chomp
+        梗概が投稿されました！
+        フジ・ナカハラ @fuji_nakahara『コウガイ』
         #SF創作講座
-        http://example.com/k
       KOUGAI_TWEEET
-      expect(twitter_client).to have_received(:tweet).with(<<~JISSAKU_TWEEET.chomp)
-        【実作】フジ・ナカハラ『ジッサク』
+      expect(twitter_client).to have_received(:tweet).with(
+        expected_kougai_tweet,
+        reply_to: 1_234_567_890_123_456_789,
+      )
+      expected_jissaku_tweet = <<~JISSAKU_TWEEET.chomp
+        実作が投稿されました！
+        フジ・ナカハラ @fuji_nakahara『ジッサク』
         #SF創作講座
-        http://example.com/j
       JISSAKU_TWEEET
+      expect(twitter_client).to have_received(:tweet).with(
+        expected_jissaku_tweet,
+        reply_to: 1_234_567_890_123_456_789,
+      )
       expect(kadai.reload.tweet_id).not_to be_nil
       expect(kougai.reload.tweet_id).not_to be_nil
       expect(jissaku.reload.tweet_id).not_to be_nil
+    end
+
+    it 'splits grouped work tweets when they exceed the length limit' do
+      kadai.update!(tweet_id: 987_654_321_098_765_432)
+      [kougai, jissaku].each(&:destroy!)
+      works = create_list(
+        :kougai,
+        4,
+        kadai:,
+        student:,
+        title: 'あ' * 40,
+        tweet_id: nil,
+      )
+
+      allow(twitter_client).to receive(:tweet).and_return(
+        { 'data' => { 'id' => '111' } },
+        { 'data' => { 'id' => '222' } },
+      )
+
+      described_class.perform_now
+
+      expect(twitter_client).to have_received(:tweet).twice
+      expect(works[0].reload.tweet_id).to eq(111)
+      expect(works[1].reload.tweet_id).to eq(111)
+      expect(works[2].reload.tweet_id).to eq(222)
+      expect(works[3].reload.tweet_id).to eq(222)
     end
   end
 end
