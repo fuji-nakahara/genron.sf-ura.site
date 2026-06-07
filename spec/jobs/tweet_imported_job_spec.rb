@@ -86,7 +86,7 @@ RSpec.describe TweetImportedJob do
 
     it 'splits grouped work tweets when they exceed the length limit' do
       kadai.update!(tweet_id: 987_654_321_098_765_432)
-      [kougai, jissaku].each(&:destroy!)
+      [kougai, jissaku].each { |work| work.update!(tweet_id: 123) }
       works = create_list(
         :kougai,
         4,
