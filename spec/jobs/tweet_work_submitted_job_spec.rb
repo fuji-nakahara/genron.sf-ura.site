@@ -7,7 +7,12 @@ RSpec.describe TweetWorkSubmittedJob do
     let(:work) do
       create(
         :kougai,
-        kadai: create(:kadai, term: create(:term, year: 2020), round: 2),
+        kadai: create(
+          :kadai,
+          term: create(:term, year: 2020),
+          round: 2,
+          tweet_id: 987_654_321_098_765_432,
+        ),
         title: '小説つばる「新人SF作家特集号」の依頼',
         url: 'https://kakuyomu.jp/works/1177354054935195606/episodes/1177354054935195646',
         tweet_id: nil,
@@ -26,12 +31,15 @@ RSpec.describe TweetWorkSubmittedJob do
     it 'tweets and saves tweet_id on the given work' do
       described_class.perform_now(work)
 
-      expect(twitter_client).to have_received(:tweet).with(<<~TWEET)
-        【梗概】@fuji_nakahara『小説つばる「新人SF作家特集号」の依頼』
+      expected_tweet = <<~TWEET
+        梗概が投稿されました！
+        @fuji_nakahara『小説つばる「新人SF作家特集号」の依頼』
         #裏SF創作講座
-        https://genron.sf-ura.site/2020/2
-        https://kakuyomu.jp/works/1177354054935195606/episodes/1177354054935195646
       TWEET
+      expect(twitter_client).to have_received(:tweet).with(
+        expected_tweet,
+        reply_to: 987_654_321_098_765_432,
+      )
       expect(work.reload.tweet_id).not_to be_nil
     end
   end

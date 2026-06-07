@@ -2,6 +2,8 @@
 
 class TweetVoteResultsJob < ApplicationJob
   def perform(kadai, type:)
+    raise "Kadai tweet_id is missing: #{kadai.id}" if kadai.tweet_id.nil?
+
     max_vote_count = kadai.works.where(type:).maximum(:votes_count)
     return if max_vote_count <= 1
 
@@ -11,12 +13,11 @@ class TweetVoteResultsJob < ApplicationJob
       #{top_works.map { |work| "#{work.student.name}『#{work.title}』" }.join("\n")}
       で#{max_vote_count}票です！
       #裏SF創作講座
-      https://genron.sf-ura.site/#{kadai.year}/#{kadai.round}
     TWEET
 
     Sentry.with_scope do |scope|
       scope.set_extras(tweet_text: tweet)
-      Rails.configuration.x.twitter_client.tweet(tweet)
+      Rails.configuration.x.twitter_client.tweet(tweet, reply_to: kadai.tweet_id)
     end
   end
 end
