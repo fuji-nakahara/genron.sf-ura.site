@@ -49,14 +49,11 @@ class User < ApplicationRecord
     raise NoRefreshTokenError if token.nil?
 
     client = TwitterClient.with_oauth2(bearer_token: token)
-    response = client.me({ 'user.fields' => 'profile_image_url' })
-    raise EmptyUserInfoError if response.empty?
+    data = client.me({ 'user.fields' => 'profile_image_url' })['data'] || {}
+    username, image_url = data.values_at('username', 'profile_image_url')
+    raise EmptyUserInfoError if username.blank? || image_url.blank?
 
-    data = response.fetch('data')
-    update!(
-      twitter_screen_name: data.fetch('username'),
-      image_url: data.fetch('profile_image_url'),
-    )
+    update!(twitter_screen_name: username, image_url:)
   end
 
   def deactivate
