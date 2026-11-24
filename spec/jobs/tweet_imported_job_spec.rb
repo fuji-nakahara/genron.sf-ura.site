@@ -23,7 +23,6 @@ RSpec.describe TweetImportedJob do
         student:,
         title: 'コウガイ',
         url: 'http://example.com/k',
-        genron_sf_id: 1,
         tweet_id: nil,
       )
     end
