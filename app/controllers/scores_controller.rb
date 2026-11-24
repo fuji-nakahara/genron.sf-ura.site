@@ -9,5 +9,8 @@ class ScoresController < ApplicationController
     end
 
     render json: score_table.map { |student, scores| { student:, scores: } }
+  rescue GenronSF::HTTPError => e
+    logger.warn(e.message)
+    render json: { error: 'score_table_unavailable' }, status: :bad_gateway
   end
 end
