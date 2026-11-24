@@ -28,24 +28,42 @@ type Props = {
 };
 
 const ScoreChart: React.FC<Props> = ({ jsonUrl }: Props) => {
-  const [scoreTable, setScoreTable] = useState<ScoreTable | null>(null);
+  const [scoreTable, setScoreTable] = useState<
+    ScoreTable | "loading" | "unavailable"
+  >("loading");
 
   useEffect(() => {
+    const controller = new AbortController();
+    setScoreTable("loading");
+
     (async () => {
-      const response = await fetch(jsonUrl);
-      if (response.ok) {
-        const scoreTable = await response.json();
-        setScoreTable(scoreTable);
-      } else {
-        throw new Error(
-          `Failed GET ${jsonUrl} ${response.status} (${response.statusText})`,
-        );
+      try {
+        const response = await fetch(jsonUrl, { signal: controller.signal });
+        const scores = response.ok ? await response.json() : "unavailable";
+
+        if (!controller.signal.aborted) {
+          setScoreTable(scores);
+        }
+      } catch {
+        if (!controller.signal.aborted) {
+          setScoreTable("unavailable");
+        }
       }
     })();
+
+    return () => controller.abort();
   }, [jsonUrl]);
 
-  if (scoreTable === null) {
+  if (scoreTable === "loading") {
     return <LoadingSpinner />;
+  }
+
+  if (scoreTable === "unavailable") {
+    return <p role="status">得点一覧を取得できません。</p>;
+  }
+
+  if (scoreTable.length === 0) {
+    return <p role="status">表示できる得点がありません。</p>;
   }
 
   const colors = palette("tol-rainbow", scoreTable.length);
