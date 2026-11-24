@@ -38,7 +38,7 @@ gem 'twitter-text'
 gem 'genron_sf', github: 'fuji-nakahara/genron_sf', branch: 'main', require: 'genron_sf/ebook'
 
 # For TwitterClient
-gem 'faraday', '~> 2.12', require: false
+gem 'faraday', '~> 2.14', require: false
 gem 'simple_oauth', require: false
 
 group :development, :test do
