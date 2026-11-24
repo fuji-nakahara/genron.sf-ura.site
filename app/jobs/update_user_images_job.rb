@@ -26,7 +26,7 @@ class UpdateUserImagesJob < ApplicationJob
           logger.info "No refresh token: #{user.id}"
           result.deactivated << user.twitter_screen_name
         rescue User::EmptyUserInfoError
-          logger.warn 'X API returned an empty user'
+          logger.warn "X API returned an empty or incomplete profile: user_id=#{user.id}"
           result.failed << user.twitter_screen_name
         rescue TwitterClient::BadRequestError => e
           if e.body['error_description'] == 'Value passed for the token was invalid.'
